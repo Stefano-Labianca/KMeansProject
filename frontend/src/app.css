@@ -1,3 +1,29 @@
+/* TailwindCSS */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* Fonts */
+@font-face {
+	font-family: 'Outfit';
+	font-style: normal;
+	font-weight: 300;
+	src: url('../static/fonts/Outfit_Light.ttf') format('ttf');
+	font-display: swap;
+}
+
+@font-face {
+	font-family: 'Outfit';
+	font-style: normal;
+	font-weight: 400;
+	src: url('../static/fonts/Outfit_Regular.ttf') format('ttf');
+	font-display: swap;
+}
+
+@font-face {
+	font-family: 'Outfit';
+	font-style: normal;
+	font-weight: 500;
+	src: url('../static/fonts/Outfit_Medium.ttf') format('ttf');
+	font-display: swap;
+}
