@@ -5,29 +5,31 @@
 
 /* Fonts */
 @font-face {
-	font-family: "Outfit";
-	font-style: normal;
-	font-weight: 300;
-	src: url("/fonts/Outfit_Light.woff") format("woff");
-	font-display: swap;
+  font-family: "Outfit";
+  font-style: normal;
+  font-weight: 300;
+  src: url("/fonts/Outfit_Light.woff") format("woff");
+  font-display: swap;
 }
 
 @font-face {
-	font-family: "Outfit";
-	font-style: normal;
-	font-weight: 400;
-	src: url("/fonts/Outfit_Regular.woff") format("woff");
-	font-display: swap;
+  font-family: "Outfit";
+  font-style: normal;
+  font-weight: 400;
+  src: url("/fonts/Outfit_Regular.woff") format("woff");
+  font-display: swap;
 }
 
 @font-face {
-	font-family: "Outfit";
-	font-style: normal;
-	font-weight: 500;
-	src: url("/fonts/Outfit_Medium.woff") format("woff");
-	font-display: swap;
+  font-family: "Outfit";
+  font-style: normal;
+  font-weight: 500;
+  src: url("/fonts/Outfit_Medium.woff") format("woff");
+  font-display: swap;
 }
 
 html {
-	@apply bg-black;
+  @apply bg-black;
+  @apply mx-8;
+  @apply my-6;
 }
