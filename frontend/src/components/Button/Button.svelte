@@ -38,7 +38,7 @@
 
   /* Disabled */
   .disabled {
-    @apply bg-subtitle/5;
+    @apply bg-subtitle/light;
     @apply text-subtitle;
 
     @apply after:bg-transparent;
@@ -52,19 +52,19 @@
   }
 
   .primary {
-    @apply bg-primary/5;
+    @apply bg-primary/light;
     @apply text-primary;
     @apply font-medium;
   }
 
   .secondary {
-    @apply bg-subtitle/5;
+    @apply bg-subtitle/light;
     @apply text-subtitle;
     @apply font-medium;
   }
 
   .error {
-    @apply bg-error/5;
+    @apply bg-error/light;
     @apply text-error;
     @apply font-medium;
   }
