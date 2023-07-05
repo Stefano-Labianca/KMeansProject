@@ -4,7 +4,7 @@
   .Spinner {
     @apply w-20;
     @apply h-20;
-    @apply border-4;
+    @apply border-2;
     @apply rounded-full;
     @apply border-t-transparent;
     @apply border-r-transparent;
