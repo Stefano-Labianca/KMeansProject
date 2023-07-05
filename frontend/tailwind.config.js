@@ -1,3 +1,5 @@
+import { opacity } from "tailwindcss/defaultTheme"
+
 /** @type {import('tailwindcss').Config} */
 export default {
   content: ["./src/**/*.{html,js,svelte,ts}"],
@@ -15,6 +17,13 @@ export default {
 
       borderRadius: {
         default: "5px",
+      },
+
+      opacity: {
+        light: opacity[5],
+        soft: opacity[10],
+        medium: opacity[30],
+        strong: opacity[80],
       },
 
       colors: {
