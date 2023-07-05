@@ -7,7 +7,7 @@ import type { DesignOptions } from "$lib/types"
  * @param design Tipologia di design da applicare
  */
 export type TextComponent = {
-  text: string
-  role: "paragraph" | "title" | "subtitle"
+  text?: string
+  role?: "paragraph" | "title" | "subtitle"
   design?: DesignOptions
 }
