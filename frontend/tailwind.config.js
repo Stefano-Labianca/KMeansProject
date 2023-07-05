@@ -13,7 +13,7 @@ export default {
         large: "2.5rem",
       },
 
-      borderWidth: {
+      borderRadius: {
         default: "5px",
       },
 
