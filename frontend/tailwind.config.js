@@ -13,6 +13,10 @@ export default {
         large: "2.5rem",
       },
 
+      borderWidth: {
+        default: "5px",
+      },
+
       colors: {
         background: "#070707",
         title: "#F1F1EF",
