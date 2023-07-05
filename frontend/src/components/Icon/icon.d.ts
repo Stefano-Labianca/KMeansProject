@@ -1,4 +1,4 @@
-import type { DesignOptions } from "$lib/types"
+import type { BaseComponent, DesignOptions } from "$lib/types"
 
 /**
  * Descrive il componente dell'icona
@@ -6,6 +6,6 @@ import type { DesignOptions } from "$lib/types"
  * @param design Tipologia di design da applicare
  */
 export type IconComponent = {
-  icon: ComponentType<SvelteComponentTyped>
-  design: DesignOptions
+  icon: BaseComponent
+  design?: DesignOptions
 }
