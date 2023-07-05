@@ -1,8 +1,8 @@
 <script lang="ts">
   import type { TextComponent } from "./text"
 
-  export let text: TextComponent["text"]
-  export let role: TextComponent["role"]
+  export let text: TextComponent["text"] = ""
+  export let role: TextComponent["role"] = "paragraph"
   export let design: TextComponent["design"] = "default"
 </script>
 
@@ -28,7 +28,7 @@
 
   /* Design */
   .default {
-    @apply text-title;
+    @apply text-inherit;
   }
 
   .primary {

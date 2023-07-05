@@ -2,7 +2,7 @@
   import type { IconComponent } from "./icon"
 
   export let icon: IconComponent["icon"]
-  export let design: IconComponent["design"]
+  export let design: IconComponent["design"] = "default"
 </script>
 
 <div class="Icon {design}">
@@ -17,7 +17,7 @@
 
   /* Design */
   .default {
-    @apply text-title;
+    @apply text-inherit;
   }
 
   .primary {
