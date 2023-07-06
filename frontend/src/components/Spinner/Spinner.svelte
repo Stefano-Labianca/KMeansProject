@@ -2,8 +2,8 @@
 
 <style lang="postcss">
   .Spinner {
-    @apply w-20;
-    @apply h-20;
+    @apply w-5;
+    @apply h-5;
     @apply border-2;
     @apply rounded-full;
     @apply border-t-transparent;
