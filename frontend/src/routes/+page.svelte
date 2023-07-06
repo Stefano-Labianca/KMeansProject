@@ -28,3 +28,17 @@
   <Button icon={SearchIcon} design="secondary" fill />
   <Button icon={TrashIcon} design="error" fill />
 </div>
+
+<div class="flex justify-evenly my-32">
+  <Button design="default" loading />
+  <Button design="primary" loading />
+  <Button design="secondary" loading />
+  <Button design="error" loading />
+</div>
+
+<div class="flex justify-evenly my-32">
+  <Button design="default" loading fill />
+  <Button design="primary" loading fill />
+  <Button design="secondary" loading fill />
+  <Button design="error" loading fill />
+</div>
