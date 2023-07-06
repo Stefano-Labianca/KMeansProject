@@ -3,6 +3,7 @@
   import Text from "../Text/Text.svelte"
   import Loading from "./Loading.svelte"
 
+  import { isButtonFilled, spinnerModifier } from "../../stores/spinner"
   import type { ButtonComponent } from "./button"
 
   export let icon: ButtonComponent["icon"] = undefined
@@ -12,6 +13,16 @@
   export let inverted: ButtonComponent["inverted"] = false
   export let disabled: ButtonComponent["disabled"] = false
   export let fill: ButtonComponent["fill"] = false
+
+  spinnerModifier.update(d => {
+    if (loading) {
+      return design || "default"
+    }
+
+    return "default"
+  })
+
+  isButtonFilled.update(f => (f = fill || false))
 </script>
 
 <!-- TODO: Hover effect, Disable, Click action -->
@@ -95,5 +106,9 @@
   /* Inverted button */
   .inverted {
     @apply flex-row-reverse;
+  }
+
+  /* Loading */
+  .loading {
   }
 </style>
