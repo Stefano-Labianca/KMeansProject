@@ -6,9 +6,11 @@
   export let design: TextComponent["design"] = "default"
 </script>
 
-<div class="{role} {design}">
-  {text}
-</div>
+{#if text}
+  <div class="{role} {design}">
+    {text}
+  </div>
+{/if}
 
 <style lang="postcss">
   /* Roles */
