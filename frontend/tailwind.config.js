@@ -1,4 +1,4 @@
-import { opacity } from "tailwindcss/defaultTheme"
+import { opacity, transitionDuration } from "tailwindcss/defaultTheme"
 
 /** @type {import('tailwindcss').Config} */
 export default {
@@ -17,6 +17,24 @@ export default {
 
       borderRadius: {
         default: "5px",
+      },
+
+      transitionDuration: {
+        default: transitionDuration["300"],
+      },
+
+      transitionTimingFunction: {
+        default: "cubic-bezier(0.165, 0.84, 0.44, 1)",
+      },
+
+      gap: {
+        small: "0.5rem",
+        medium: "0.625rem",
+      },
+
+      padding: {
+        default: "1.25rem",
+        small: "0.5rem",
       },
 
       opacity: {
