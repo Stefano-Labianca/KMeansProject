@@ -23,11 +23,19 @@
   })
 
   isButtonFilled.update(f => (f = fill || false))
+
+  let isDisabled: boolean
+  $: isDisabled = loading || disabled || false
 </script>
 
-<!-- TODO: Hover effect, Disable, Click action -->
-
-<button class:inverted class:fill class:disabled class={design}>
+<button
+  class:inverted
+  class:clickable={!isDisabled}
+  class:hoverable={!isDisabled}
+  class:fill
+  class:disabled={isDisabled}
+  class="animated {design}"
+>
   {#if loading}
     <Loading />
   {:else}
@@ -41,24 +49,16 @@
     @apply flex;
     @apply items-center;
     @apply justify-center;
-    @apply gap-2;
-    @apply p-5;
+    @apply gap-small;
+    @apply p-default;
     @apply rounded-default;
     @apply overflow-hidden;
-  }
-
-  /* Disabled */
-  .disabled {
-    @apply bg-subtitle/light;
-    @apply text-subtitle;
-
-    @apply after:bg-transparent;
   }
 
   /* Design */
   .default {
     @apply bg-transparent;
-    @apply text-white;
+    @apply text-title;
     @apply font-medium;
   }
 
@@ -99,7 +99,9 @@
 
     &.error {
       @apply bg-error;
-      @apply text-white;
+      @apply text-title;
+
+      @apply after:bg-background;
     }
   }
 
@@ -108,7 +110,41 @@
     @apply flex-row-reverse;
   }
 
-  /* Loading */
-  .loading {
+  /* Disabled */
+  .disabled {
+    @apply cursor-default;
+  }
+
+  /* Clickable */
+  .clickable {
+    @apply cursor-pointer;
+
+    @apply active:scale-[0.95];
+  }
+
+  .animated {
+    @apply duration-default;
+    @apply ease-default;
+
+    @apply before:absolute;
+    @apply before:duration-default;
+    @apply before:ease-default;
+
+    @apply after:absolute;
+    @apply after:duration-default;
+    @apply after:ease-default;
+  }
+
+  /* Hoverable */
+  .hoverable {
+    @apply relative;
+
+    @apply after:content-[""];
+    @apply after:absolute;
+    @apply after:inset-0;
+    @apply after:bg-current;
+    @apply after:opacity-0;
+
+    @apply hover:after:opacity-soft;
   }
 </style>
