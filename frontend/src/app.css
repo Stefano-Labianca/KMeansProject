@@ -32,4 +32,6 @@ html {
   @apply bg-black;
   @apply mx-8;
   @apply my-6;
+  @apply text-title;
+  @apply leading-relaxed;
 }
