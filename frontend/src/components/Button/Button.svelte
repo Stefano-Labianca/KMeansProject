@@ -34,7 +34,9 @@
   class:hoverable={!isDisabled}
   class:fill
   class:disabled={isDisabled}
+  disabled={isDisabled}
   class="animated {design}"
+  on:click={() => console.log("AA")}
 >
   {#if loading}
     <Loading />
