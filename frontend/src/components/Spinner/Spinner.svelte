@@ -1,6 +1,6 @@
 <script lang="ts">
+  import { isButtonFilled, spinnerModifier } from "$stores/spinner"
   import { get } from "svelte/store"
-  import { isButtonFilled, spinnerModifier } from "../../stores/spinner"
 
   $: designClass = get(spinnerModifier)
   $: filledButton = get(isButtonFilled)
