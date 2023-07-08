@@ -8,4 +8,5 @@ export type ButtonComponent = {
   design?: DesignOptions
   disabled?: boolean
   fill?: boolean
+  onClick?: () => void
 }

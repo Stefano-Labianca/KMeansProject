@@ -3,7 +3,7 @@
   import Text from "../Text/Text.svelte"
   import Loading from "./Loading.svelte"
 
-  import { isButtonFilled, spinnerModifier } from "../../stores/spinner"
+  import { isButtonFilled, spinnerModifier } from "$stores/spinner"
   import type { ButtonComponent } from "./button"
 
   export let icon: ButtonComponent["icon"] = undefined
@@ -13,6 +13,7 @@
   export let inverted: ButtonComponent["inverted"] = false
   export let disabled: ButtonComponent["disabled"] = false
   export let fill: ButtonComponent["fill"] = false
+  export let onClick: ButtonComponent["onClick"] = undefined
 
   spinnerModifier.update(d => {
     if (loading) {
@@ -36,6 +37,7 @@
   class:disabled={isDisabled}
   disabled={isDisabled}
   class="animated {design}"
+  on:click={onClick}
 >
   {#if loading}
     <Loading />
