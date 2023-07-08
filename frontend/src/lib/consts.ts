@@ -1,9 +1,14 @@
 import { quartOut } from "svelte/easing"
 
-// Misc
+/**
+ * Tempo di visualizzazione, in millisecondi, della notifica
+ */
 export const ALERT_TIMEOUT = 4000
 
-// Transitions
+/**
+ * Contiene le informazioni base di una transizione, come
+ * durata (in millisecondi) e tipologia di transizione
+ */
 export const TRANSITION_BASE = {
   duration: 300,
   ease: quartOut,

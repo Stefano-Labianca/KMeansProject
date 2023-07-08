@@ -6,6 +6,9 @@
 
   export let id: AlertComponent["id"]
 
+  /**
+   * Rimuove una notifica in base all'id
+   */
   const dismissAlert = () => {
     alerts.remove(id)
   }
