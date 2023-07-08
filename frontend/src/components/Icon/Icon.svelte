@@ -5,9 +5,11 @@
   export let design: IconComponent["design"] = "default"
 </script>
 
-<div class="Icon {design}">
-  <svelte:component this={icon} />
-</div>
+{#if icon}
+  <div class="Icon {design}">
+    <svelte:component this={icon} />
+  </div>
+{/if}
 
 <style lang="postcss">
   .Icon {
