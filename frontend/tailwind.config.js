@@ -19,6 +19,10 @@ export default {
         default: "5px",
       },
 
+      borderWidth: {
+        default: "3px",
+      },
+
       transitionDuration: {
         default: transitionDuration["300"],
       },
@@ -29,7 +33,7 @@ export default {
 
       gap: {
         small: "0.5rem",
-        medium: "0.625rem",
+        medium: "0.75rem",
       },
 
       padding: {
