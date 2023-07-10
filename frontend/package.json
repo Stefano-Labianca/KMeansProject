@@ -47,6 +47,7 @@
   },
   "type": "module",
   "dependencies": {
+    "dayjs": "^1.11.9",
     "nanoid": "^4.0.2",
     "wretch": "^2.6.0"
   }
