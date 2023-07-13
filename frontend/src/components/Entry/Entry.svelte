@@ -4,8 +4,16 @@
   import TrashIcon from "$icons/TrashIcon.svelte"
   import type { EntryComponent } from "./entry"
 
+  import historyController from "$stores/history"
+  import { nanoid } from "nanoid"
+
   export let title: EntryComponent["title"]
   export let date: EntryComponent["date"]
+  export let id: EntryComponent["id"] = nanoid()
+
+  const removeEntry = () => {
+    historyController.removeEntry(id)
+  }
 </script>
 
 <div class="Entry">
@@ -15,7 +23,7 @@
   </div>
 
   <div class="entry-button">
-    <Button design="error" icon={TrashIcon} />
+    <Button design="error" icon={TrashIcon} onClick={removeEntry} />
   </div>
 </div>
 
@@ -26,6 +34,7 @@
     @apply bg-secondary/light;
     @apply pl-default;
     @apply rounded-default;
+    @apply w-full;
   }
 
   .entry-content {
