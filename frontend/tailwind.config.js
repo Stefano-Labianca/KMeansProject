@@ -41,6 +41,14 @@ export default {
         small: "0.5rem",
       },
 
+      width: {
+        gliph: "9.375rem",
+      },
+
+      height: {
+        gliph: "9.375rem",
+      },
+
       opacity: {
         light: opacity[5],
         soft: opacity[10],
