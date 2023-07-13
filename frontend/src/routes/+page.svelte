@@ -1,5 +1,5 @@
 <script>
-  import Gliph from "$components/Gliph/Gliph.svelte"
+  import EmptyState from "$components/EmptyState/EmptyState.svelte"
   import Text from "$components/Text/Text.svelte"
 
   import Alerts from "$layouts/Alerts/Alerts/Alerts.svelte"
@@ -10,5 +10,18 @@
 <Text text="k-means project" role="paragraph" />
 <Alerts />
 
-<Gliph gliph={AddGliph} />
-<Gliph gliph={EmptyGliph} />
+<div class="mt-20">
+  <EmptyState
+    gliph={EmptyGliph}
+    text="Empty history"
+    subtitle="Nothing to see here"
+  />
+</div>
+
+<div class="mt-20">
+  <EmptyState
+    gliph={AddGliph}
+    text="No data available"
+    subtitle="Add your first k value to get started"
+  />
+</div>
