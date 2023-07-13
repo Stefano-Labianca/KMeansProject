@@ -15,7 +15,7 @@
   export let fill: ButtonComponent["fill"] = false
   export let onClick: ButtonComponent["onClick"] = undefined
 
-  spinnerModifier.update(d => {
+  spinnerModifier.update(() => {
     if (loading) {
       return design || "default"
     }
