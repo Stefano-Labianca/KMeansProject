@@ -1,0 +1,24 @@
+version: "3.8"
+name: map-stack
+
+services:
+  db:
+    container_name: mysql-map
+    image: mysql:latest
+    cap_add:
+      - SYS_NICE
+    restart: always
+    environment:
+      - MYSQL_DATABASE=MapDB
+      - MYSQL_USER=MapUser
+      - MYSQL_PASSWORD=map
+      - MYSQL_ROOT_PASSWORD=map
+    ports:
+      - "3306:3306"
+    expose:
+      - "3306"
+    volumes:
+      - db:/var/lib/mysql
+volumes:
+  db:
+    driver: local
