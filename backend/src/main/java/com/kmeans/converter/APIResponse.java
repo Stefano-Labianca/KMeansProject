@@ -10,6 +10,11 @@ import com.kmeans.cluster.mining.ClusterWrapper;
 
 import lombok.Getter;
 
+/**
+ * <h1>APIResponse</h1>
+ * Rappresenta una classe wrapper che permette di strutturare il calcolo del
+ * K-Means in un formato più semplice da elaborare per il client
+ */
 @Getter
 public class APIResponse {
     private ArrayList<String> columnsName = new ArrayList<>();
@@ -18,7 +23,7 @@ public class APIResponse {
     private Integer k;
 
     /**
-     * Permette la costruzione di un oggetto tramite methode chaining
+     * Permette la costruzione di un oggetto tramite methods chaining
      * 
      * @return Oggetto classe APIResponse
      */

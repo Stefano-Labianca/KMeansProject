@@ -8,26 +8,45 @@ import com.kmeans.cluster.data.Tuple;
 
 import lombok.Getter;
 
+/**
+ * <h1>ClusterWrapper</h1>
+ * Rappresenta una classe wrapper che permette di strutturare un Cluster
+ */
 @Getter
 public class ClusterWrapper {
     private MiddleWrapper middle = new MiddleWrapper();
     private ArrayList<ExampleWrapper> examples = new ArrayList<ExampleWrapper>();
     private Double avgDistance;
 
+    /**
+     * Permette la costruzione di un oggetto tramite methods chaining
+     * 
+     * @return Oggetto classe ClusterWrapper
+     */
     static public ClusterWrapper chain() {
         return new ClusterWrapper();
     }
 
+    /**
+     * Salva il centroide di un custer.
+     * 
+     * @param cluster Cluster da cui estrarre il centroide
+     * @return Oggetto corrente
+     */
     public ClusterWrapper setMiddle(Cluster cluster) {
         Tuple t = cluster.getCentroid();
-
-        for (int i = 0; i < t.getLength(); i++) {
-            this.middle.addMiddleValue(t.get(i).getValue());
-        }
+        this.middle.addMiddleValue(t);
 
         return this;
     }
 
+    /**
+     * Raccoglie tutti i record che appartengono ad un cluster
+     * 
+     * @param cluster Cluster di appartenenza
+     * @param data    Contenuto di una tabella del database
+     * @return Oggetto corrente Oggetto corrente
+     */
     public ClusterWrapper setExamples(Cluster cluster, Data data) {
         Set<Integer> examplesIndex = cluster.clusteredData;
         Tuple t = cluster.getCentroid();
@@ -45,6 +64,13 @@ public class ClusterWrapper {
         return this;
     }
 
+    /**
+     * Calcola la distanza media dei record associati ad un cluster
+     * 
+     * @param cluster Cluster di appartenenza
+     * @param data    Dati di una tabella di un database
+     * @return Oggetto corrente
+     */
     public ClusterWrapper setAvgDistance(Cluster cluster, Data data) {
         Tuple t = cluster.getCentroid();
         Set<Integer> examplesIndex = cluster.clusteredData;
