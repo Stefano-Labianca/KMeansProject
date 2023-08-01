@@ -25,7 +25,7 @@ import com.kmeans.converter.APIResponse;
  * Viene usata per permettere al client di richiedere nuovi calcoli da far
  * svolgere all'algoritmo K-Means.
  * 
- * La route che espone e' {@code /api}
+ * La route che espone è {@code /api}.
  */
 @CrossOrigin(origins = { "http://localhost:5173/" })
 @RestController
@@ -39,6 +39,14 @@ public class KMeansController {
         this.repository = repository;
     }
 
+    /**
+     * Permette di ottenere una computazione in base al valore k, cioè il numero di
+     * Cluster da creare. Se il calcolo è avvento con successo, allora invierà al
+     * client il risultato, altrimenti manderà degli errori.
+     * 
+     * @param k Numero di cluster
+     * @return Risultato della computazione in formato JSON
+     */
     @ResponseStatus(HttpStatus.OK)
     @GetMapping("/calculate")
     public APIResponse getComputation(@RequestParam(value = "k", defaultValue = "1") Integer k) {
@@ -52,6 +60,7 @@ public class KMeansController {
         } catch (DatabaseConnectionException | SQLException e) {
             throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR,
                     "Errore con la connesione al database", e);
+
         } catch (EmptySetException e) {
             throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Tabella vuota", e);
         } catch (NoValueException e) {
