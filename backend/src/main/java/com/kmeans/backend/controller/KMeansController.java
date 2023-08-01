@@ -1,13 +1,22 @@
 package com.kmeans.backend.controller;
 
+import java.sql.SQLException;
+
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.server.ResponseStatusException;
 
 import com.kmeans.backend.repository.KMeansRepository;
 import com.kmeans.cluster.data.Data;
+import com.kmeans.cluster.data.OutOfRangeSampleSize;
+import com.kmeans.cluster.database.DatabaseConnectionException;
+import com.kmeans.cluster.database.EmptySetException;
+import com.kmeans.cluster.database.NoValueException;
 import com.kmeans.cluster.mining.KMeansMiner;
 import com.kmeans.converter.APIResponse;
 
@@ -15,19 +24,22 @@ import com.kmeans.converter.APIResponse;
  * <h1>KMeansController</h1>
  * Viene usata per permettere al client di richiedere nuovi calcoli da far
  * svolgere all'algoritmo K-Means.
+ * 
+ * La route che espone e' {@code /api}
  */
 @CrossOrigin(origins = { "http://localhost:5173/" })
 @RestController
 @RequestMapping("/api")
 public class KMeansController {
 
-    private final KMeansRepository _repository;
+    private final KMeansRepository repository;
 
     // Dependency Injection
     public KMeansController(KMeansRepository repository) {
-        this._repository = repository;
+        this.repository = repository;
     }
 
+    @ResponseStatus(HttpStatus.OK)
     @GetMapping("/calculate")
     public APIResponse getComputation(@RequestParam(value = "k", defaultValue = "1") Integer k) {
         Data databaseData = null;
@@ -36,9 +48,14 @@ public class KMeansController {
         Integer iteration;
 
         try {
-            databaseData = _repository.getData("playtennis");
-        } catch (Exception e) {
-            // TODO: Inivio errore al client (Connessione al database non riuscita)
+            databaseData = repository.getData("playtennis"); // Nome della tabella data nel body della richiesta
+        } catch (DatabaseConnectionException | SQLException e) {
+            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR,
+                    "Errore con la connesione al database", e);
+        } catch (EmptySetException e) {
+            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Tabella vuota", e);
+        } catch (NoValueException e) {
+            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Trovata colonna vuota", e);
         }
 
         try {
@@ -48,9 +65,10 @@ public class KMeansController {
             response = APIResponse.chain().setK(k).setIteration(iteration)
                     .setColumnsName(databaseData).setClusterSet(kmeans.getC(), databaseData);
 
-        } catch (Exception e) {
-            // TODO: Inivio errore al client (Valore k non valido)
-            e.printStackTrace();
+        } catch (OutOfRangeSampleSize e) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Valore k troppo grande", e);
+        } catch (NegativeArraySizeException e) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Valore k negativo", e);
         }
 
         return response;
