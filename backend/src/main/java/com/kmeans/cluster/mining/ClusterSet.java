@@ -10,7 +10,7 @@ public class ClusterSet implements Serializable {
     private Cluster[] C;
     private int i = 0;
 
-    public ClusterSet(int k) throws OutOfRangeSampleSize, NegativeArraySizeException {
+    public ClusterSet(int k) throws OutOfRangeSampleSize {
         if (k <= 0) {
             throw new NegativeArraySizeException("k deve essere maggiore di 0");
         }
