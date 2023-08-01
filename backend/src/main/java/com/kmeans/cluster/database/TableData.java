@@ -89,7 +89,6 @@ public class TableData {
             } else {
                 throw new NoValueException("Nessun valore per la colonna " + column.getColumnName());
             }
-            ;
 
         } finally {
             s.close();

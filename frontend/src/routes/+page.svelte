@@ -1,27 +1,15 @@
-<script>
-  import EmptyState from "$components/EmptyState/EmptyState.svelte"
+<script lang="ts">
+  import Button from "$components/Button/Button.svelte"
   import Text from "$components/Text/Text.svelte"
-
   import Alerts from "$layouts/Alerts/Alerts/Alerts.svelte"
-  import AddGliph from "../assets/gliph/AddGliph.svelte"
-  import EmptyGliph from "../assets/gliph/EmptyGliph.svelte"
+  import CrudEndPoint from "../api/crud"
+
+  async function caller() {
+    console.log(await CrudEndPoint.read("/api/calculate?k=11111"))
+  }
 </script>
 
 <Text text="k-means project" role="paragraph" />
 <Alerts />
 
-<div class="mt-20">
-  <EmptyState
-    gliph={EmptyGliph}
-    text="Empty history"
-    subtitle="Nothing to see here"
-  />
-</div>
-
-<div class="mt-20">
-  <EmptyState
-    gliph={AddGliph}
-    text="No data available"
-    subtitle="Add your first k value to get started"
-  />
-</div>
+<Button text="AA" design="primary" fill onClick={caller} />
