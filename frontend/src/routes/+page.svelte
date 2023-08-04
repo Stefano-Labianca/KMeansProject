@@ -3,9 +3,10 @@
   import Text from "$components/Text/Text.svelte"
   import Alerts from "$layouts/Alerts/Alerts/Alerts.svelte"
   import CrudEndPoint from "../api/crud"
+  import type { KMeans } from "../types/kmeans"
 
   async function caller() {
-    console.log(await CrudEndPoint.read("/api/calculate?k=11111"))
+    console.log(await CrudEndPoint.read<KMeans>("/api/calculate"))
   }
 </script>
 
