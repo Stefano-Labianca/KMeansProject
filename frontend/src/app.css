@@ -29,7 +29,7 @@
 }
 
 html {
-  @apply bg-black;
+  @apply bg-background;
   @apply mx-8;
   @apply my-6;
   @apply text-title;
@@ -46,4 +46,23 @@ html {
   input[type="number"] {
     appearance: textfield; /* Firefox */
   }
+}
+
+/* Design comune a tutte le celle di una tabella */
+.TableCell {
+  @apply p-default;
+  @apply border-primary;
+  @apply border-default;
+  @apply table-cell;
+  @apply cursor-default;
+}
+
+/* Design comune a tutte le righe di una tabella */
+.TableRow {
+  @apply table-row;
+}
+
+.FadeIn {
+  @apply hover:duration-default;
+  @apply hover:bg-secondary/light;
 }
