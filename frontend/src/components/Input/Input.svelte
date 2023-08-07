@@ -1,36 +1,31 @@
 <script lang="ts">
-  import type { InputComponent } from "./input"
+  import { nanoid } from "nanoid"
+  import InputField from "./InputField.svelte"
+  import InputIcon from "./InputIcon.svelte"
+  import InputLabel from "./InputLabel.svelte"
+  import type { IInput } from "./input"
 
-  export let type: InputComponent["type"]
-  export let placeholder: InputComponent["placeholder"]
+  type $$Props = IInput
+
+  export let label: IInput["label"] = ""
+  export let icon: IInput["icon"] = undefined
+  export let placeholder: IInput["placeholder"] = ""
+  export let id: IInput["id"] = nanoid()
+  export let optional: IInput["optional"] = false
+  export let value: IInput["value"] = ""
 </script>
 
-<input
-  class="Input animated"
-  name="kValue"
-  {placeholder}
-  autocomplete="off"
-  required
-  {type}
-/>
+<div class="Input">
+  <InputLabel {id} {optional} {label} />
+  <InputField {id} {optional} {placeholder} {icon} {label} {...$$restProps} bind:value />
+  <InputIcon {icon} />
+</div>
 
 <style lang="postcss">
   .Input {
-    @apply bg-transparent;
-    @apply border-subtitle;
-    @apply border-default;
+    @apply relative;
+    @apply bg-overlay;
     @apply rounded-default;
-    @apply pl-3;
     @apply w-full;
-    @apply h-full;
-    @apply text-medium;
-
-    @apply focus:outline-none;
-    @apply focus:border-primary;
-  }
-
-  .animated {
-    @apply duration-default;
-    @apply ease-default;
   }
 </style>
