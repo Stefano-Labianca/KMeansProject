@@ -7,7 +7,9 @@ class ApiClient<T> {
   constructor() {
     this._transport = wretch(BASE_URL, {
       mode: "cors",
-    }).catcher(400, error => console.log(error.json))
+    })
+      .catcher(400, error => console.log(error.json))
+      .catcher(500, error => console.log(error.json))
   }
 
   async read(url: string): Promise<T[]> {
