@@ -6,6 +6,8 @@
   import Alerts from "$layouts/Alerts/Alerts/Alerts.svelte"
   import type { DataRowComponent } from "$layouts/DataRow/dataRow"
   import type { HeadRowComponent } from "$layouts/HeadRow/headRow"
+  import CrudEndPoint from "../api/crud"
+  import type { KMeans } from "../types/kmeans"
 
   const head = {
     hRow: [
@@ -70,6 +72,10 @@
       ] as DataCellComponent[],
     },
   ] as DataRowComponent[]
+
+  const caller = async () => {
+    const kmeansRes = await CrudEndPoint.read<KMeans>("/api/calculate")
+  }
 </script>
 
 <Text text="k-means project" role="paragraph" />
@@ -77,4 +83,5 @@
 
 <div class="mt-20" />
 
+<!-- <Button text="Click Me" onClick={caller} fill /> -->
 <Table {head} {body} />

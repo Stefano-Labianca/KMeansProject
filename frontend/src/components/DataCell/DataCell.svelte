@@ -6,9 +6,21 @@
   export let isFirstCell: DataCellComponent["isFirstCell"] = false
   export let isLastCell: DataCellComponent["isLastCell"] = false
   export let isBaseCell: DataCellComponent["isBaseCell"] = false
+
+  export let isFirstBottomCell: DataCellComponent["isFirstBottomCell"] = false
+  export let isLastBottomCell: DataCellComponent["isLastBottomCell"] = false
+  export let isLastMiddleCell: DataCellComponent["isLastMiddleCell"] = false
 </script>
 
-<td class="TableCell" class:first-cell={isFirstCell} class:last-cell={isLastCell} class:base-cell={isBaseCell}>
+<td
+  class="TableCell"
+  class:first-cell={isFirstCell}
+  class:last-cell={isLastCell}
+  class:base-cell={isBaseCell}
+  class:first-bottom={isFirstBottomCell}
+  class:last-bottom={isLastBottomCell}
+  class:last-base={isLastMiddleCell}
+>
   <Text text={data} />
 </td>
 
@@ -25,5 +37,19 @@
   .base-cell {
     @apply border-b-0;
     @apply border-r-0;
+  }
+
+  .first-bottom {
+    @apply rounded-bl-corner;
+    @apply border-b-default;
+  }
+
+  .last-bottom {
+    @apply rounded-br-corner;
+    @apply border-b-default;
+  }
+
+  .last-base {
+    @apply border-b-default;
   }
 </style>

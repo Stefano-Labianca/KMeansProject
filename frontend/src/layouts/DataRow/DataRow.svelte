@@ -3,18 +3,23 @@
   import type { DataRowComponent } from "./dataRow"
 
   export let dRow: DataRowComponent["dRow"]
+  export let isLast: DataRowComponent["isLast"]
 </script>
 
-<div class="DataRow FadeIn">
-  <div class="TableRow">
-    {#each dRow as cell}
-      <DataCell {...cell} />
-    {/each}
-  </div>
-</div>
+<tr class="DataRow">
+  {#each dRow as cell, i}
+    <DataCell
+      {...cell}
+      isFirstBottomCell={isLast && i === 0}
+      isLastBottomCell={isLast && i === dRow.length - 1}
+      isLastMiddleCell={isLast && i > 0 && i < dRow.length - 1}
+    />
+  {/each}
+</tr>
 
 <style lang="postcss">
   .DataRow {
-    @apply table-row-group;
+    @apply transition;
+    @apply hover:bg-secondary/light;
   }
 </style>

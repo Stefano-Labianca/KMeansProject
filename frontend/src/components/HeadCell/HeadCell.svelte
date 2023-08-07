@@ -9,14 +9,14 @@
   export let isBaseField: HeadCellComponent["isBaseField"] = false
 </script>
 
-<div
+<th
   class="HeadCell TableCell"
   class:first-field-name={isFirstField}
   class:last-field-name={isLastField}
   class:base-field={isBaseField}
 >
   <Text text={columnName} design="primary" role="paragraph" />
-</div>
+</th>
 
 <style lang="postcss">
   .HeadCell {
@@ -24,13 +24,13 @@
   }
 
   .first-field-name {
-    @apply rounded-tl-default;
+    @apply rounded-tl-corner;
     @apply border-b-0;
     @apply border-r-0;
   }
 
   .last-field-name {
-    @apply rounded-tr-default;
+    @apply rounded-tr-corner;
     @apply border-b-0;
   }
 

@@ -4,4 +4,8 @@ export type DataCellComponent = {
   isFirstCell?: boolean
   isLastCell?: boolean
   isBaseCell?: boolean
+
+  isFirstBottomCell?: boolean
+  isLastBottomCell?: boolean
+  isLastMiddleCell?: boolean
 }

@@ -1,4 +1,4 @@
-import { opacity, transitionDuration } from "tailwindcss/defaultTheme"
+import { fontFamily, opacity, transitionDuration } from "tailwindcss/defaultTheme"
 
 /** @type {import('tailwindcss').Config} */
 export default {
@@ -6,7 +6,7 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        sans: ["Outfit", "sans-serif"],
+        sans: ["Outfit", ...fontFamily.sans],
       },
 
       fontSize: {
@@ -17,10 +17,11 @@ export default {
 
       borderRadius: {
         default: "5px",
+        corner: "16px",
       },
 
       borderWidth: {
-        default: "3px",
+        default: "2px",
       },
 
       transitionDuration: {

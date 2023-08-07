@@ -56,13 +56,3 @@ html {
   @apply table-cell;
   @apply cursor-default;
 }
-
-/* Design comune a tutte le righe di una tabella */
-.TableRow {
-  @apply table-row;
-}
-
-.FadeIn {
-  @apply hover:duration-default;
-  @apply hover:bg-secondary/light;
-}
