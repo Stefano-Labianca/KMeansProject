@@ -1,8 +1,10 @@
 <script lang="ts">
   import type { DataCellComponent } from "$components/DataCell/dataCell"
   import type { HeadCellComponent } from "$components/HeadCell/headCell"
+  import Input from "$components/Input/Input.svelte"
   import Table from "$components/Table/Table.svelte"
   import Text from "$components/Text/Text.svelte"
+  import LikeIcon from "$icons/LikeIcon.svelte"
   import Alerts from "$layouts/Alerts/Alerts/Alerts.svelte"
   import type { DataRowComponent } from "$layouts/DataRow/dataRow"
   import type { HeadRowComponent } from "$layouts/HeadRow/headRow"
@@ -85,3 +87,12 @@
 
 <!-- <Button text="Click Me" onClick={caller} fill /> -->
 <Table {head} {body} />
+
+<div class="mt-20" />
+
+<div class="[&>*]:mt-5">
+  <Input placeholder="Placeholder" label="label" icon={LikeIcon} />
+  <Input placeholder="Placeholder" icon={LikeIcon} optional />
+  <Input placeholder="Placeholder" optional />
+  <Input placeholder="Placeholder" label="label" optional />
+</div>
