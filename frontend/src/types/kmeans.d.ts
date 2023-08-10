@@ -1,15 +1,16 @@
 export type Middle = {
-  middleData: unknown[]
+  middleData: (string | number)[]
 }
 
 export type Example = {
-  exampleData: unknown[]
+  exampleData: (string | number)[]
   distance: number
 }
 
 export type Cluster = {
   middle: Middle
   examples: Example[]
+  avgDistance: number
 }
 
 export type KMeans = {
@@ -18,3 +19,5 @@ export type KMeans = {
   iteration: number
   k: number
 }
+
+export type Calculate = <T>(url: string, tableName: string, k: number) => Promise<T>
