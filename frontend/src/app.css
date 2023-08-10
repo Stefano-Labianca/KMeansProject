@@ -50,9 +50,12 @@ html {
 
 /* Design comune a tutte le celle di una tabella */
 .TableCell {
-  @apply p-default;
+  @apply whitespace-nowrap;
+  @apply w-gliph;
+  @apply px-4;
+  @apply py-default;
+  @apply text-center;
   @apply border-primary;
   @apply border-default;
-  @apply table-cell;
   @apply cursor-default;
 }
