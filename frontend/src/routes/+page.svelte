@@ -1,83 +1,12 @@
 <script lang="ts">
-  import type { DataCellComponent } from "$components/DataCell/dataCell"
-  import type { HeadCellComponent } from "$components/HeadCell/headCell"
-  import Input from "$components/Input/Input.svelte"
-  import Table from "$components/Table/Table.svelte"
+  import Button from "$components/Button/Button.svelte"
   import Text from "$components/Text/Text.svelte"
-  import LikeIcon from "$icons/LikeIcon.svelte"
   import Alerts from "$layouts/Alerts/Alerts/Alerts.svelte"
-  import type { DataRowComponent } from "$layouts/DataRow/dataRow"
-  import type { HeadRowComponent } from "$layouts/HeadRow/headRow"
-  import CrudEndPoint from "../api/crud"
   import type { KMeans } from "../types/kmeans"
 
-  const head = {
-    hRow: [
-      {
-        columnName: "AAAAAA",
-        isFirstField: true,
-      },
-      {
-        columnName: "AAAA",
-        isBaseField: true,
-      },
-      {
-        columnName: "AAAA",
-        isBaseField: true,
-      },
-      {
-        columnName: "A",
-        isLastField: true,
-      },
-    ] as HeadCellComponent[],
-  } as HeadRowComponent
+  let kmeansRes: KMeans | undefined
 
-  const body = [
-    {
-      dRow: [
-        {
-          data: "BBBB",
-          isFirstCell: true,
-        },
-        {
-          data: "BB",
-          isBaseCell: true,
-        },
-        {
-          data: "BBBBBBBBB",
-          isBaseCell: true,
-        },
-        {
-          data: "BB",
-          isLastCell: true,
-        },
-      ] as DataCellComponent[],
-    },
-    {
-      dRow: [
-        {
-          data: "CCCCCCCCCC",
-          isFirstCell: true,
-        },
-        {
-          data: "C",
-          isBaseCell: true,
-        },
-        {
-          data: "CCC",
-          isBaseCell: true,
-        },
-        {
-          data: "CCC",
-          isLastCell: true,
-        },
-      ] as DataCellComponent[],
-    },
-  ] as DataRowComponent[]
-
-  const caller = async () => {
-    const kmeansRes = await CrudEndPoint.read<KMeans>("/api/calculate")
-  }
+  const caller = async () => {}
 </script>
 
 <Text text="k-means project" role="paragraph" />
@@ -85,14 +14,4 @@
 
 <div class="mt-20" />
 
-<!-- <Button text="Click Me" onClick={caller} fill /> -->
-<Table {head} {body} />
-
-<div class="mt-20" />
-
-<div class="[&>*]:mt-5">
-  <Input placeholder="Placeholder" label="label" icon={LikeIcon} />
-  <Input placeholder="Placeholder" icon={LikeIcon} optional />
-  <Input placeholder="Placeholder" optional />
-  <Input placeholder="Placeholder" label="label" optional />
-</div>
+<Button text="Click Me" onClick={caller} fill />
