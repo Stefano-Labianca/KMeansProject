@@ -1,5 +1,5 @@
 import wretch, { type Wretch } from "wretch"
-import { BASE_URL } from "../const"
+import { BASE_URL } from "../../const"
 
 class ApiClient<T> {
   private readonly _transport: Wretch
@@ -10,6 +10,7 @@ class ApiClient<T> {
     })
       .catcher(400, error => console.log(error.json))
       .catcher(500, error => console.log(error.json))
+      .catcher(503, error => console.log(error.json, "Non disponibile"))
   }
 
   async read(url: string): Promise<T[]> {

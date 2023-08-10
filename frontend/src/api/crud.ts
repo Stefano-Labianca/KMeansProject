@@ -1,4 +1,4 @@
-import ApiClient from "./api"
+import ApiClient from "./class/APIClient"
 
 const read: Read = async <T>(url: string): Promise<T[]> => {
   return await new ApiClient<T>().read(url)
