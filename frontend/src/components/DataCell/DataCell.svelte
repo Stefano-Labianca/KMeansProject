@@ -3,13 +3,14 @@
   import type { DataCellComponent } from "./dataCell"
 
   export let data: DataCellComponent["data"]
-  export let isFirstCell: DataCellComponent["isFirstCell"] = false
-  export let isLastCell: DataCellComponent["isLastCell"] = false
-  export let isBaseCell: DataCellComponent["isBaseCell"] = false
 
-  export let isFirstBottomCell: DataCellComponent["isFirstBottomCell"] = false
-  export let isLastBottomCell: DataCellComponent["isLastBottomCell"] = false
-  export let isLastMiddleCell: DataCellComponent["isLastMiddleCell"] = false
+  export let isFirstCell: boolean = false
+  export let isLastCell: boolean = false
+  export let isBaseCell: boolean = false
+
+  export let isFirstBottomCell: boolean = false
+  export let isLastBottomCell: boolean = false
+  export let isLastMiddleCell: boolean = false
 </script>
 
 <td
@@ -21,7 +22,7 @@
   class:last-bottom={isLastBottomCell}
   class:last-base={isLastMiddleCell}
 >
-  <Text text={data} />
+  <Text text={data.toString()} />
 </td>
 
 <style lang="postcss">
@@ -41,15 +42,15 @@
 
   .first-bottom {
     @apply rounded-bl-corner;
-    @apply border-b-default;
+    @apply border-r-0;
   }
 
   .last-bottom {
     @apply rounded-br-corner;
-    @apply border-b-default;
   }
 
   .last-base {
     @apply border-b-default;
+    @apply border-r-0;
   }
 </style>

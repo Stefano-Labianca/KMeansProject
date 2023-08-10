@@ -1,7 +1,6 @@
-import type { DataRowComponent } from "$layouts/DataRow/dataRow"
-import type { HeadRowComponent } from "$layouts/HeadRow/headRow"
+import type { Middle } from "../../types/kmeans"
 
 export type TableComponent = {
-  head: HeadRowComponent
-  body: DataRowComponent[]
+  head: string[]
+  body: Example[] | Middle[]
 }

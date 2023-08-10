@@ -4,9 +4,9 @@
 
   export let columnName: HeadCellComponent["columnName"]
 
-  export let isFirstField: HeadCellComponent["isFirstField"] = false
-  export let isLastField: HeadCellComponent["isLastField"] = false
-  export let isBaseField: HeadCellComponent["isBaseField"] = false
+  export let isFirstField: boolean = false
+  export let isLastField: boolean = false
+  export let isBaseField: boolean = false
 </script>
 
 <th
@@ -15,7 +15,7 @@
   class:last-field-name={isLastField}
   class:base-field={isBaseField}
 >
-  <Text text={columnName} design="primary" role="paragraph" />
+  <Text text={columnName} design="primary" />
 </th>
 
 <style lang="postcss">
