@@ -46,14 +46,14 @@ public class KMeansController {
     @ResponseStatus(HttpStatus.OK)
     @PostMapping("/calculate")
     public APIResponse getComputation(@RequestBody Calculate calculate) {
-
         Data databaseData = null;
         KMeansMiner kmeans = null;
         APIResponse response = null;
         Integer iteration;
-
+        Integer k= calculate.getK();
+        String tableName= calculate.getTableName();
         try {
-            databaseData = repository.getData("playtennis"); // Nome della tabella data nel body della richiesta
+            databaseData = repository.getData(tableName); // Nome della tabella data nel body della richiesta
         } catch (DatabaseConnectionException | SQLException e) {
             throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR,
                     "Errore con la connesione al database", e);
