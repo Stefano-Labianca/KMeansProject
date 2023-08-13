@@ -36,16 +36,22 @@ public class KMeansController {
     }
 
     /**
-     * Permette di ottenere una computazione in base al valore k, cioè il numero di
-     * Cluster da creare. Se il calcolo è avvento con successo, allora invierà al
-     * client il risultato, altrimenti manderà degli errori.
+     * Permette di calcolare l'algoritmo K-Means sulla base della richiesta
+     * fatta dal client, tramite una richiesta di tipo POST.
+     * Se il calcolo è avvento con successo, allora invierà al
+     * client il risultato, altrimenti manderà degli errori:
+     * <ul>
+     *   <li>Errore 403,Bad Request:Avviene quando la richiesta fatta dal Client non è valida</li>
+     *   <li>Errore 500,Internal Server Error:Avviene quando c'è un errore interno al server</li>
+     * </ul>
      * 
-     * @param k Numero di cluster
+     * @param calculate Contenuto del body della richiesta del client
      * @return Risultato della computazione in formato JSON
      */
     @ResponseStatus(HttpStatus.OK)
     @PostMapping("/calculate")
     public APIResponse getComputation(@RequestBody Calculate calculate) {
+
         Data databaseData = null;
         KMeansMiner kmeans = null;
         APIResponse response = null;
