@@ -17,7 +17,6 @@ export default {
 
       borderRadius: {
         default: "5px",
-        corner: "16px",
       },
 
       borderWidth: {
