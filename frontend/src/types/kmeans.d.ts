@@ -1,9 +1,9 @@
 export type Middle = {
-  middleData: EntryType[]
+  middleData: (string | number)[]
 }
 
 export type Example = {
-  exampleData: EntryType[]
+  exampleData: (string | number)[]
   distance: number
 }
 
@@ -19,7 +19,5 @@ export type KMeans = {
   iteration: number
   k: number
 }
-
-export type EntryType = string | number
 
 export type Calculate = <T>(url: string, tableName: string, k: number) => Promise<T>
