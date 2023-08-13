@@ -4,13 +4,14 @@ import java.sql.SQLException;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 
+import com.kmeans.backend.domain.Calculate;
 import com.kmeans.backend.repository.KMeansRepository;
 import com.kmeans.cluster.data.Data;
 import com.kmeans.cluster.data.OutOfRangeSampleSize;
@@ -27,7 +28,7 @@ import com.kmeans.converter.APIResponse;
  * 
  * La route che espone è {@code /api}.
  */
-@CrossOrigin(origins = { "http://localhost:5173/" })
+@CrossOrigin(origins = { "*" })
 @RestController
 @RequestMapping("/api")
 public class KMeansController {
@@ -40,23 +41,32 @@ public class KMeansController {
     }
 
     /**
-     * Permette di ottenere una computazione in base al valore k, cioè il numero di
-     * Cluster da creare. Se il calcolo è avvento con successo, allora invierà al
-     * client il risultato, altrimenti manderà degli errori.
+     * Permette di calcolare l'algoritmo K-Means sulla base della richiesta
+     * fatta dal client, tramite una richiesta di tipo POST.
+     * Se il calcolo è avvento con successo, allora invierà al
+     * client il risultato, altrimenti manderà degli errori:
+     * <ul>
+     * <li>Errore 400,Bad Request:Avviene quando la richiesta fatta dal Client non è
+     * valida</li>
+     * <li>Errore 500,Internal Server Error:Avviene quando c'è un errore interno al
+     * server</li>
+     * </ul>
      * 
-     * @param k Numero di cluster
+     * @param calculate Contenuto del body della richiesta del client
      * @return Risultato della computazione in formato JSON
      */
     @ResponseStatus(HttpStatus.OK)
-    @GetMapping("/calculate")
-    public APIResponse getComputation(@RequestParam(value = "k", defaultValue = "1") Integer k) {
+    @PostMapping("/calculate")
+    public APIResponse getComputation(@RequestBody Calculate calculate) {
         Data databaseData = null;
         KMeansMiner kmeans = null;
         APIResponse response = null;
         Integer iteration;
+        Integer k = calculate.getK();
+        String tableName = calculate.getTableName();
 
         try {
-            databaseData = repository.getData("playtennis"); // Nome della tabella data nel body della richiesta
+            databaseData = repository.getData(tableName); // Nome della tabella data nel body della richiesta
         } catch (DatabaseConnectionException | SQLException e) {
             throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR,
                     "Errore con la connesione al database", e);
