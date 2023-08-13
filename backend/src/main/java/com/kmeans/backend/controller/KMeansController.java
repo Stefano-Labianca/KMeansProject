@@ -3,9 +3,15 @@ package com.kmeans.backend.controller;
 import java.sql.SQLException;
 
 import org.springframework.http.HttpStatus;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseStatus;
+import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 
+import com.kmeans.backend.domain.Calculate;
 import com.kmeans.backend.repository.KMeansRepository;
 import com.kmeans.cluster.data.Data;
 import com.kmeans.cluster.data.OutOfRangeSampleSize;
@@ -14,7 +20,6 @@ import com.kmeans.cluster.database.EmptySetException;
 import com.kmeans.cluster.database.NoValueException;
 import com.kmeans.cluster.mining.KMeansMiner;
 import com.kmeans.converter.APIResponse;
-import com.kmeans.backend.domain.Calculate;
 
 /**
  * <h1>KMeansController</h1>
@@ -41,8 +46,10 @@ public class KMeansController {
      * Se il calcolo è avvento con successo, allora invierà al
      * client il risultato, altrimenti manderà degli errori:
      * <ul>
-     *   <li>Errore 403,Bad Request:Avviene quando la richiesta fatta dal Client non è valida</li>
-     *   <li>Errore 500,Internal Server Error:Avviene quando c'è un errore interno al server</li>
+     * <li>Errore 400,Bad Request:Avviene quando la richiesta fatta dal Client non è
+     * valida</li>
+     * <li>Errore 500,Internal Server Error:Avviene quando c'è un errore interno al
+     * server</li>
      * </ul>
      * 
      * @param calculate Contenuto del body della richiesta del client
@@ -51,13 +58,13 @@ public class KMeansController {
     @ResponseStatus(HttpStatus.OK)
     @PostMapping("/calculate")
     public APIResponse getComputation(@RequestBody Calculate calculate) {
-
         Data databaseData = null;
         KMeansMiner kmeans = null;
         APIResponse response = null;
         Integer iteration;
-        Integer k= calculate.getK();
-        String tableName= calculate.getTableName();
+        Integer k = calculate.getK();
+        String tableName = calculate.getTableName();
+
         try {
             databaseData = repository.getData(tableName); // Nome della tabella data nel body della richiesta
         } catch (DatabaseConnectionException | SQLException e) {
