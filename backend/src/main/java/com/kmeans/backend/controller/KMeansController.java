@@ -27,7 +27,7 @@ import com.kmeans.converter.APIResponse;
  * 
  * La route che espone è {@code /api}.
  */
-@CrossOrigin(origins = { "http://localhost:5173/" })
+@CrossOrigin(origins = { "*" })
 @RestController
 @RequestMapping("/api")
 public class KMeansController {
