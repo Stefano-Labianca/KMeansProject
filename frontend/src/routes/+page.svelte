@@ -15,3 +15,6 @@
 <div class="mt-20" />
 
 <Button text="Click Me" onClick={caller} fill />
+<div class="mt-20" />
+
+<Tables tables={kmeansRes} />
