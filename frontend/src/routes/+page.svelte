@@ -3,6 +3,7 @@
   import Text from "$components/Text/Text.svelte"
   import Alerts from "$layouts/Alerts/Alerts/Alerts.svelte"
   import type { KMeans } from "../types/kmeans"
+  import Tables from "$layouts/Tables/Tables.svelte"
 
   let kmeansRes: KMeans | undefined
 
