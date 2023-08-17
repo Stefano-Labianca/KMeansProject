@@ -13,6 +13,35 @@
 
   let examples: Example[][]
   let avgDistances: number[]
+  const initExamples = (examples: Example[][]) => {
+    for (let i = 0; i < examples.length; i++) {
+      for (let j = 0; j < examples[i].length; j++) {
+        let arr = [...examples[i][j].exampleData]
+        arr.push(examples[i][j].distance)
+
+        examples[i][j].exampleData = arr
+      }
+    }
+  }
+
+  const getClustersData = <T, K extends keyof T>(clusters: T[], key: K) => {
+    return clusters.map(cluster => cluster[key])
+  }
+
+  beforeUpdate(() => {
+    if (tables) {
+      middlesColumns = tables.columnsName
+      exampleColumns = [...middlesColumns, "distance"]
+
+      let clusters: Cluster[] = tables.clusters
+
+      middles = getClustersData(clusters, "middle")
+      examples = getClustersData(clusters, "examples")
+      avgDistances = getClustersData(clusters, "avgDistance")
+
+      initExamples(examples)
+    }
+  })
 </script>
 
 {#if tables}
