@@ -13,6 +13,7 @@
 
   let examples: Example[][]
   let avgDistances: number[]
+
   const initExamples = (examples: Example[][]) => {
     for (let i = 0; i < examples.length; i++) {
       for (let j = 0; j < examples[i].length; j++) {

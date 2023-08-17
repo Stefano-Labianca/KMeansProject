@@ -7,22 +7,12 @@
   export let head: TableComponent["head"]
   export let body: TableComponent["body"]
 
-  let data: any
-
-  const isMiddleArray = (): boolean => {
-    if ((body as Middle[])[0].middleData !== undefined) {
-      data = body as Middle[]
-      return true
-    }
-    return false
+  const isMiddleArray = (x: any): x is Middle[] => {
+    return (x as Middle[])[0].middleData !== undefined
   }
 
-  const isExamplesArray = (): boolean => {
-    if ((body as Example[])[0].exampleData !== undefined) {
-      data = body as Example[]
-      return true
-    }
-    return false
+  const isExamplesArray = (x: any): x is Example[] => {
+    return (x as Example[])[0].exampleData !== undefined
   }
 </script>
 
@@ -32,14 +22,12 @@
   </thead>
 
   <tbody>
-    {#if isMiddleArray()}
-      {#each data as row, i}
-        <DataRow dRow={row.middleData} isLast={i === body.length - 1} />
-      {/each}
+    {#if isMiddleArray(body)}
+      <DataRow dRow={body[0].middleData} isLast />
     {/if}
 
-    {#if isExamplesArray()}
-      {#each data as row, i}
+    {#if isExamplesArray(body)}
+      {#each body as row, i}
         <DataRow dRow={row.exampleData} isLast={i === body.length - 1} />
       {/each}
     {/if}
@@ -50,9 +38,10 @@
   .Table {
     @apply table-auto;
     @apply rounded-default;
-    @apply w-full;
     @apply overflow-hidden;
     @apply border-separate;
     @apply border-spacing-0;
+    @apply w-full;
+    @apply h-full;
   }
 </style>
