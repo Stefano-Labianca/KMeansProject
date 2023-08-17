@@ -14,3 +14,20 @@
   let examples: Example[][]
   let avgDistances: number[]
 </script>
+
+{#if tables}
+  {#each middles as middle, i}
+    <Text text="Cluster {i}" role="paragraph" />
+    <Table head={middlesColumns} body={[middle]} />
+
+    <div class="mt-4" />
+
+    <Text text="Data for cluster {i}" role="paragraph" />
+    <Table head={exampleColumns} body={examples[i]} />
+
+    <div class="mt-4" />
+    <Text text="Average distance: {avgDistances[i]}" />
+
+    <div class="mt-12" />
+  {/each}
+{/if}
