@@ -41,12 +41,12 @@
   }
 
   .first-bottom {
-    @apply rounded-bl-corner;
+    @apply rounded-bl-default;
     @apply border-r-0;
   }
 
   .last-bottom {
-    @apply rounded-br-corner;
+    @apply rounded-br-default;
   }
 
   .last-base {

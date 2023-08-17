@@ -24,13 +24,13 @@
   }
 
   .first-field-name {
-    @apply rounded-tl-corner;
+    @apply rounded-tl-default;
     @apply border-b-0;
     @apply border-r-0;
   }
 
   .last-field-name {
-    @apply rounded-tr-corner;
+    @apply rounded-tr-default;
     @apply border-b-0;
   }
 
