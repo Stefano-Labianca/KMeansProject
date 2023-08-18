@@ -62,6 +62,8 @@ public class KMeansController {
         Integer k = calculate.getK();
         String tableName = calculate.getTableName();
 
+        // TODO: 413 Payload Too Large -> Avviene quando k è enorme e causa errori
+
         try {
             databaseData = repository.getData(tableName); // Nome della tabella data nel body della richiesta
         } catch (DatabaseConnectionException e) {
