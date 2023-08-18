@@ -2,6 +2,7 @@ package com.kmeans.backend.controller;
 
 import java.sql.SQLException;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -33,12 +34,8 @@ import com.kmeans.converter.APIResponse;
 @RequestMapping("/api")
 public class KMeansController {
 
-    private final KMeansRepository repository;
-
-    // Dependency Injection
-    public KMeansController(KMeansRepository repository) {
-        this.repository = repository;
-    }
+    @Autowired
+    private KMeansRepository repository;
 
     /**
      * Permette di calcolare l'algoritmo K-Means sulla base della richiesta
