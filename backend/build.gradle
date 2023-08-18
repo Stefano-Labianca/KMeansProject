@@ -22,7 +22,7 @@ dependencies {
 	
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	testImplementation 'io.projectreactor:reactor-test'
-	
+
 	runtimeOnly 'com.mysql:mysql-connector-j'
 
   	compileOnly 'org.projectlombok:lombok'
