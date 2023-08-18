@@ -67,14 +67,18 @@ public class KMeansController {
 
         try {
             databaseData = repository.getData(tableName); // Nome della tabella data nel body della richiesta
-        } catch (DatabaseConnectionException | SQLException e) {
+        } catch (DatabaseConnectionException e) {
             throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR,
-                    "Errore con la connesione al database", e);
+                    "Database connection error", e);
 
-        } catch (EmptySetException e) {
-            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Tabella vuota", e);
+        } catch (SQLException e) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Table not found", e);
+        }
+
+        catch (EmptySetException e) {
+            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Empty table", e);
         } catch (NoValueException e) {
-            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Trovata colonna vuota", e);
+            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Found empty column", e);
         }
 
         try {
@@ -85,12 +89,11 @@ public class KMeansController {
                     .setColumnsName(databaseData).setClusterSet(kmeans.getC(), databaseData);
 
         } catch (OutOfRangeSampleSize e) {
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Valore k troppo grande", e);
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "K value is too big", e);
         } catch (NegativeArraySizeException e) {
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Valore k negativo", e);
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "K value is negative", e);
         }
 
         return response;
     }
-
 }
