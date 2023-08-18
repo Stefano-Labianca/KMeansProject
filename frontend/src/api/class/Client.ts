@@ -1,4 +1,7 @@
+import ErrorIcon from "$icons/ErrorIcon.svelte"
+import alerts from "$stores/alert"
 import wretch, { type Wretch } from "wretch"
+import type { WretchError } from "wretch/resolver"
 import { BASE_URL } from "../../const"
 
 /**
@@ -17,6 +20,14 @@ class Client {
    */
   // eslint-disable-next-line @typescript-eslint/no-empty-function
   private constructor() {}
+
+  private sendErrorAlert(error: WretchError): void {
+    alerts.send({
+      text: error.json.message,
+      design: "error",
+      icon: ErrorIcon,
+    })
+  }
 
   /**
    * Permette di creare una sola istanza della classe Client.
@@ -42,9 +53,9 @@ class Client {
     return wretch(BASE_URL, {
       mode: "cors",
     })
-      .catcher(400, error => console.log(error.json))
-      .catcher(500, error => console.log(error.json))
-      .catcher(503, error => console.log(error.json, "Non disponibile"))
+      .catcher(400, error => this.sendErrorAlert(error))
+      .catcher(404, error => this.sendErrorAlert(error))
+      .catcher(500, error => this.sendErrorAlert(error))
   }
 }
 
