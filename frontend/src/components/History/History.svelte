@@ -7,7 +7,7 @@
   import { fly } from "svelte/transition"
   import type { HistoryComponent } from "./history"
 
-  export let historyData: HistoryComponent["history"] = undefined
+  export let historyData: HistoryComponent["history"]
 </script>
 
 {#if historyData}

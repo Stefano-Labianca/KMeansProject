@@ -4,15 +4,16 @@
   import TrashIcon from "$icons/TrashIcon.svelte"
   import type { EntryComponent } from "./entry"
 
-  import historyController from "$stores/history"
-  import { nanoid } from "nanoid"
+  import history from "$stores/history"
+  import CrudEndPoint from "../../api/crud"
 
   export let title: EntryComponent["title"]
   export let date: EntryComponent["date"]
-  export let id: EntryComponent["id"] = nanoid()
+  export let id: EntryComponent["id"]
 
-  const removeEntry = () => {
-    historyController.removeEntry(id)
+  const removeEntry = async () => {
+    CrudEndPoint.remove("/history/delete", id)
+    history.removeEntry(id)
   }
 </script>
 
