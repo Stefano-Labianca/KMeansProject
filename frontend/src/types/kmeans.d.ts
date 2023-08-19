@@ -26,8 +26,9 @@ export type HistoryEntry = {
   iteration: number
   k: number
 
+  id: string
   date: string
-  name: string
+  title: string
 }
 
 export type Calculate = <T>(url: string, tableName: string, k: number) => Promise<T>
