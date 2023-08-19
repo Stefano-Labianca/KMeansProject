@@ -10,7 +10,9 @@
   import { DAYJS_FORMAT } from "../const"
   import type { HistoryEntry, KMeans } from "../types/kmeans"
 
-  let history = [] as EntryComponent[]
+  import history from "$stores/history"
+
+  let historyData: EntryComponent[] = []
   let kMeans: KMeans | undefined
 
   const create = async () => {
@@ -23,16 +25,21 @@
       let payload = {
         ...kMeans,
         date: dayjs().format(DAYJS_FORMAT),
-        name: "Dio merda",
-      }
-      let response = await CrudEndPoint.create<KMeans>("/history/add", payload)
+        title: "Dio merda",
+      } as HistoryEntry
+      let response = await CrudEndPoint.create<HistoryEntry>("/history/add", payload)
       console.log("response: ", response)
     }
   }
 
   const findAll = async () => {
     let res = await CrudEndPoint.read<HistoryEntry>("/history/get")
-    console.log(res)
+    historyData = res.map(e => {
+      const { date, title, id } = e
+      return { date, title, id }
+    })
+
+    $history = historyData
   }
 </script>
 
@@ -42,12 +49,12 @@
 <div class="mt-20" />
 
 <Button design="primary" fill text="Get KMeans" onClick={create} />
-<div class="mt-20" />
+<div class="mb-4" />
 
 <Button design="primary" fill text="Save KMeans" onClick={save} />
-<div class="mt-20" />
+<div class="mb-4" />
 
 <Button design="primary" fill text="Find All" onClick={findAll} />
-<div class="mt-20" />
+<div class="mb-12" />
 
-<History historyData={history} />
+<History {historyData} />
