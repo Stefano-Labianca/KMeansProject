@@ -16,9 +16,9 @@ public class APIRequest {
 
     @Id
     private String id;
-
     private String date;
-    private String name;
+    private String title;
+
     private ArrayList<String> columnsName = new ArrayList<String>();
     private ArrayList<Object> clusters = new ArrayList<>();
     private Integer iteration;
