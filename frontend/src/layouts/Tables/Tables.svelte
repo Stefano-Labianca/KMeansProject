@@ -1,18 +1,19 @@
 <script lang="ts">
   import Table from "$components/Table/Table.svelte"
   import Text from "$components/Text/Text.svelte"
-  import { beforeUpdate } from "svelte"
+  import { DELAY, TRANSITION_Y_IN } from "$lib/consts"
+  import { fly } from "svelte/transition"
   import type { Cluster, Example, Middle } from "../../types/kmeans"
   import type { TablesComponent } from "./tables"
 
-  export let tables: TablesComponent["tables"]
+  export let tables: TablesComponent["tables"] = undefined
 
-  let middlesColumns: string[]
-  let exampleColumns: string[]
-  let middles: Middle[]
+  let middlesColumns: string[] = []
+  let exampleColumns: string[] = []
+  let middles: Middle[] = []
 
-  let examples: Example[][]
-  let avgDistances: number[]
+  let examples: Example[][] = []
+  let avgDistances: number[] = []
 
   const initExamples = (examples: Example[][]) => {
     for (let i = 0; i < examples.length; i++) {
@@ -29,35 +30,36 @@
     return clusters.map(cluster => cluster[key])
   }
 
-  beforeUpdate(() => {
-    if (tables) {
-      middlesColumns = tables.columnsName
-      exampleColumns = [...middlesColumns, "distance"]
+  $: if (tables) {
+    middlesColumns = tables.columnsName
+    exampleColumns = [...middlesColumns, "distance"]
 
-      let clusters: Cluster[] = tables.clusters
+    let clusters: Cluster[] = tables.clusters
 
-      middles = getClustersData(clusters, "middle")
-      examples = getClustersData(clusters, "examples")
-      avgDistances = getClustersData(clusters, "avgDistance")
+    middles = getClustersData(clusters, "middle")
+    examples = getClustersData(clusters, "examples")
+    avgDistances = getClustersData(clusters, "avgDistance")
 
-      initExamples(examples)
-    }
-  })
+    initExamples(examples)
+  }
+
+  console.log(tables)
 </script>
 
 {#if tables}
-  {#each middles as middle, i}
-    <Text text="Cluster {i}" role="paragraph" />
-    <Table head={middlesColumns} body={[middle]} />
+  {#each middles as middle, i (i)}
+    <div transition:fly|global={{ ...TRANSITION_Y_IN, delay: i * DELAY }}>
+      <Text text="Cluster {i}" role="paragraph" />
+      <Table head={middlesColumns} body={[middle]} />
 
-    <div class="mt-4" />
+      <div class="mt-4" />
 
-    <Text text="Data for cluster {i}" role="paragraph" />
-    <Table head={exampleColumns} body={examples[i]} />
+      <Text text="Data for cluster {i}" role="paragraph" />
+      <Table head={exampleColumns} body={examples[i]} />
 
-    <div class="mt-4" />
-    <Text text="Average distance: {avgDistances[i]}" />
-
-    <div class="mt-12" />
+      <div class="mt-4" />
+      <Text text="Average distance: {avgDistances[i]}" />
+      <div class="mt-12" />
+    </div>
   {/each}
 {/if}
