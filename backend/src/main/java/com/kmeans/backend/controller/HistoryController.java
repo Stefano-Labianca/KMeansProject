@@ -36,4 +36,12 @@ public class HistoryController {
     public List<APIRequest> findAll() {
         return this.repository.findAll();
     }
+
+    @ResponseStatus(HttpStatus.OK)
+    @GetMapping("/get/{id}")
+    public APIRequest findById(@PathVariable String id) {
+        return this.repository.findById(id).orElseThrow(() -> {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Entry not found");
+        });
+    }
 }
