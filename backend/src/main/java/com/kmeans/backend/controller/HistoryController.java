@@ -36,11 +36,4 @@ public class HistoryController {
     public List<APIRequest> findAll() {
         return this.repository.findAll();
     }
-
-    // @ResponseStatus(HttpStatus.OK)
-    // @GetMapping("/get/{id}")
-    // public List<APIRequest> findBy() {
-    // return this.repository.findAll();
-    // }
-
 }
