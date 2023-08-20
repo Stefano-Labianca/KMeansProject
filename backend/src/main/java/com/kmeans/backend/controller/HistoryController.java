@@ -50,4 +50,5 @@ public class HistoryController {
     public void deleteById(@PathVariable String id) {
         this.repository.deleteById(id);
     }
+
 }
