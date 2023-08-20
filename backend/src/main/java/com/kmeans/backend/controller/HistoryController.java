@@ -44,4 +44,10 @@ public class HistoryController {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Entry not found");
         });
     }
+
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    @DeleteMapping("/delete/{id}")
+    public void deleteById(@PathVariable String id) {
+        this.repository.deleteById(id);
+    }
 }
