@@ -42,8 +42,6 @@
 
     initExamples(examples)
   }
-
-  console.log(tables)
 </script>
 
 {#if tables}
