@@ -20,4 +20,15 @@ export type KMeans = {
   k: number
 }
 
+export type HistoryEntry = {
+  columnsName: string[]
+  clusters: Cluster[]
+  iteration: number
+  k: number
+
+  id: string
+  date: string
+  title: string
+}
+
 export type Calculate = <T>(url: string, tableName: string, k: number) => Promise<T>

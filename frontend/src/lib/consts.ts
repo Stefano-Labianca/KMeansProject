@@ -5,6 +5,8 @@ import { quartOut } from "svelte/easing"
  */
 export const ALERT_TIMEOUT = 4000
 
+export const DELAY = 90
+
 /**
  * Contiene le informazioni base di una transizione, come
  * durata (in millisecondi) e tipologia di transizione

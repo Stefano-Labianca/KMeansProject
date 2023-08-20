@@ -56,7 +56,7 @@ class ApiClient<T> {
    * @param id Identidicativo univoco della entry
    * @returns Risultato o undefined
    */
-  async readOne(url: string, id: number): Promise<T> {
+  async readOne(url: string, id: string): Promise<T> {
     try {
       return await this.transport.get(`${url}/${id}`).json<T>()
     } catch (error) {
@@ -83,28 +83,6 @@ class ApiClient<T> {
   }
 
   /**
-   * Attua l'operazione di `Update`, cioè una richiesta PATCH.
-   * A differenza della `Create`, vado ad aggiornare il contenuto di una entry
-   * già presente, identificata tramite l'`id`
-   *
-   * In caso di errore da parte del server, viene lanciata un'eccezione e
-   * viene restituito undefined
-   *
-   * @param url Enpoint della richiesta
-   * @param payload Contenuto aggionato
-   * @param id Id del contenuto da aggiornare
-   *
-   * @returns Risultato o undefined
-   */
-  async update(url: string, payload: T, id: number): Promise<T> {
-    try {
-      return await this.transport.patch(payload, `${url}/${id}`).json<T>()
-    } catch (error) {
-      return Promise.reject(error)
-    }
-  }
-
-  /**
    * Attua l'operazione di `Delete`, cioè una richiesta DELETE.
    * Vado ad eliminare un'entry identificata dal suo `id`
    *
@@ -116,9 +94,9 @@ class ApiClient<T> {
    *
    * @returns Risultato o undefined
    */
-  async delete(url: string, id: number) {
+  async delete(url: string, id: string) {
     try {
-      await this.transport.delete(`${url}/${id}`).json<T>()
+      this.transport.delete(`${url}/${id}`)
     } catch (error) {
       return Promise.reject(error)
     }

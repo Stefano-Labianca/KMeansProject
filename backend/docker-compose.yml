@@ -19,6 +19,33 @@ services:
       - "3306"
     volumes:
       - db:/var/lib/mysql
+  mongodb:
+    container_name: mongodb-map
+    image: mongo:latest
+    restart: always
+    ports:
+      - "27017:27017"
+    expose:
+      - "27017"
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=MapUser
+      - MONGO_INITDB_ROOT_PASSWORD=map
+    volumes:
+      - mongodbdata:/data/db
+
+  mongo-express:
+    image: mongo-express
+    container_name: mongo-express
+    restart: always
+    ports:
+      - 8081:8081
+    environment:
+      - ME_CONFIG_MONGODB_ADMINUSERNAME=MapUser
+      - ME_CONFIG_MONGODB_ADMINPASSWORD=map
+      - ME_CONFIG_MONGODB_SERVER=mongodb
+
 volumes:
   db:
+    driver: local
+  mongodbdata:
     driver: local
