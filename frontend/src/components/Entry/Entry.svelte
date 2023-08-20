@@ -4,8 +4,11 @@
   import TrashIcon from "$icons/TrashIcon.svelte"
   import type { EntryComponent } from "./entry"
 
+  import InfoIcon from "$icons/InfoIcon.svelte"
+  import { dbRecord } from "$stores/dbRecord"
   import history from "$stores/history"
   import CrudEndPoint from "../../api/crud"
+  import type { HistoryEntry } from "../../types/kmeans"
 
   export let title: EntryComponent["title"]
   export let date: EntryComponent["date"]
@@ -15,6 +18,12 @@
     CrudEndPoint.remove("/history/delete", id)
     history.removeEntry(id)
   }
+
+  const getKMeansResult = async () => {
+    const entry = await CrudEndPoint.readOne<HistoryEntry>("/history/get", id)
+    const { id: hId, title: hTitle, date: hDate, ...tableInfo } = entry
+    $dbRecord = tableInfo
+  }
 </script>
 
 <div class="Entry">
@@ -23,7 +32,8 @@
     <Text role="subtitle" text={date} design="secondary" />
   </div>
 
-  <div class="entry-button">
+  <div class="entry-buttons">
+    <Button design="primary" icon={InfoIcon} fill onClick={getKMeansResult} />
     <Button design="error" icon={TrashIcon} onClick={removeEntry} />
   </div>
 </div>
@@ -40,5 +50,11 @@
 
   .entry-content {
     @apply py-small;
+    @apply w-full;
+  }
+
+  .entry-buttons {
+    @apply flex;
+    @apply gap-small;
   }
 </style>
