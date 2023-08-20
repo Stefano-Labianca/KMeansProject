@@ -10,14 +10,16 @@
   import { DAYJS_FORMAT } from "../const"
   import type { HistoryEntry, KMeans } from "../types/kmeans"
 
+  import Tables from "$layouts/Tables/Tables.svelte"
+  import { dbRecord } from "$stores/dbRecord"
   import history from "$stores/history"
+  import { nanoid } from "nanoid"
 
   let historyData: EntryComponent[] = []
   let kMeans: KMeans | undefined
 
   const create = async () => {
     kMeans = await KMeansEndPoint.calculate<KMeans>("/api/calculate", "playtennis", 2)
-    console.log(kMeans)
   }
 
   const save = async () => {
@@ -25,10 +27,11 @@
       let payload = {
         ...kMeans,
         date: dayjs().format(DAYJS_FORMAT),
-        title: "Dio merda",
+        title: nanoid(),
       } as HistoryEntry
+
       let response = await CrudEndPoint.create<HistoryEntry>("/history/add", payload)
-      console.log("response: ", response)
+      await findAll()
     }
   }
 
@@ -47,14 +50,17 @@
 <Alerts />
 
 <div class="mt-20" />
-
+<!-- 
 <Button design="primary" fill text="Get KMeans" onClick={create} />
 <div class="mb-4" />
 
 <Button design="primary" fill text="Save KMeans" onClick={save} />
-<div class="mb-4" />
+<div class="mb-4" /> -->
 
 <Button design="primary" fill text="Find All" onClick={findAll} />
 <div class="mb-12" />
 
 <History {historyData} />
+<div class="mb-12" />
+
+<Tables tables={$dbRecord} />
