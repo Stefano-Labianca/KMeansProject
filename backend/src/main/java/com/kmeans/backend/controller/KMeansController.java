@@ -24,30 +24,52 @@ import com.kmeans.converter.APIResponse;
 
 /**
  * <h1>KMeansController</h1>
+ * <p>
  * Viene usata per permettere al client di richiedere nuovi calcoli da far
  * svolgere all'algoritmo K-Means.
+ * </p>
  * 
- * La route che espone è {@code /api}.
+ * <p>
+ * La route principale esposta è {@code /api}, mentre la sua sotto-route è
+ * {@code /calculate}.
+ * 
+ * Il client, quando fa una richiesta alla route {@code
+ * /api/calculate}, avviene il calcolo dell'algoritmo KMeans sulla base dei
+ * parametri presenti nel corpo della richiesta.
+ * </p>
  */
 @CrossOrigin(origins = { "*" })
 @RestController
 @RequestMapping("/api")
 public class KMeansController {
 
+    /**
+     * Consente la comunicazione tra server e MySQL, permettendo la raccolta di
+     * tutti i dati contenuti in una tabella.
+     */
     @Autowired
     private KMeansRepository repository;
 
     /**
+     * <p>
      * Permette di calcolare l'algoritmo K-Means sulla base della richiesta
      * fatta dal client, tramite una richiesta di tipo POST.
      * Se il calcolo è avvento con successo, allora invierà al
-     * client il risultato, altrimenti manderà degli errori:
+     * client il risultato, con codice di stato HTTP 200.
+     * </p>
+     * 
+     * <p>
+     * In base all'errore causato durante la computazione, il server manderà i
+     * seguenti errori al client:
      * <ul>
-     * <li>Errore 400,Bad Request:Avviene quando la richiesta fatta dal Client non è
-     * valida</li>
-     * <li>Errore 500,Internal Server Error:Avviene quando c'è un errore interno al
+     * <li><b>Errore 400,Bad Request</b>: Avviene quando la richiesta fatta dal
+     * Client non è valida
+     * </li>
+     * <li><b>Errore 500,Internal Server Error</b>: Avviene quando c'è un
+     * errore interno al
      * server</li>
      * </ul>
+     * </p>
      * 
      * @param calculate Contenuto del body della richiesta del client
      * @return Risultato della computazione in formato JSON
