@@ -8,6 +8,7 @@
   import { dbRecord } from "$stores/dbRecord"
   import history from "$stores/history"
   import CrudEndPoint from "../../api/crud"
+  import { HISTORY_ENDPOINT } from "../../const"
   import type { HistoryEntry } from "../../types/kmeans"
 
   export let title: EntryComponent["title"]
@@ -15,12 +16,12 @@
   export let id: EntryComponent["id"]
 
   const removeEntry = async () => {
-    CrudEndPoint.remove("/history/delete", id)
+    CrudEndPoint.remove(HISTORY_ENDPOINT.DELETE, id)
     history.removeEntry(id)
   }
 
   const getKMeansResult = async () => {
-    const entry = await CrudEndPoint.readOne<HistoryEntry>("/history/get", id)
+    const entry = await CrudEndPoint.readOne<HistoryEntry>(HISTORY_ENDPOINT.GET, id)
     const { id: hId, title: hTitle, date: hDate, ...tableInfo } = entry
     $dbRecord = tableInfo
   }

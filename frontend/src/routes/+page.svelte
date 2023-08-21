@@ -7,7 +7,7 @@
   import dayjs from "dayjs"
   import CrudEndPoint from "../api/crud"
   import KMeansEndPoint from "../api/kmeans"
-  import { DAYJS_FORMAT } from "../const"
+  import { API_CALCULATE, DAYJS_FORMAT, HISTORY_ENDPOINT } from "../const"
   import type { HistoryEntry, KMeans } from "../types/kmeans"
 
   import Tables from "$layouts/Tables/Tables.svelte"
@@ -19,7 +19,7 @@
   let kMeans: KMeans | undefined
 
   const create = async () => {
-    kMeans = await KMeansEndPoint.calculate<KMeans>("/api/calculate", "playtennis", 2)
+    kMeans = await KMeansEndPoint.calculate<KMeans>(API_CALCULATE, "playtennis", 2)
   }
 
   const save = async () => {
@@ -30,13 +30,13 @@
         title: nanoid(),
       } as HistoryEntry
 
-      let response = await CrudEndPoint.create<HistoryEntry>("/history/add", payload)
+      let response = await CrudEndPoint.create<HistoryEntry>(HISTORY_ENDPOINT.POST, payload)
       await findAll()
     }
   }
 
   const findAll = async () => {
-    let res = await CrudEndPoint.read<HistoryEntry>("/history/get")
+    let res = await CrudEndPoint.read<HistoryEntry>(HISTORY_ENDPOINT.GET)
     historyData = res.map(e => {
       const { date, title, id } = e
       return { date, title, id }
