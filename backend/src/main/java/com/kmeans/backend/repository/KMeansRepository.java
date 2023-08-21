@@ -19,8 +19,9 @@ import com.kmeans.cluster.database.NoValueException;
  * 
  * <p>
  * Questa viene usata principalemente nell'ambito del calcolo del KMeans, in
- * quanto attua una query del tipo {@code SELECT * FROM tableName}, dove
- * {@code tableName} è il nome di una tabella del database a cui si è collegati.
+ * quanto attua una query del tipo {@code SELECT DISTINCT * FROM tableName},
+ * dove {@code tableName} è il nome di una tabella del database a cui si è
+ * collegati.
  * </p>
  */
 @Repository
