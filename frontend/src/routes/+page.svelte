@@ -57,7 +57,7 @@
 <Button design="primary" fill text="Save KMeans" onClick={save} />
 <div class="mb-4" />
 
-<Button design="primary" fill text="Find All" onClick={findAll} />
+<Button design="primary" text="Find All" onClick={findAll} />
 <div class="mb-12" />
 
 <History {historyData} />
