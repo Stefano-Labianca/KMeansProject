@@ -1,26 +1,24 @@
 <script lang="ts">
-  import Button from "$components/Button/Button.svelte"
   import type { EntryComponent } from "$components/Entry/entry"
-  import History from "$components/History/History.svelte"
-  import Text from "$components/Text/Text.svelte"
-  import Alerts from "$layouts/Alerts/Alerts/Alerts.svelte"
   import dayjs from "dayjs"
   import CrudEndPoint from "../api/crud"
-  import KMeansEndPoint from "../api/kmeans"
-  import { API_CALCULATE, DAYJS_FORMAT, HISTORY_ENDPOINT } from "../const"
+  import { DAYJS_FORMAT, HISTORY_ENDPOINT } from "../const"
   import type { HistoryEntry, KMeans } from "../types/kmeans"
 
-  import Tables from "$layouts/Tables/Tables.svelte"
-  import { dbRecord } from "$stores/dbRecord"
   import history from "$stores/history"
   import { nanoid } from "nanoid"
 
+  import type { ButtonComponent } from "$components/Button/button"
+  import Form from "$components/Form/Form.svelte"
+  import Input from "$components/Input/Input.svelte"
+  import Text from "$components/Text/Text.svelte"
+  import InfoIcon from "$icons/InfoIcon.svelte"
+  import Alerts from "$layouts/Alerts/Alerts/Alerts.svelte"
+  import Tables from "$layouts/Tables/Tables.svelte"
+  import { dbRecord } from "$stores/dbRecord"
+
   let historyData: EntryComponent[] = []
   let kMeans: KMeans | undefined
-
-  const create = async () => {
-    kMeans = await KMeansEndPoint.calculate<KMeans>(API_CALCULATE, "playtennis", 2)
-  }
 
   const save = async () => {
     if (kMeans) {
@@ -44,6 +42,12 @@
 
     $history = historyData
   }
+
+  const button: ButtonComponent = {
+    text: "Click me",
+    icon: InfoIcon,
+    design: "primary",
+  }
 </script>
 
 <Text text="k-means project" role="paragraph" />
@@ -51,16 +55,15 @@
 
 <div class="mt-20" />
 
-<Button design="primary" fill text="Get KMeans" onClick={create} />
-<div class="mb-4" />
+<Form method="post" {button} let:errors>
+  <Input name="table" label="Table name" placeholder="Ex. playtennis" type="text" error={errors.table?.[0]} />
+  <div class="mt-4" />
 
-<Button design="primary" fill text="Save KMeans" onClick={save} />
-<div class="mb-4" />
+  <Input name="cluster" label="Clusters amount" placeholder="Ex. 5" type="number" error={errors.cluster?.[0]} />
+  <div class="mt-4" />
+</Form>
 
-<Button design="primary" text="Find All" onClick={findAll} />
-<div class="mb-12" />
-
-<History {historyData} />
-<div class="mb-12" />
+<!-- <History {historyData} />
+<div class="mb-12" /> -->
 
 <Tables tables={$dbRecord} />

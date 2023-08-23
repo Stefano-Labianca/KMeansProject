@@ -1,12 +1,15 @@
 <script lang="ts">
+  import { dbRecord } from "$stores/dbRecord"
   import { createForm } from "felte"
   import { minLength, minValue, number, safeParse, string } from "valibot"
+  import KMeansEndPoint from "../../api/kmeans"
+  import { API_CALCULATE } from "../../const"
+  import type { KMeans } from "../../types/kmeans"
   import Button from "../Button/Button.svelte"
   import type { FormComponent } from "./form"
 
   type $$Props = FormComponent
 
-  // export let schema: FormComponent["schema"]
   export let button: FormComponent["button"]
 
   const { form, errors } = createForm({
@@ -32,6 +35,11 @@
 
     async onSubmit(values, context) {
       if (!context.form) return
+
+      const { table, cluster } = values
+      const response = await KMeansEndPoint.calculate<KMeans>(API_CALCULATE, table, cluster)
+
+      $dbRecord = response
     },
   })
 </script>
@@ -44,7 +52,6 @@
 
 <style lang="postcss">
   .Form {
-    @apply gap-medium;
     @apply flex;
     @apply flex-col;
     @apply w-full;
