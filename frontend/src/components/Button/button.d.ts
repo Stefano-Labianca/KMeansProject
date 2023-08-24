@@ -1,4 +1,4 @@
-import type { BaseComponent, DesignOptions } from "$lib/types"
+import type { HTMLButtonAttributes } from "svelte/elements"
 
 /**
  * Rappresenta il componente di un bottone
@@ -15,9 +15,9 @@ import type { BaseComponent, DesignOptions } from "$lib/types"
  * @param onClick Contiene una funzione che verrà eseguita ogni qual volta
  * l'evento 'on:click' viene attivato
  */
-export type ButtonComponent = {
+export interface ButtonComponent extends HTMLButtonAttributes {
   icon?: BaseComponent
-  text: string
+  text?: string
   loading?: boolean
   inverted?: boolean
   design?: DesignOptions

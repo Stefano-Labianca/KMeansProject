@@ -6,6 +6,8 @@
   import { isButtonFilled, spinnerModifier } from "$stores/spinner"
   import type { ButtonComponent } from "./button"
 
+  type $$Props = ButtonComponent
+
   export let icon: ButtonComponent["icon"] = undefined
   export let text: ButtonComponent["text"] = ""
   export let design: ButtonComponent["design"] = "default"
@@ -15,15 +17,8 @@
   export let fill: ButtonComponent["fill"] = false
   export let onClick: ButtonComponent["onClick"] = undefined
 
-  spinnerModifier.update(() => {
-    if (loading) {
-      return design || "default"
-    }
-
-    return "default"
-  })
-
-  isButtonFilled.update(f => (f = fill || false))
+  $spinnerModifier = loading ? design : "default"
+  $isButtonFilled = fill ? true : false
 
   let isDisabled: boolean
   $: isDisabled = loading || disabled || false
@@ -38,6 +33,7 @@
   disabled={isDisabled}
   class="animated {design}"
   on:click={onClick}
+  {...$$restProps}
 >
   {#if loading}
     <Loading />

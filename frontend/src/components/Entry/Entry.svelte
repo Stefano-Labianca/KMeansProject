@@ -23,6 +23,7 @@
   const getKMeansResult = async () => {
     const entry = await CrudEndPoint.readOne<HistoryEntry>(HISTORY_ENDPOINT.GET, id)
     const { id: hId, title: hTitle, date: hDate, ...tableInfo } = entry
+
     $dbRecord = tableInfo
   }
 </script>

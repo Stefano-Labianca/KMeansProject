@@ -20,12 +20,7 @@ export type KMeans = {
   k: number
 }
 
-export type HistoryEntry = {
-  columnsName: string[]
-  clusters: Cluster[]
-  iteration: number
-  k: number
-
+export type HistoryEntry = KMeans & {
   id: string
   date: string
   title: string
