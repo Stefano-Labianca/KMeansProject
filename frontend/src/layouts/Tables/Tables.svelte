@@ -2,11 +2,9 @@
   import Table from "$components/Table/Table.svelte"
   import Text from "$components/Text/Text.svelte"
   import { DELAY, TRANSITION_Y_IN } from "$lib/consts"
+  import { dbRecord } from "$stores/dbRecord"
   import { fly } from "svelte/transition"
-  import type { Cluster, Example, Middle } from "../../types/kmeans"
-  import type { TablesComponent } from "./tables"
-
-  export let tables: TablesComponent["tables"] = undefined
+  import type { Cluster, Example, KMeans, Middle } from "../../types/kmeans"
 
   let middlesColumns: string[] = []
   let exampleColumns: string[] = []
@@ -30,7 +28,13 @@
     return clusters.map(cluster => cluster[key])
   }
 
-  $: if (tables) {
+  const copy = (obj: KMeans) => {
+    return JSON.parse(JSON.stringify(obj))
+  }
+
+  $: if ($dbRecord) {
+    let tables: KMeans = copy($dbRecord)
+
     middlesColumns = tables.columnsName
     exampleColumns = [...middlesColumns, "distance"]
 
@@ -44,7 +48,7 @@
   }
 </script>
 
-{#if tables}
+{#if $dbRecord}
   {#each middles as middle, i (i)}
     <div transition:fly|global={{ ...TRANSITION_Y_IN, delay: i * DELAY }}>
       <Text text="Cluster {i}" role="paragraph" />

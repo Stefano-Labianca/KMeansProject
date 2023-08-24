@@ -17,7 +17,7 @@ import type { HTMLButtonAttributes } from "svelte/elements"
  */
 export interface ButtonComponent extends HTMLButtonAttributes {
   icon?: BaseComponent
-  text: string
+  text?: string
   loading?: boolean
   inverted?: boolean
   design?: DesignOptions

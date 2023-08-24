@@ -33,7 +33,7 @@
       return err
     },
 
-    async onSubmit(values, context) {
+    async onSubmit(values: { table: string; cluster: number }, context) {
       if (!context.form) return
 
       const { table, cluster } = values

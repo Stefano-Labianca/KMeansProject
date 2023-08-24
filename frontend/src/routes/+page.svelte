@@ -3,34 +3,49 @@
   import dayjs from "dayjs"
   import CrudEndPoint from "../api/crud"
   import { DAYJS_FORMAT, HISTORY_ENDPOINT } from "../const"
-  import type { HistoryEntry, KMeans } from "../types/kmeans"
+  import type { HistoryEntry } from "../types/kmeans"
 
   import history from "$stores/history"
   import { nanoid } from "nanoid"
 
+  import Button from "$components/Button/Button.svelte"
   import type { ButtonComponent } from "$components/Button/button"
   import Form from "$components/Form/Form.svelte"
+  import History from "$components/History/History.svelte"
   import Input from "$components/Input/Input.svelte"
   import Text from "$components/Text/Text.svelte"
   import InfoIcon from "$icons/InfoIcon.svelte"
   import Alerts from "$layouts/Alerts/Alerts/Alerts.svelte"
-  import Tables from "$layouts/Tables/Tables.svelte"
   import { dbRecord } from "$stores/dbRecord"
 
+  import type { AlertComponent } from "$components/Alert/alert"
+  import ErrorIcon from "$icons/ErrorIcon.svelte"
+  import Tables from "$layouts/Tables/Tables.svelte"
+  import alerts from "$stores/alert"
+
   let historyData: EntryComponent[] = []
-  let kMeans: KMeans | undefined
 
   const save = async () => {
-    if (kMeans) {
-      let payload = {
-        ...kMeans,
-        date: dayjs().format(DAYJS_FORMAT),
-        title: nanoid(),
-      } as HistoryEntry
+    if (!$dbRecord) {
+      alerts.send({
+        text: "Empty calculation",
+        design: "error",
+        icon: ErrorIcon,
+      } as AlertComponent)
 
-      let response = await CrudEndPoint.create<HistoryEntry>(HISTORY_ENDPOINT.POST, payload)
-      await findAll()
+      return
     }
+
+    let payload: HistoryEntry = {
+      ...$dbRecord,
+      date: dayjs().format(DAYJS_FORMAT),
+      title: nanoid(),
+    } as HistoryEntry
+
+    console.log("Salvataggio: ", $dbRecord)
+
+    let response = await CrudEndPoint.create<HistoryEntry>(HISTORY_ENDPOINT.POST, payload)
+    await findAll()
   }
 
   const findAll = async () => {
@@ -63,7 +78,9 @@
   <div class="mt-4" />
 </Form>
 
-<!-- <History {historyData} />
-<div class="mb-12" /> -->
+<History {historyData} />
+<div class="mb-12" />
 
-<Tables tables={$dbRecord} />
+<Button text="Save" fill design="primary" onClick={save} />
+
+<Tables />
