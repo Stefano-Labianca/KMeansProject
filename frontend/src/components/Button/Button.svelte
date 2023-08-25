@@ -52,7 +52,6 @@
     @apply p-default;
     @apply rounded-default;
     @apply overflow-hidden;
-    @apply h-full;
     @apply w-full;
   }
 

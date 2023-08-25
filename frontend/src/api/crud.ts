@@ -8,8 +8,8 @@ const readOne: ReadOne = async <T>(url: string, id: string): Promise<T> => {
   return await new ApiClient<T>().readOne(url, id)
 }
 
-const create: Create = async <T>(url: string, payload: T): Promise<T> => {
-  return await new ApiClient<T>().create(url, payload)
+const create: Create = async <T>(url: string, payload: T): Promise<void> => {
+  await new ApiClient<T>().create(url, payload)
 }
 
 const remove: Delete = async <T>(url: string, id: string): Promise<void> => {

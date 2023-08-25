@@ -1,83 +1,53 @@
 <script lang="ts">
-  import dayjs from "dayjs"
-  import CrudEndPoint from "../api/crud"
-  import { DAYJS_FORMAT, HISTORY_ENDPOINT } from "../const"
-  import type { HistoryEntry } from "../types/kmeans"
-
-  import history from "$stores/history"
-  import { nanoid } from "nanoid"
-
-  import Button from "$components/Button/Button.svelte"
-  import type { ButtonComponent } from "$components/Button/button"
-  import Form from "$components/Form/Form.svelte"
   import History from "$components/History/History.svelte"
-  import Input from "$components/Input/Input.svelte"
-  import Text from "$components/Text/Text.svelte"
-  import InfoIcon from "$icons/InfoIcon.svelte"
-  import Alerts from "$layouts/Alerts/Alerts/Alerts.svelte"
-  import { dbRecord } from "$stores/dbRecord"
-
-  import type { AlertComponent } from "$components/Alert/alert"
-  import ErrorIcon from "$icons/ErrorIcon.svelte"
+  import Calculation from "$layouts/Header/Calculation.svelte"
+  import Header from "$layouts/Header/Header.svelte"
   import Tables from "$layouts/Tables/Tables.svelte"
-  import alerts from "$stores/alert"
+  import history from "$stores/history"
+  import type { PageData } from "./$types"
 
-  const save = async () => {
-    if (!$dbRecord) {
-      alerts.send({
-        text: "Empty calculation",
-        design: "error",
-        icon: ErrorIcon,
-      } as AlertComponent)
+  export let data: PageData
 
-      return
-    }
-
-    let payload: HistoryEntry = {
-      ...$dbRecord,
-      date: dayjs().format(DAYJS_FORMAT),
-      title: nanoid(),
-    } as HistoryEntry
-
-    console.log("Salvataggio: ", $dbRecord)
-
-    let response = await CrudEndPoint.create<HistoryEntry>(HISTORY_ENDPOINT.POST, payload)
-    await findAll()
-  }
-
-  const findAll = async () => {
-    let res = await CrudEndPoint.read<HistoryEntry>(HISTORY_ENDPOINT.GET)
-    let historyData = res.map(e => {
-      const { date, title, id } = e
-      return { date, title, id }
-    })
-
-    $history = historyData
-  }
-
-  const button: ButtonComponent = {
-    text: "Click me",
-    icon: InfoIcon,
-    design: "primary",
-  }
+  $history = data.historyData
 </script>
 
-<Text text="k-means project" role="paragraph" />
-<Alerts />
+<Header />
 
-<div class="mt-20" />
+<div class="Main">
+  <div class="UserInfo">
+    <Calculation />
 
-<Form method="post" {button} let:errors>
-  <Input name="table" label="Table name" placeholder="Ex. playtennis" type="text" error={errors.table?.[0]} />
-  <div class="mt-4" />
+    <div class="mt-10" />
 
-  <Input name="cluster" label="Clusters amount" placeholder="Ex. 5" type="number" error={errors.cluster?.[0]} />
-  <div class="mt-4" />
-</Form>
+    <History />
+  </div>
 
-<Button text="Save" fill design="primary" onClick={save} />
+  <div class="TablesInfo HideScrollBar">
+    <Tables />
+  </div>
+</div>
 
-<History />
-<div class="mb-12" />
+<style lang="postcss">
+  .Main {
+    @apply flex;
+    @apply flex-row;
+    @apply justify-around;
+    @apply h-full;
+  }
 
-<Tables />
+  .UserInfo {
+    @apply flex;
+    @apply flex-col;
+
+    @apply mr-16;
+    @apply md:w-1/2;
+  }
+
+  .TablesInfo {
+    @apply flex;
+    @apply flex-col;
+    @apply w-full;
+    @apply h-full;
+    @apply gap-6;
+  }
+</style>
