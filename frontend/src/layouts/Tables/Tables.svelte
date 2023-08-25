@@ -7,6 +7,9 @@
   import { dbRecord } from "$stores/dbRecord"
   import history from "$stores/history"
 
+  import type { AlertComponent } from "$components/Alert/alert"
+  import LikeIcon from "$icons/LikeIcon.svelte"
+  import alert from "$stores/alert"
   import { fly } from "svelte/transition"
   import { findAll, save } from "../../api/init"
   import AddGliph from "../../assets/gliph/AddGliph.svelte"
@@ -41,6 +44,12 @@
   const saveData = async () => {
     await save($dbRecord)
     $history = await findAll()
+
+    alert.send({
+      text: "Data saved successfully",
+      icon: LikeIcon,
+      design: "primary",
+    } as AlertComponent)
   }
 
   $: if ($dbRecord) {
