@@ -1,5 +1,4 @@
 <script lang="ts">
-  import type { EntryComponent } from "$components/Entry/entry"
   import dayjs from "dayjs"
   import CrudEndPoint from "../api/crud"
   import { DAYJS_FORMAT, HISTORY_ENDPOINT } from "../const"
@@ -22,8 +21,6 @@
   import ErrorIcon from "$icons/ErrorIcon.svelte"
   import Tables from "$layouts/Tables/Tables.svelte"
   import alerts from "$stores/alert"
-
-  let historyData: EntryComponent[] = []
 
   const save = async () => {
     if (!$dbRecord) {
@@ -50,7 +47,7 @@
 
   const findAll = async () => {
     let res = await CrudEndPoint.read<HistoryEntry>(HISTORY_ENDPOINT.GET)
-    historyData = res.map(e => {
+    let historyData = res.map(e => {
       const { date, title, id } = e
       return { date, title, id }
     })
@@ -78,9 +75,9 @@
   <div class="mt-4" />
 </Form>
 
-<History {historyData} />
-<div class="mb-12" />
-
 <Button text="Save" fill design="primary" onClick={save} />
+
+<History />
+<div class="mb-12" />
 
 <Tables />
