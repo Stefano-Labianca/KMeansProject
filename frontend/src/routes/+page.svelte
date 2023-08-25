@@ -12,13 +12,12 @@
   import Form from "$components/Form/Form.svelte"
   import History from "$components/History/History.svelte"
   import Input from "$components/Input/Input.svelte"
-  import Text from "$components/Text/Text.svelte"
   import InfoIcon from "$icons/InfoIcon.svelte"
-  import Alerts from "$layouts/Alerts/Alerts/Alerts.svelte"
   import { dbRecord } from "$stores/dbRecord"
 
   import type { AlertComponent } from "$components/Alert/alert"
   import ErrorIcon from "$icons/ErrorIcon.svelte"
+  import Header from "$layouts/Header/Header.svelte"
   import Tables from "$layouts/Tables/Tables.svelte"
   import alerts from "$stores/alert"
 
@@ -62,10 +61,7 @@
   }
 </script>
 
-<Text text="k-means project" role="paragraph" />
-<Alerts />
-
-<div class="mt-20" />
+<Header />
 
 <Form method="post" {button} let:errors>
   <Input name="table" label="Table name" placeholder="Ex. playtennis" type="text" error={errors.table?.[0]} />
