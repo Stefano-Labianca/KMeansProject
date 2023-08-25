@@ -51,21 +51,32 @@
 </script>
 
 {#if $dbRecord}
-  {#each middles as middle, i (i)}
-    <div transition:fly|global={{ ...TRANSITION_Y_IN, delay: i * DELAY }}>
-      <Text text="Cluster {i}" role="paragraph" />
-      <Table head={middlesColumns} body={[middle]} />
+  <div class="TableContent HideScrollBar">
+    {#each middles as middle, i (i)}
+      <div transition:fly|global={{ ...TRANSITION_Y_IN, delay: i * DELAY }}>
+        <Text text="Cluster {i}" role="paragraph" />
+        <Table head={middlesColumns} body={[middle]} />
 
-      <div class="mt-4" />
+        <div class="mt-4" />
 
-      <Text text="Data for cluster {i}" role="paragraph" />
-      <Table head={exampleColumns} body={examples[i]} />
+        <Text text="Data for cluster {i}" role="paragraph" />
+        <Table head={exampleColumns} body={examples[i]} />
 
-      <div class="mt-4" />
-      <Text text="Average distance: {avgDistances[i]}" />
-      <div class="mt-12" />
-    </div>
-  {/each}
+        <div class="mt-4" />
+
+        <Text text="Average distance: {avgDistances[i]}" />
+        <div class="mt-12" />
+      </div>
+    {/each}
+  </div>
 {:else}
   <EmptyState gliph={AddGliph} subtitle="Add your first value to get started" text="No data available" />
 {/if}
+
+<style lang="postcss">
+  .TableContent {
+    @apply h-[46rem];
+    @apply w-full;
+    @apply overflow-y-auto;
+  }
+</style>

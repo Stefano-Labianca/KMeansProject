@@ -5,4 +5,4 @@
 
 <Text text="k-means project" role="paragraph" />
 <Alerts />
-<div class="mt-20" />
+<div class="mt-10" />

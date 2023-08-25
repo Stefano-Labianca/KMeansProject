@@ -3,17 +3,20 @@
   import { DELAY, TRANSITION_BASE, TRANSITION_X_OUT, TRANSITION_Y_IN } from "$lib/consts"
 
   import EmptyState from "$components/EmptyState/EmptyState.svelte"
+  import Text from "$components/Text/Text.svelte"
   import history from "$stores/history"
   import { flip } from "svelte/animate"
   import { fly } from "svelte/transition"
   import EmptyGliph from "../../assets/gliph/EmptyGliph.svelte"
 </script>
 
+<Text text="History" role="title" />
+
 {#if $history?.length > 0}
-  <div class="History">
+  <div class="History HideScrollBar">
     {#each $history as entry, i (entry)}
       <div
-        class="entry"
+        class="SingleEntry"
         animate:flip={TRANSITION_BASE}
         in:fly|global={{ ...TRANSITION_Y_IN, delay: i * DELAY }}
         out:fly|global={TRANSITION_X_OUT}
@@ -28,9 +31,14 @@
 
 <style lang="postcss">
   .History {
+    @apply flex;
+    @apply flex-col;
+    @apply w-full;
+    @apply h-[20rem];
+    @apply overflow-y-auto;
   }
 
-  .entry {
-    @apply mt-6;
+  .SingleEntry {
+    @apply mt-3;
   }
 </style>
