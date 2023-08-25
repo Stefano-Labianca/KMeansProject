@@ -59,3 +59,13 @@ html {
   @apply border-default;
   @apply cursor-default;
 }
+
+/* Chromium (Google, Edge, Opera) */
+.HideScrollBar::-webkit-scrollbar {
+  display: none;
+}
+
+/* Firefox */
+.HideScrollBar {
+  scrollbar-width: none;
+}
