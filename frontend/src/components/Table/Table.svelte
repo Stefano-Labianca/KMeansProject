@@ -42,6 +42,5 @@
     @apply border-separate;
     @apply border-spacing-0;
     @apply w-full;
-    @apply h-full;
   }
 </style>
