@@ -74,9 +74,9 @@ class ApiClient<T> {
    * @param payload Contenuto del body
    * @returns Risultato o undefined
    */
-  async create(url: string, payload: T): Promise<T> {
+  async create(url: string, payload: T) {
     try {
-      return await this.transport.post(payload, url).json<T>()
+      await this.transport.post(payload, url).json<T>()
     } catch (error) {
       return Promise.reject(error)
     }
