@@ -47,13 +47,19 @@
 <form use:form {...$$restProps} class="Form">
   <slot errors={$errors} />
 
-  <Button {...button} fill type="submit" />
+  <div class="ButtonContent">
+    <Button {...button} fill inverted type="submit" />
+  </div>
 </form>
 
 <style lang="postcss">
   .Form {
     @apply flex;
     @apply flex-col;
+    @apply w-full;
+  }
+
+  .ButtonContent {
     @apply w-full;
   }
 </style>
