@@ -7,16 +7,12 @@
   import history from "$stores/history"
   import { nanoid } from "nanoid"
 
-  import Button from "$components/Button/Button.svelte"
-  import type { ButtonComponent } from "$components/Button/button"
-  import Form from "$components/Form/Form.svelte"
-  import History from "$components/History/History.svelte"
-  import Input from "$components/Input/Input.svelte"
-  import InfoIcon from "$icons/InfoIcon.svelte"
   import { dbRecord } from "$stores/dbRecord"
 
   import type { AlertComponent } from "$components/Alert/alert"
+  import History from "$components/History/History.svelte"
   import ErrorIcon from "$icons/ErrorIcon.svelte"
+  import Calculation from "$layouts/Header/Calculation.svelte"
   import Header from "$layouts/Header/Header.svelte"
   import Tables from "$layouts/Tables/Tables.svelte"
   import alerts from "$stores/alert"
@@ -53,27 +49,17 @@
 
     $history = historyData
   }
-
-  const button: ButtonComponent = {
-    text: "Click me",
-    icon: InfoIcon,
-    design: "primary",
-  }
 </script>
 
 <Header />
 
-<Form method="post" {button} let:errors>
-  <Input name="table" label="Table name" placeholder="Ex. playtennis" type="text" error={errors.table?.[0]} />
-  <div class="mt-4" />
-
-  <Input name="cluster" label="Clusters amount" placeholder="Ex. 5" type="number" error={errors.cluster?.[0]} />
-  <div class="mt-4" />
-</Form>
-
-<Button text="Save" fill design="primary" onClick={save} />
-
+<Calculation />
 <History />
-<div class="mb-12" />
 
 <Tables />
+
+<!-- <Button text="Save" fill design="primary" onClick={save} />
+
+<div class="mb-12" />
+
+ -->
