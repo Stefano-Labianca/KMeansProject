@@ -1,10 +1,14 @@
 <script lang="ts">
+  import Button from "$components/Button/Button.svelte"
   import EmptyState from "$components/EmptyState/EmptyState.svelte"
   import Table from "$components/Table/Table.svelte"
   import Text from "$components/Text/Text.svelte"
   import { DELAY, TRANSITION_Y_IN } from "$lib/consts"
   import { dbRecord } from "$stores/dbRecord"
+  import history from "$stores/history"
+
   import { fly } from "svelte/transition"
+  import { findAll, save } from "../../api/init"
   import AddGliph from "../../assets/gliph/AddGliph.svelte"
   import type { Cluster, Example, KMeans, Middle } from "../../types/kmeans"
 
@@ -32,6 +36,11 @@
 
   const copy = (obj: KMeans) => {
     return JSON.parse(JSON.stringify(obj))
+  }
+
+  const saveData = async () => {
+    await save($dbRecord)
+    $history = await findAll()
   }
 
   $: if ($dbRecord) {
@@ -69,13 +78,14 @@
       </div>
     {/each}
   </div>
+  <Button text="Save data" design="primary" onClick={saveData} />
 {:else}
   <EmptyState gliph={AddGliph} subtitle="Add your first value to get started" text="No data available" />
 {/if}
 
 <style lang="postcss">
   .TableContent {
-    @apply h-[46rem];
+    @apply h-[40rem];
     @apply w-full;
     @apply overflow-y-auto;
   }
