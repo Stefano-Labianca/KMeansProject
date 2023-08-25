@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
   import Text from "$components/Text/Text.svelte"
   import Alerts from "$layouts/Alerts/Alerts/Alerts.svelte"
 </script>
