@@ -1,9 +1,11 @@
 <script lang="ts">
+  import EmptyState from "$components/EmptyState/EmptyState.svelte"
   import Table from "$components/Table/Table.svelte"
   import Text from "$components/Text/Text.svelte"
   import { DELAY, TRANSITION_Y_IN } from "$lib/consts"
   import { dbRecord } from "$stores/dbRecord"
   import { fly } from "svelte/transition"
+  import AddGliph from "../../assets/gliph/AddGliph.svelte"
   import type { Cluster, Example, KMeans, Middle } from "../../types/kmeans"
 
   let middlesColumns: string[] = []
@@ -64,4 +66,6 @@
       <div class="mt-12" />
     </div>
   {/each}
+{:else}
+  <EmptyState gliph={AddGliph} subtitle="Add your first value to get started" text="No data available" />
 {/if}
