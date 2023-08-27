@@ -5,7 +5,7 @@ package com.kmeans.cluster.data;
  */
 public class ContinuousItem extends Item {
 
-    public ContinuousItem(Attribute attribute, Object value) {
+    public ContinuousItem(Attribute attribute, double value) {
         super(attribute, value);
     }
 

@@ -8,7 +8,6 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-import com.kmeans.cluster.data.Example;
 import com.kmeans.cluster.database.TableSchema.Column;
 
 public class TableData {

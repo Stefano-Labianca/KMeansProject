@@ -38,17 +38,18 @@ public class ClusterSet implements Serializable {
 
     Cluster nearestCluster(Tuple tuple) {
         double min = tuple.getDistance(this.C[0].getCentroid());
-        double tMin = 0.0D;
+        double tempD = 0.0D;
         Cluster nearest = this.C[0];
 
         for (int i = 1; i < this.C.length; i++) {
-            tMin = tuple.getDistance(this.C[i].getCentroid());
+            tempD = tuple.getDistance(this.C[i].getCentroid());
 
-            if (tMin < min) {
-                min = tMin;
+            if (tempD < min) {
+                min = tempD;
                 nearest = this.C[i];
             }
         }
+
         return nearest;
     }
 
@@ -58,6 +59,7 @@ public class ClusterSet implements Serializable {
                 return cluster;
             }
         }
+
         return null;
     }
 

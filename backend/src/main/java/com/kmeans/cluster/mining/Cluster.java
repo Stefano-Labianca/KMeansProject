@@ -9,9 +9,7 @@ import com.kmeans.cluster.data.Tuple;
 
 public class Cluster implements Serializable {
 	private Tuple centroid;
-
-	// TODO: Mettere nella relazione perchè questo è package
-	Set<Integer> clusteredData;
+	private Set<Integer> clusteredData;
 
 	Cluster(Tuple centroid) {
 		this.centroid = centroid;

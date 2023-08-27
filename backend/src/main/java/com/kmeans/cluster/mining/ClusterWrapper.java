@@ -2,6 +2,7 @@ package com.kmeans.cluster.mining;
 
 import java.util.ArrayList;
 import java.util.Set;
+import java.util.TreeSet;
 
 import com.kmeans.cluster.data.Data;
 import com.kmeans.cluster.data.Tuple;
@@ -48,10 +49,11 @@ public class ClusterWrapper {
      * @return Oggetto corrente Oggetto corrente
      */
     public ClusterWrapper setExamples(Cluster cluster, Data data) {
-        Set<Integer> examplesIndex = cluster.clusteredData;
+        Set<Integer> examplesIndex = this.getExamplesIndex(cluster, data);
         Tuple t = cluster.getCentroid();
 
         for (Integer i : examplesIndex) {
+
             Tuple tuple = data.getItemSet(i);
             Double distance = t.getDistance(tuple);
 
@@ -73,10 +75,23 @@ public class ClusterWrapper {
      */
     public ClusterWrapper setAvgDistance(Cluster cluster, Data data) {
         Tuple t = cluster.getCentroid();
-        Set<Integer> examplesIndex = cluster.clusteredData;
+        Set<Integer> examplesIndex = this.getExamplesIndex(cluster, data);
 
         this.avgDistance = t.avgDistance(data, examplesIndex);
 
         return this;
     }
+
+    private Set<Integer> getExamplesIndex(Cluster cluster, Data data) {
+        Set<Integer> clusteredData = new TreeSet<Integer>();
+
+        for (int index = 0; index < data.getNumberOfExamples(); index++) {
+            if (cluster.contain(index)) {
+                clusteredData.add(index);
+            }
+        }
+
+        return clusteredData;
+    }
+
 }

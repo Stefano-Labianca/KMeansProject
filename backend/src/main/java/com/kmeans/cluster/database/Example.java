@@ -1,4 +1,4 @@
-package com.kmeans.cluster.data;
+package com.kmeans.cluster.database;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -11,6 +11,7 @@ import java.util.TreeSet;
 import com.kmeans.cluster.database.DatabaseConnectionException;
 import com.kmeans.cluster.database.DbAccess;
 import com.kmeans.cluster.database.EmptySetException;
+import com.kmeans.cluster.database.Example;
 import com.kmeans.cluster.database.NoValueException;
 import com.kmeans.cluster.database.QUERY_TYPE;
 import com.kmeans.cluster.database.TableData;
@@ -34,7 +35,6 @@ public class Data {
 
 		this.data = tableData.getDistinctTransazioni(tableName);
 		this.numberOfExamples = this.data.size();
-
 		this.attributeSet = new ArrayList<Attribute>();
 
 		for (int i = 0; i < schema.getNumberOfAttributes(); i++) {
@@ -125,7 +125,7 @@ public class Data {
 	 */
 	public int[] sampling(int k) throws OutOfRangeSampleSize {
 		if (k <= 0 || k > this.data.size()) {
-			throw new OutOfRangeSampleSize("Numero di cluster invalido");
+			throw new OutOfRangeSampleSize("Inserire k compreso tra 1 e " + this.data.size());
 		}
 
 		int centroidIndexes[] = new int[k];
