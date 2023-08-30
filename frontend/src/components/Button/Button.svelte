@@ -3,7 +3,6 @@
   import Text from "../Text/Text.svelte"
   import Loading from "./Loading.svelte"
 
-  import { isButtonFilled, spinnerModifier } from "$stores/spinner"
   import type { ButtonComponent } from "./button"
 
   type $$Props = ButtonComponent
@@ -17,10 +16,6 @@
   export let fill: ButtonComponent["fill"] = false
   export let onClick: ButtonComponent["onClick"] = undefined
 
-  $spinnerModifier = loading ? design : "default"
-  $isButtonFilled = fill ? true : false
-
-  let isDisabled: boolean
   $: isDisabled = loading || disabled || false
 </script>
 
@@ -36,7 +31,7 @@
   {...$$restProps}
 >
   {#if loading}
-    <Loading />
+    <Loading loading />
   {:else}
     <Icon {icon} />
     <Text {text} />

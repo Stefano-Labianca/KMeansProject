@@ -1,12 +1,8 @@
 <script lang="ts">
-  import { isButtonFilled, spinnerModifier } from "$stores/spinner"
-  import { get } from "svelte/store"
-
-  $: designClass = get(spinnerModifier)
-  $: filledButton = get(isButtonFilled)
+  export const loading: boolean = false
 </script>
 
-<div class="Spinner {designClass}" class:fill={filledButton} />
+<div class="Spinner" class:fill={loading} />
 
 <style lang="postcss">
   .Spinner {
@@ -19,35 +15,9 @@
     @apply animate-spin;
   }
 
-  /* Design spinner */
-  .default {
-    @apply border-b-title;
-    @apply border-l-title;
-  }
-
-  .primary {
-    @apply border-b-primary;
-    @apply border-l-primary;
-  }
-
-  .secondary {
-    @apply border-b-subtitle;
-    @apply border-l-subtitle;
-  }
-
-  .error {
-    @apply border-b-error;
-    @apply border-l-error;
-  }
-
   /* Filled */
   .fill {
     @apply border-b-background;
     @apply border-l-background;
-
-    &.error {
-      @apply border-b-title;
-      @apply border-l-title;
-    }
   }
 </style>

@@ -1,3 +1,4 @@
+import type { DesignOptions } from "$lib/types"
 import type { HTMLButtonAttributes } from "svelte/elements"
 
 /**
