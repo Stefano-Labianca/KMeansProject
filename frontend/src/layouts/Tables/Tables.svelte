@@ -22,6 +22,8 @@
   let examples: Example[][] = []
   let avgDistances: number[] = []
 
+  let loading = false
+
   const initExamples = (examples: Example[][]) => {
     for (let i = 0; i < examples.length; i++) {
       for (let j = 0; j < examples[i].length; j++) {
@@ -42,8 +44,11 @@
   }
 
   const saveData = async () => {
+    loading = true
+
     await save($dbRecord)
     $history = await findAll()
+    loading = false
 
     alert.send({
       text: "Data saved successfully",
@@ -88,7 +93,7 @@
       </div>
     {/each}
   </div>
-  <Button text="Save data" design="primary" onClick={saveData} />
+  <Button text="Save data" {loading} design="primary" onClick={saveData} />
 {:else}
   <EmptyState gliph={AddGliph} subtitle="Calculate your first tables or check your history" text="No data available" />
 {/if}
