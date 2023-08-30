@@ -17,7 +17,7 @@
   <div class="CalculationInput">
     <Calculation />
 
-    <div class="mt-16" />
+    <div class="mt-14" />
     <History />
   </div>
 
@@ -44,6 +44,6 @@
     @apply flex;
     @apply flex-col;
     @apply w-full;
-    @apply gap-10;
+    @apply gap-5;
   }
 </style>

@@ -4,7 +4,10 @@
   import TrashIcon from "$icons/TrashIcon.svelte"
   import type { EntryComponent } from "./entry"
 
+  import type { AlertComponent } from "$components/Alert/alert"
   import InfoIcon from "$icons/InfoIcon.svelte"
+  import LikeIcon from "$icons/LikeIcon.svelte"
+  import alert from "$stores/alert"
   import { dbRecord } from "$stores/dbRecord"
   import history from "$stores/history"
   import CrudEndPoint from "../../api/crud"
@@ -16,7 +19,14 @@
   export let id: EntryComponent["id"]
 
   const removeEntry = async () => {
-    CrudEndPoint.remove(HISTORY_ENDPOINT.DELETE, id)
+    await CrudEndPoint.remove(HISTORY_ENDPOINT.DELETE, id)
+
+    alert.send({
+      text: "Entry removed correctly",
+      icon: LikeIcon,
+      design: "primary",
+    } as AlertComponent)
+
     history.removeEntry(id)
   }
 

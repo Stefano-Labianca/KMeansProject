@@ -43,7 +43,8 @@
       const { table, cluster } = values
       const response = await KMeansEndPoint.calculate<KMeans>(API_CALCULATE, table, cluster)
 
-      $dbRecord = response
+      if (response) $dbRecord = response
+
       loading = false
     },
   })
