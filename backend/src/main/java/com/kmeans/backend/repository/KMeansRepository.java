@@ -10,7 +10,6 @@ import com.kmeans.cluster.database.EmptySetException;
 import com.kmeans.cluster.database.NoValueException;
 
 /**
- * <h1>KMeansRepository</h1>
  * 
  * <p>
  * Permette di interrogare il database MySQL per ottenere tutti i dati contenuti

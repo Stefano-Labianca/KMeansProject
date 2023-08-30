@@ -10,7 +10,6 @@ import com.kmeans.cluster.data.Tuple;
 import lombok.Getter;
 
 /**
- * <h1>ClusterWrapper</h1>
  * Rappresenta una classe wrapper che permette di strutturare un Cluster
  */
 @Getter

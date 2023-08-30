@@ -23,7 +23,6 @@ import com.kmeans.cluster.mining.KMeansMiner;
 import com.kmeans.converter.APIResponse;
 
 /**
- * <h1>KMeansController</h1>
  * <p>
  * Viene usata per permettere al client di richiedere nuovi calcoli da far
  * svolgere all'algoritmo K-Means.
@@ -58,7 +57,6 @@ public class KMeansController {
      * client il risultato, con codice di stato HTTP 200.
      * </p>
      * 
-     * <p>
      * In base all'errore causato durante la computazione, il server manderà i
      * seguenti errori al client:
      * <ul>
@@ -69,7 +67,6 @@ public class KMeansController {
      * errore interno al
      * server</li>
      * </ul>
-     * </p>
      * 
      * @param calculate Contenuto del body della richiesta del client
      * @return Risultato della computazione in formato JSON

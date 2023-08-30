@@ -19,7 +19,6 @@ import com.kmeans.backend.repository.HistoryRepository;
 import com.kmeans.converter.APIRequest;
 
 /**
- * <h1>HistoryController</h1>
  * <p>
  * Questa classe espose una serie di endopoint, con route principale
  * {@code /history}, che permette al client di attuare operazioni CRUD su un

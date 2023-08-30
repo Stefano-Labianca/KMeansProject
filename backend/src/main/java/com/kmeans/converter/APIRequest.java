@@ -10,7 +10,6 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.Data;
 
 /**
- * <h1>APIRequest</h1>
  * 
  * <p>
  * Rappresenta le entry della collezione "calculation" del database MongoDB.

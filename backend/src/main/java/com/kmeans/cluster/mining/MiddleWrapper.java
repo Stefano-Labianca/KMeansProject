@@ -7,7 +7,6 @@ import com.kmeans.cluster.data.Tuple;
 import lombok.Getter;
 
 /**
- * <h1>MiddleWrapper</h1>
  * Rappresenta una classe wrapper che permette di strutturare il centroide di un
  * cluster
  */

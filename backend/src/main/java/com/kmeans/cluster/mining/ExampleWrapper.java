@@ -7,7 +7,6 @@ import com.kmeans.cluster.data.Tuple;
 import lombok.Getter;
 
 /**
- * <h1>ExampleWrapper</h1>
  * Rappresenta una classe wrapper che permette di strutturare un Example, o
  * record di una tabella di database
  */

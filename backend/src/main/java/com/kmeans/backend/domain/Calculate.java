@@ -4,7 +4,6 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 /**
- * <h1>Calculate</h1>
  * 
  * <p>
  * Rappresenta la struttura del body di una richiesta fatta all'endpoint

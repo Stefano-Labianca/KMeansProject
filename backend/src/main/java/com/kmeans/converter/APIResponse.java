@@ -11,7 +11,6 @@ import com.kmeans.cluster.mining.ClusterWrapper;
 import lombok.Getter;
 
 /**
- * <h1>APIResponse</h1>
  * Rappresenta una classe wrapper che permette di strutturare il calcolo del
  * K-Means in un formato più semplice da elaborare per il client
  */
