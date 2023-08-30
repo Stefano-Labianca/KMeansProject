@@ -12,6 +12,8 @@
 
   export let button: FormComponent["button"]
 
+  let loading = false
+
   const { form, errors } = createForm({
     validate: values => {
       let err: { table?: string; cluster?: string } = { table: undefined, cluster: undefined }
@@ -36,10 +38,13 @@
     async onSubmit(values: { table: string; cluster: number }, context) {
       if (!context.form) return
 
+      loading = true
+
       const { table, cluster } = values
       const response = await KMeansEndPoint.calculate<KMeans>(API_CALCULATE, table, cluster)
 
       $dbRecord = response
+      loading = false
     },
   })
 </script>
@@ -48,7 +53,7 @@
   <slot errors={$errors} />
 
   <div class="ButtonContent">
-    <Button {...button} fill inverted type="submit" />
+    <Button {loading} {...button} fill inverted type="submit" />
   </div>
 </form>
 

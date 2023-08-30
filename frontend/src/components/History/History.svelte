@@ -10,24 +10,26 @@
   import EmptyGliph from "../../assets/gliph/EmptyGliph.svelte"
 </script>
 
-<Text text="History" role="title" />
+<div>
+  <Text text="History" role="title" />
 
-{#if $history?.length > 0}
-  <div class="History HideScrollBar">
-    {#each $history as entry, i (entry)}
-      <div
-        class="SingleEntry"
-        animate:flip={TRANSITION_BASE}
-        in:fly|global={{ ...TRANSITION_Y_IN, delay: i * DELAY }}
-        out:fly|global={TRANSITION_X_OUT}
-      >
-        <Entry {...entry} />
-      </div>
-    {/each}
-  </div>
-{:else}
-  <EmptyState gliph={EmptyGliph} text="Empty history" subtitle="Nothing to see here" />
-{/if}
+  {#if $history?.length > 0}
+    <div class="History HideScrollBar">
+      {#each $history as entry, i (entry)}
+        <div
+          class="SingleEntry"
+          animate:flip={TRANSITION_BASE}
+          in:fly|global={{ ...TRANSITION_Y_IN, delay: i * DELAY }}
+          out:fly|global={TRANSITION_X_OUT}
+        >
+          <Entry {...entry} />
+        </div>
+      {/each}
+    </div>
+  {:else}
+    <EmptyState gliph={EmptyGliph} text="Empty history" subtitle="Nothing to see here" />
+  {/if}
+</div>
 
 <style lang="postcss">
   .History {

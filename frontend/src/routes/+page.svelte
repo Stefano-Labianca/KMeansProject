@@ -14,15 +14,14 @@
 <Header />
 
 <div class="Main">
-  <div class="UserInfo">
+  <div class="CalculationInput">
     <Calculation />
 
-    <div class="mt-10" />
-
+    <div class="mt-16" />
     <History />
   </div>
 
-  <div class="TablesInfo HideScrollBar">
+  <div class="CalculationResult">
     <Tables />
   </div>
 </div>
@@ -31,23 +30,20 @@
   .Main {
     @apply flex;
     @apply flex-row;
+    @apply w-full;
     @apply justify-around;
-    @apply h-full;
   }
 
-  .UserInfo {
-    @apply flex;
-    @apply flex-col;
-
+  .CalculationInput {
+    @apply flex-row;
+    @apply w-1/2;
     @apply mr-16;
-    @apply md:w-1/2;
   }
 
-  .TablesInfo {
+  .CalculationResult {
     @apply flex;
     @apply flex-col;
     @apply w-full;
-    @apply h-full;
-    @apply gap-6;
+    @apply gap-10;
   }
 </style>

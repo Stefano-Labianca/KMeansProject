@@ -20,5 +20,7 @@
     @apply items-center;
     @apply justify-center;
     @apply flex-col;
+
+    @apply h-full;
   }
 </style>

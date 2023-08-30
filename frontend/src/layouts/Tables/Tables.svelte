@@ -68,6 +68,7 @@
   }
 </script>
 
+<Text text="Calculation" role="title" />
 {#if $dbRecord}
   <div class="TableContent HideScrollBar">
     {#each middles as middle, i (i)}
@@ -89,12 +90,12 @@
   </div>
   <Button text="Save data" design="primary" onClick={saveData} />
 {:else}
-  <EmptyState gliph={AddGliph} subtitle="Add your first value to get started" text="No data available" />
+  <EmptyState gliph={AddGliph} subtitle="Calculate your first tables or check your history" text="No data available" />
 {/if}
 
 <style lang="postcss">
   .TableContent {
-    @apply h-[40rem];
+    @apply h-[35rem];
     @apply w-full;
     @apply overflow-y-auto;
   }

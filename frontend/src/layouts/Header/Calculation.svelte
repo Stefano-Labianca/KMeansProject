@@ -12,11 +12,13 @@
   }
 </script>
 
-<Text text="Your input" role="title" />
-<Form method="post" {button} let:errors>
-  <Input name="table" label="Table name" placeholder="Ex. playtennis" type="text" error={errors.table?.[0]} />
-  <div class="mt-4" />
+<div>
+  <Text text="Your input" role="title" />
+  <Form method="post" {button} let:errors>
+    <Input name="table" label="Table name" placeholder="Ex. playtennis" type="text" error={errors.table?.[0]} />
+    <div class="mt-4" />
 
-  <Input name="cluster" label="Clusters amount" placeholder="Ex. 5" type="number" error={errors.cluster?.[0]} />
-  <div class="mt-4" />
-</Form>
+    <Input name="cluster" label="Clusters amount" placeholder="Ex. 5" type="number" error={errors.cluster?.[0]} />
+    <div class="mt-4" />
+  </Form>
+</div>

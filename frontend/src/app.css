@@ -52,7 +52,6 @@ html {
 .TableCell {
   @apply whitespace-nowrap;
   @apply w-gliph;
-  @apply px-4;
   @apply py-default;
   @apply text-center;
   @apply border-primary;
