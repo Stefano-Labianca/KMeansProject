@@ -78,13 +78,16 @@ public class KMeansController {
         KMeansMiner kmeans = null;
         APIResponse response = null;
         Integer iteration;
+
         Integer k = calculate.getK();
         String tableName = calculate.getTableName();
+        String databaseName = calculate.getDatabaseName();
 
         // TODO: 413 Payload Too Large -> Avviene quando k è enorme e causa errori
 
         try {
-            databaseData = repository.getData(tableName); // Nome della tabella data nel body della richiesta
+            databaseData = repository.getData(databaseName, tableName); // Nome della tabella data nel body della
+                                                                        // richiesta
         } catch (DatabaseConnectionException e) {
             throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR,
                     "Database connection error", e);

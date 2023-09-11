@@ -32,7 +32,8 @@ public class KMeansRepository {
      * di errori interi al server o da parte del client, verranno inviati a
      * quest'ultimo con annesso messaggio di errore e codice di stato HTTP.
      * 
-     * @param databaseName Nome della tabella da cui prendere i dati
+     * @param databaseName Nome del database da usare
+     * @param tableName    Nome della tabella da cui prendere i dati
      * @return Contenuto della tabella
      * @throws DatabaseConnectionException Causata quando avviene un errore con la
      *                                     connessione al database
@@ -44,8 +45,8 @@ public class KMeansRepository {
      *                                     KMeans su una tabella contenente delle
      *                                     righe vuote
      */
-    public Data getData(String databaseName)
+    public Data getData(String databaseName, String tableName)
             throws DatabaseConnectionException, SQLException, EmptySetException, NoValueException {
-        return new Data(databaseName);
+        return new Data("localhost", databaseName, tableName, "MapUser", "map");
     }
 }

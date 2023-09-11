@@ -19,6 +19,11 @@ public class Calculate {
    */
   private String tableName;
 
+  /**
+   * Nome del database su cui lavorare
+   */
+  private String databaseName;
+
   /** Numero di cluster richiesti */
   private Integer k;
 
