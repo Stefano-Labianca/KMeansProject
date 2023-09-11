@@ -26,4 +26,4 @@ export type HistoryEntry = KMeans & {
   title: string
 }
 
-export type Calculate = <T>(url: string, tableName: string, k: number) => Promise<T>
+export type Calculate = <T>(url: string, databaseName: string, tableName: string, k: number) => Promise<T>

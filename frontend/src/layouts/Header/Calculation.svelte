@@ -15,6 +15,9 @@
 <div>
   <Text text="Your input" role="title" />
   <Form method="post" {button} let:errors>
+    <Input name="database" label="Database name" placeholder="Ex. MapDB" type="text" error={errors.database?.[0]} />
+    <div class="mt-4" />
+
     <Input name="table" label="Table name" placeholder="Ex. playtennis" type="text" error={errors.table?.[0]} />
     <div class="mt-4" />
 

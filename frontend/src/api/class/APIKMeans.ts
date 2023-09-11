@@ -39,13 +39,14 @@ class ApiKMeans<T> {
    * lanciata un eccezione, con annesso messaggio di errore
    *
    * @param url Endpoint a cui fare la richiesta
+   * @param databaseName Nome del database
    * @param tableName Nome della tabella da usare nel KMeans
    * @param k Numero di cluster da calcolare
    * @returns Il risulato della computazione oppure undefine
    */
-  async calculate(url: string, tableName: string, k: number): Promise<T> {
+  async calculate(url: string, databaseName: string, tableName: string, k: number): Promise<T> {
     try {
-      return await this.transport.post({ tableName, k }, url).json<T>()
+      return await this.transport.post({ databaseName, tableName, k }, url).json<T>()
     } catch (error) {
       return Promise.reject(error)
     }
