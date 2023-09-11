@@ -25,9 +25,10 @@ public class Data {
 	/**
 	 * Costruttore della classe Data
 	 */
-	public Data(String tableName)
+	public Data(String server, String databaseName, String tableName, String userId, String password)
 			throws DatabaseConnectionException, SQLException, EmptySetException, NoValueException {
-		DbAccess database = new DbAccess();
+
+		DbAccess database = new DbAccess(server, databaseName, userId, password);
 		database.initConnection();
 
 		TableData tableData = new TableData(database);
