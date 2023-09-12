@@ -1,3 +1,5 @@
+import type { EntryComponent } from "$components/Entry/entry"
+
 export type Middle = {
   middleData: (string | number)[]
 }
@@ -20,10 +22,6 @@ export type KMeans = {
   k: number
 }
 
-export type HistoryEntry = KMeans & {
-  id: string
-  date: string
-  title: string
-}
+export type HistoryEntry = EntryComponent & HistoryData
 
 export type Calculate = <T>(url: string, databaseName: string, tableName: string, k: number) => Promise<T>
