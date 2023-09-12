@@ -17,7 +17,7 @@
   <div class="CalculationInput">
     <Calculation />
 
-    <div class="mt-14" />
+    <div class="mt-10" />
     <History />
   </div>
 

@@ -12,7 +12,7 @@ export default {
       fontSize: {
         small: "1rem",
         medium: "1.5rem",
-        large: "2.5rem",
+        large: "2.0rem",
       },
 
       borderRadius: {
