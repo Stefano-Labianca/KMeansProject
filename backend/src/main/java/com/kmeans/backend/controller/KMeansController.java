@@ -86,8 +86,7 @@ public class KMeansController {
         // TODO: 413 Payload Too Large -> Avviene quando k è enorme e causa errori
 
         try {
-            databaseData = repository.getData(databaseName, tableName); // Nome della tabella data nel body della
-                                                                        // richiesta
+            databaseData = repository.getData(databaseName, tableName); 
         } catch (DatabaseConnectionException e) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Database not found", e);
 
