@@ -89,8 +89,7 @@ public class KMeansController {
             databaseData = repository.getData(databaseName, tableName); // Nome della tabella data nel body della
                                                                         // richiesta
         } catch (DatabaseConnectionException e) {
-            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR,
-                    "Database connection error", e);
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Database not found", e);
 
         } catch (SQLException e) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Table not found", e);
