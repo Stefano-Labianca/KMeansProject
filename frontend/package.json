@@ -37,6 +37,7 @@
   },
   "type": "module",
   "dependencies": {
+    "@felte/validator-zod": "^1.0.17",
     "dayjs": "^1.11.9",
     "felte": "^1.2.11",
     "nanoid": "^4.0.2",
