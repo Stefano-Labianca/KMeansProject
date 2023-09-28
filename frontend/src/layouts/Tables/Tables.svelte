@@ -8,6 +8,7 @@
   import history from "$stores/history"
 
   import type { AlertComponent } from "$components/Alert/alert"
+  import ErrorIcon from "$icons/ErrorIcon.svelte"
   import LikeIcon from "$icons/LikeIcon.svelte"
   import alert from "$stores/alert"
   import { fly } from "svelte/transition"
@@ -46,15 +47,24 @@
   const saveData = async () => {
     loading = true
 
-    await save($dbRecord)
-    $history = await findAll()
-    loading = false
+    try {
+      await save($dbRecord)
+      $history = await findAll()
 
-    alert.send({
-      text: "Data saved successfully",
-      icon: LikeIcon,
-      design: "primary",
-    } as AlertComponent)
+      alert.send({
+        text: "Data saved successfully",
+        icon: LikeIcon,
+        design: "primary",
+      } as AlertComponent)
+    } catch (error) {
+      alert.send({
+        text: "Server connection error",
+        icon: ErrorIcon,
+        design: "error",
+      } as AlertComponent)
+    }
+
+    loading = false
   }
 
   $: if ($dbRecord) {
@@ -95,7 +105,13 @@
   </div>
   <Button text="Save data" {loading} design="primary" onClick={saveData} />
 {:else}
-  <EmptyState gliph={AddGliph} subtitle="Calculate your first tables or check your history" text="No data available" />
+  <div class="EmptyState">
+    <EmptyState
+      gliph={AddGliph}
+      subtitle="Calculate your first tables or check your history"
+      text="No data available"
+    />
+  </div>
 {/if}
 
 <style lang="postcss">
@@ -103,5 +119,12 @@
     @apply h-[35rem];
     @apply w-full;
     @apply overflow-y-auto;
+  }
+
+  .EmptyState {
+    @apply flex;
+    @apply items-center;
+    @apply justify-center;
+    @apply h-[40rem];
   }
 </style>

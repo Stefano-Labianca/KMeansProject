@@ -31,7 +31,7 @@
     @apply flex;
     @apply flex-row;
     @apply w-full;
-    @apply justify-around;
+    @apply justify-between;
   }
 
   .CalculationInput {
@@ -44,6 +44,5 @@
     @apply flex;
     @apply flex-col;
     @apply w-full;
-    @apply gap-5;
   }
 </style>
