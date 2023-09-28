@@ -23,7 +23,7 @@ public class ClusterWrapper {
      * 
      * @return Oggetto classe ClusterWrapper
      */
-    static public ClusterWrapper chain() {
+    static public ClusterWrapper build() {
         return new ClusterWrapper();
     }
 
@@ -56,7 +56,7 @@ public class ClusterWrapper {
             Tuple tuple = data.getItemSet(i);
             Double distance = t.getDistance(tuple);
 
-            ExampleWrapper example = ExampleWrapper.chain()
+            ExampleWrapper example = ExampleWrapper.build()
                     .addExampleValue(tuple).setDistance(distance);
 
             this.examples.add(example);

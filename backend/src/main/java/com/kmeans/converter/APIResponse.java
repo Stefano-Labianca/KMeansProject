@@ -26,7 +26,7 @@ public class APIResponse {
      * 
      * @return Oggetto classe APIResponse
      */
-    static public APIResponse chain() {
+    static public APIResponse build() {
         return new APIResponse();
     }
 
@@ -77,7 +77,7 @@ public class APIResponse {
     public APIResponse setClusterSet(ClusterSet set, Data data) {
         for (int i = 0; i < this.k; i++) {
             Cluster cluster = set.get(i);
-            ClusterWrapper wrapper = ClusterWrapper.chain().setMiddle(cluster)
+            ClusterWrapper wrapper = ClusterWrapper.build().setMiddle(cluster)
                     .setExamples(cluster, data).setAvgDistance(cluster, data);
 
             this.clusters.add(wrapper);

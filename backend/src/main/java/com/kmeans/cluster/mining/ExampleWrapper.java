@@ -20,7 +20,7 @@ public class ExampleWrapper {
      * 
      * @return Oggetto classe ExampleWrapper
      */
-    static public ExampleWrapper chain() {
+    static public ExampleWrapper build() {
         return new ExampleWrapper();
     }
 
