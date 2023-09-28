@@ -9,7 +9,6 @@ services:
       - SYS_NICE
     restart: always
     environment:
-      # - MYSQL_DATABASE=MapDB
       - MYSQL_USER=MapUser
       - MYSQL_PASSWORD=map
       - MYSQL_ROOT_PASSWORD=map
