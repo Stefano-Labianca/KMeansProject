@@ -4,7 +4,9 @@
   import TrashIcon from "$icons/TrashIcon.svelte"
   import type { EntryComponent } from "./entry"
 
+  import { goto } from "$app/navigation"
   import type { AlertComponent } from "$components/Alert/alert"
+  import ErrorIcon from "$icons/ErrorIcon.svelte"
   import InfoIcon from "$icons/InfoIcon.svelte"
   import LikeIcon from "$icons/LikeIcon.svelte"
   import alert from "$stores/alert"
@@ -18,8 +20,27 @@
   export let date: EntryComponent["date"]
   export let id: EntryComponent["id"]
 
-  const removeEntry = async () => {
-    await CrudEndPoint.remove(HISTORY_ENDPOINT.DELETE, id)
+  let loadingGet = false
+  let loadingRemove = false
+
+  const deleteEntry = async () => {
+    loadingRemove = true
+
+    try {
+      await CrudEndPoint.remove(HISTORY_ENDPOINT.DELETE, id)
+    } catch (error) {
+      Promise.reject(error)
+      loadingRemove = false
+
+      alert.send({
+        text: "Server connection error",
+        icon: ErrorIcon,
+        design: "error",
+      } as AlertComponent)
+    }
+
+    // TODO: Trovare un modo per mandare la notifica di errore quando il server è spento
+    // nel caso della rimozione
 
     alert.send({
       text: "Entry removed correctly",
@@ -31,10 +52,26 @@
   }
 
   const getKMeansResult = async () => {
-    const entry = await CrudEndPoint.readOne<HistoryEntry>(HISTORY_ENDPOINT.GET, id)
-    const { id: hId, title: hTitle, date: hDate, ...tableInfo } = entry
+    loadingGet = true
+    let entry: HistoryEntry | undefined = undefined
 
-    $dbRecord = tableInfo
+    try {
+      entry = await CrudEndPoint.readOne<HistoryEntry>(HISTORY_ENDPOINT.GET, id)
+    } catch (error) {
+      loadingGet = false
+
+      alert.send({
+        text: "Server connection error",
+        icon: ErrorIcon,
+        design: "error",
+      } as AlertComponent)
+    }
+
+    if (entry) {
+      const { id: hId, title: hTitle, date: hDate, ...tableInfo } = entry
+      $dbRecord = tableInfo
+      goto("/calculation")
+    }
   }
 </script>
 
@@ -45,8 +82,8 @@
   </div>
 
   <div class="entry-buttons">
-    <Button design="primary" icon={InfoIcon} fill onClick={getKMeansResult} />
-    <Button design="error" icon={TrashIcon} onClick={removeEntry} />
+    <Button loading={loadingGet} design="primary" icon={InfoIcon} fill onClick={getKMeansResult} />
+    <Button loading={loadingRemove} design="error" icon={TrashIcon} onClick={deleteEntry} />
   </div>
 </div>
 
@@ -67,6 +104,6 @@
 
   .entry-buttons {
     @apply flex;
-    @apply gap-small;
+    @apply gap-4;
   }
 </style>

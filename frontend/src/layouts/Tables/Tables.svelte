@@ -1,18 +1,13 @@
 <script lang="ts">
-  import Button from "$components/Button/Button.svelte"
   import EmptyState from "$components/EmptyState/EmptyState.svelte"
   import Table from "$components/Table/Table.svelte"
   import Text from "$components/Text/Text.svelte"
   import { DELAY, TRANSITION_Y_IN } from "$lib/consts"
   import { dbRecord } from "$stores/dbRecord"
-  import history from "$stores/history"
 
-  import type { AlertComponent } from "$components/Alert/alert"
-  import ErrorIcon from "$icons/ErrorIcon.svelte"
-  import LikeIcon from "$icons/LikeIcon.svelte"
-  import alert from "$stores/alert"
+  import { goto } from "$app/navigation"
+  import Button from "$components/Button/Button.svelte"
   import { fly } from "svelte/transition"
-  import { findAll, save } from "../../api/init"
   import AddGliph from "../../assets/gliph/AddGliph.svelte"
   import type { Cluster, Example, KMeans, Middle } from "../../types/kmeans"
 
@@ -44,29 +39,6 @@
     return JSON.parse(JSON.stringify(obj))
   }
 
-  const saveData = async () => {
-    loading = true
-
-    try {
-      await save($dbRecord)
-      $history = await findAll()
-
-      alert.send({
-        text: "Data saved successfully",
-        icon: LikeIcon,
-        design: "primary",
-      } as AlertComponent)
-    } catch (error) {
-      alert.send({
-        text: "Server connection error",
-        icon: ErrorIcon,
-        design: "error",
-      } as AlertComponent)
-    }
-
-    loading = false
-  }
-
   $: if ($dbRecord) {
     let tables: KMeans = copy($dbRecord)
 
@@ -84,6 +56,9 @@
 </script>
 
 <Text text="Calculation" role="title" />
+
+<div class="mt-4" />
+
 {#if $dbRecord}
   <div class="TableContent HideScrollBar">
     {#each middles as middle, i (i)}
@@ -103,7 +78,6 @@
       </div>
     {/each}
   </div>
-  <Button text="Save data" {loading} design="primary" onClick={saveData} />
 {:else}
   <div class="EmptyState">
     <EmptyState
@@ -114,9 +88,23 @@
   </div>
 {/if}
 
+<div class="mt-4" />
+
+<Button
+  text="Go back"
+  {loading}
+  design="primary"
+  onClick={async () => {
+    loading = true
+    await goto("/", {
+      keepFocus: true,
+    })
+  }}
+/>
+
 <style lang="postcss">
   .TableContent {
-    @apply h-[35rem];
+    @apply h-[40rem];
     @apply w-full;
     @apply overflow-y-auto;
   }

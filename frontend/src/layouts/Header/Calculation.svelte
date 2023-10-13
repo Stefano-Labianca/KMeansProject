@@ -10,10 +10,14 @@
     icon: PlusIcon,
     design: "primary",
   }
+
+  let loading = false
 </script>
 
-<div>
+<div class="Calcualtion">
   <Text text="Your input" role="title" />
+
+  <div class="mt-4" />
 
   <Form method="post" {button} let:errors>
     <Input name="server" label="Server" placeholder="Ex. localhost" type="text" error={errors.server?.[0]} />
@@ -39,3 +43,11 @@
     <div class="mt-4" />
   </Form>
 </div>
+
+<div class="mt-10" />
+
+<style lang="postcss">
+  .Calcualtion {
+    @apply w-full;
+  }
+</style>

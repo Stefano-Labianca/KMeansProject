@@ -10,8 +10,10 @@
   import EmptyGliph from "../../assets/gliph/EmptyGliph.svelte"
 </script>
 
-<div>
+<div class="HistoryContent">
   <Text text="History" role="title" />
+
+  <div class="mt-4" />
 
   {#if $history?.length > 0}
     <div class="History HideScrollBar">
@@ -32,6 +34,10 @@
 </div>
 
 <style lang="postcss">
+  .HistoryContent {
+    @apply w-full;
+  }
+
   .History {
     @apply flex;
     @apply flex-col;

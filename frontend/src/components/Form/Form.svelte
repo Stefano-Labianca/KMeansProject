@@ -11,7 +11,9 @@
   import Button from "../Button/Button.svelte"
   import type { FormComponent } from "./form"
 
+  import { goto } from "$app/navigation"
   import { validator } from "@felte/validator-zod"
+  import { save } from "../../api/init"
 
   type $$Props = FormComponent
 
@@ -37,8 +39,15 @@
         } as AlertComponent)
       }
 
-      if (response) $dbRecord = response
-      loading = false
+      if (response) {
+        $dbRecord = response
+      }
+    },
+
+    async onSuccess() {
+      await save($dbRecord)
+
+      goto("/calculation")
     },
   })
 </script>
