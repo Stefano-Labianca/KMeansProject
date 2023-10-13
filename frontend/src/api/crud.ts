@@ -12,8 +12,8 @@ const create: Create = async <T>(url: string, payload: T): Promise<void> => {
   await new ApiClient<T>().create(url, payload)
 }
 
-const remove: Delete = async <T>(url: string, id: string): Promise<void> => {
-  await new ApiClient<T>().delete(url, id)
+const remove: Delete = async <T>(url: string, id: string): Promise<unknown> => {
+  return new ApiClient<T>().delete(url, id)
 }
 
 const CrudEndPoint = {
