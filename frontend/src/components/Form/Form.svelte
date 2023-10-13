@@ -25,14 +25,10 @@
       if (!context.form) return
 
       loading = true
-
-      const { database, table, cluster, username, password, port, server } = values as FormInfo
       let response: KMeans | undefined = undefined
 
-      console.log(values)
-
       try {
-        response = await KMeansEndPoint.calculate<KMeans>(API_CALCULATE, database, table, cluster)
+        response = await KMeansEndPoint.calculate<KMeans>(API_CALCULATE, values as FormInfo)
       } catch (error) {
         alert.send({
           text: "Server connection error",
