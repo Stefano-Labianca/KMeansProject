@@ -60,6 +60,10 @@
 <div class="mt-4" />
 
 {#if $dbRecord}
+  <Text text="Iteration: {$dbRecord.iteration}" design="secondary" role="paragraph" />
+
+  <div class="mt-4" />
+
   <div class="TableContent HideScrollBar">
     {#each middles as middle, i (i)}
       <div transition:fly|global={{ ...TRANSITION_Y_IN, delay: i * DELAY }}>
@@ -104,7 +108,7 @@
 
 <style lang="postcss">
   .TableContent {
-    @apply h-[40rem];
+    @apply h-[35rem];
     @apply w-full;
     @apply overflow-y-auto;
   }
@@ -113,6 +117,6 @@
     @apply flex;
     @apply items-center;
     @apply justify-center;
-    @apply h-[40rem];
+    @apply h-[35rem];
   }
 </style>
