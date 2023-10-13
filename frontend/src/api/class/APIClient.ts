@@ -96,7 +96,7 @@ class ApiClient<T> {
    */
   async delete(url: string, id: string) {
     try {
-      this.transport.delete(`${url}/${id}`)
+      await this.transport.delete(`${url}/${id}`)
     } catch (error) {
       return Promise.reject(error)
     }
