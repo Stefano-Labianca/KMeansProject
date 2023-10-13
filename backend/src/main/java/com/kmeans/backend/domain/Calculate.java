@@ -14,17 +14,25 @@ import lombok.NoArgsConstructor;
 @Getter
 @NoArgsConstructor
 public class Calculate {
-  /**
-   * Nome della tabella da cui leggere tutte le righe
-   */
-  private String tableName;
+  /** Indirizzo del server */
+  private String server;
 
-  /**
-   * Nome del database su cui lavorare
-   */
-  private String databaseName;
+  /** Nome della tabella da cui leggere tutte le righe */
+  private String table;
+
+  /** Nome del database su cui lavorare */
+  private String database;
+
+  /** Numero di porta */
+  private Integer port;
+
+  /** Nome dell'utente che ha creato il database */
+  private String username;
+
+  /** Password dell utente */
+  private String password;
 
   /** Numero di cluster richiesti */
-  private Integer k;
+  private Integer cluster;
 
 }

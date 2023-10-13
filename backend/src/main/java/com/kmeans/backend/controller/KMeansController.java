@@ -79,14 +79,16 @@ public class KMeansController {
         APIResponse response = null;
         Integer iteration;
 
-        Integer k = calculate.getK();
-        String tableName = calculate.getTableName();
-        String databaseName = calculate.getDatabaseName();
-
-        // TODO: 413 Payload Too Large -> Avviene quando k è enorme e causa errori
+        String server = calculate.getServer();
+        String tableName = calculate.getTable();
+        String databaseName = calculate.getDatabase();
+        // Integer port = calculate.getPort(); TODO: Da vedere un attimo
+        String username = calculate.getUsername();
+        String password = calculate.getPassword();
+        Integer k = calculate.getCluster();
 
         try {
-            databaseData = repository.getData(databaseName, tableName); 
+            databaseData = repository.getData(server, databaseName, tableName, username, password);
         } catch (DatabaseConnectionException e) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Database not found", e);
 
@@ -104,7 +106,9 @@ public class KMeansController {
             kmeans = new KMeansMiner(k);
             iteration = kmeans.kmeans(databaseData);
 
-            response = APIResponse.chain().setK(k).setIteration(iteration)
+            // TODO: IDK un po' di paginazione ci sta
+
+            response = APIResponse.build().setK(k).setIteration(iteration)
                     .setColumnsName(databaseData).setClusterSet(kmeans.getC(), databaseData);
 
         } catch (OutOfRangeSampleSize e) {

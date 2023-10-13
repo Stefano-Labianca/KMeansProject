@@ -1,4 +1,5 @@
 import type { EntryComponent } from "$components/Entry/entry"
+import type { FormInfo } from "$lib/formValidator"
 
 export type Middle = {
   middleData: (string | number)[]
@@ -24,4 +25,4 @@ export type KMeans = {
 
 export type HistoryEntry = EntryComponent & HistoryData
 
-export type Calculate = <T>(url: string, databaseName: string, tableName: string, k: number) => Promise<T>
+export type Calculate = <T>(url: string, payload: FormInfo) => Promise<T>

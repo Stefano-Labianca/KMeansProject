@@ -15,8 +15,6 @@
 <div>
   <Text text="Your input" role="title" />
 
-  <!-- TODO: Mettere come campi di input anche il nome del server, la porta, utente, password -->
-
   <Form method="post" {button} let:errors>
     <Input name="server" label="Server" placeholder="Ex. localhost" type="text" error={errors.server?.[0]} />
     <div class="mt-2" />
