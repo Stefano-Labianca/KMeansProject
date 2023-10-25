@@ -1,14 +1,31 @@
 import { z } from "zod"
+/**
+ * Tipo usato per rappresentare le informazioni raccolte dall'utente tramite un form
+ */
 export type FormInfo = {
+  /** Indirizzo del server */
   server: string
+
+  /** Nome della tabella */
   table: string
+
+  /** Nome del database */
   database: string
+
+  /** Numero di porta */
   port: number
+
+  /** Username dell'utente */
   username: string
+
+  /** Password utente */
   password: string
+
+  /** Numero di cluster */
   cluster: number
 }
 
+/** Schema di validazione del form dell'utente */
 export const FORM_SCHEMA = z.object({
   database: z
     .string({

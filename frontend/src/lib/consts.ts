@@ -16,21 +16,25 @@ export const TRANSITION_BASE = {
   ease: quartOut,
 }
 
+/** Transizione in ingresso sull'asse Y */
 export const TRANSITION_Y_IN = {
   ...TRANSITION_BASE,
   y: 40,
 }
 
+/** Transizione in uscita sull'asse Y */
 export const TRANSITION_Y_OUT = {
   ...TRANSITION_BASE,
   y: -40,
 }
 
+/** Transizione in ingresso sull'asse X */
 export const TRANSITION_X_IN = {
   ...TRANSITION_BASE,
   x: 40,
 }
 
+/** Transizione in uscita sull'asse X */
 export const TRANSITION_X_OUT = {
   ...TRANSITION_BASE,
   x: -40,
