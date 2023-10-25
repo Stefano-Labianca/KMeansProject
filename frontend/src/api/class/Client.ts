@@ -21,6 +21,10 @@ class Client {
   // eslint-disable-next-line @typescript-eslint/no-empty-function
   private constructor() {}
 
+  /**
+   * Invia un alert di errore al client.
+   * @param error Errore
+   */
   private sendErrorAlert(error: WretchError): void {
     alerts.send({
       text: error.json.message,

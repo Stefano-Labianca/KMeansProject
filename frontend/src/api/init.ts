@@ -5,7 +5,12 @@ import { DAYJS_FORMAT, HISTORY_ENDPOINT } from "../const"
 import type { HistoryEntry, KMeans } from "../types/kmeans"
 import CrudEndPoint from "./crud"
 
-export const findAll = async () => {
+/**
+ * Inizializza la cronologia delle computazioni, restituendo un array contenente le computazioni fatte.
+ * Se non sono presenti, allora restituirà un array vuoto
+ * @returns Array di oggetti EntryComponent, oppure un array vuoto.
+ */
+export const findAll = async (): Promise<EntryComponent[]> => {
   try {
     const res: HistoryEntry[] = await CrudEndPoint.read<HistoryEntry>(HISTORY_ENDPOINT.GET)
     const historyData: EntryComponent[] = res.map(e => {
@@ -19,6 +24,11 @@ export const findAll = async () => {
   }
 }
 
+/**
+ * Permette di salvare una computazione nel database
+ *
+ * @param record Computazione da salvare
+ */
 export const save = async (record: KMeans) => {
   if (!record) return undefined
 
