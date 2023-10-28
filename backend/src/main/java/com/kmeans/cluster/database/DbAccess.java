@@ -6,22 +6,52 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 /**
- * DbAccess
+ * Classe che permette l'accesso al database, esponendo anche la classe
+ * {@link DatabaseConnectionException} per la gestione degli errori
+ * 
+ * @see DatabaseConnectionException
  */
 public class DbAccess {
+    /** Driver per la connessione al database */
     String DRIVER_CLASS_NAME = "com.mysql.cj.jdbc.Driver";
+
+    /** Tipologia di DBMS da usare */
     final String DBMS = "jdbc:mysql";
+
+    /** Porta esposta per la connesione al database */
     final Integer PORT = 3306;
 
+    /** Indirizzo del server */
     String server = "localhost";
+
+    /** Nome del database */
     String database = "MapDB";
+
+    /** Nome utente */
     String userId = "MapUser";
+
+    /** Password dell'utente */
     String password = "map";
+
+    /** Connessione al database */
     Connection conn;
 
+    /**
+     * Permette di connettersi al database usando le informazioni di default fornite
+     * dalla classe
+     */
     public DbAccess() {
     }
 
+    /**
+     * Permette la connesione al database usando le impostazioni fornite tramite i
+     * parametri
+     * 
+     * @param server   Indirizzo del server
+     * @param database Nome del database
+     * @param userId   Nome utente
+     * @param password Password dell'utente
+     */
     public DbAccess(String server, String database, String userId, String password) {
         this.server = server;
         this.database = database;
@@ -29,6 +59,12 @@ public class DbAccess {
         this.password = password;
     }
 
+    /**
+     * Inizializza la connesione al database
+     * 
+     * @throws DatabaseConnectionException Causata quando non è possibile
+     *                                     connettersi al databse
+     */
     public void initConnection() throws DatabaseConnectionException {
         try {
             Class.forName(DRIVER_CLASS_NAME).getDeclaredConstructor().newInstance();
@@ -56,10 +92,21 @@ public class DbAccess {
         }
     }
 
+    /**
+     * Restituisce un riferimento alla connessione del database
+     * 
+     * @return Connessione al database
+     */
     public Connection getConnection() {
         return this.conn;
     }
 
+    /**
+     * Permette di chiudere la connesisone con il database
+     * 
+     * @throws DatabaseConnectionException Causata quando non è possibile
+     *                                     connettersi al databse
+     */
     public void closeConnection() throws DatabaseConnectionException {
         try {
             this.conn.close();

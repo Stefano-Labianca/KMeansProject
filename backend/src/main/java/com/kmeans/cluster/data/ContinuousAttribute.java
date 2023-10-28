@@ -1,13 +1,16 @@
 package com.kmeans.cluster.data;
 
 /**
- * <h2>ContinuousAttribute</h2>
+ * Rappresenta un attributo in grado di contenere valori continui, come numeri
  * 
  * @see Attribute
  */
 public class ContinuousAttribute extends Attribute {
-    private double max; // Valore massimo del dominio
-    private double min; // Valore minimo del dominio
+    /** Valore massimo del dominio */
+    private double max;
+
+    /** Valore minimo del dominio */
+    private double min;
 
     /**
      * <p>

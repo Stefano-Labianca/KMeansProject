@@ -14,6 +14,7 @@ import lombok.Data;
  * <p>
  * Rappresenta le entry della collezione "calculation" del database MongoDB.
  * </p>
+ * 
  * <p>
  * Questa stessa struttura viene usata nel client per inviare al server una
  * quella computazione che si vuole salvare nella collezione.

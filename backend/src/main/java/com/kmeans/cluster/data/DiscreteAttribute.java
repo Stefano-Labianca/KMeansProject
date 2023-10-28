@@ -5,12 +5,13 @@ import java.util.Set;
 import java.util.TreeSet;
 
 /**
- * <h2>DiscreteAttribute</h2>
+ * Permette il salvataggio di un valore discreto da associare ad un attributo
+ * in grado di contenerlo.
  * 
  * @see Attribute
  */
 public class DiscreteAttribute extends Attribute implements Iterable<String> {
-
+    /** Insieme dei valori */
     private TreeSet<String> values;
 
     /**
@@ -40,10 +41,23 @@ public class DiscreteAttribute extends Attribute implements Iterable<String> {
         return this.values.size();
     }
 
+    /**
+     * Restituisce l'iteratore dell'insieme dei valori
+     * 
+     * @return Iteratore
+     */
     public Iterator<String> iterator() {
         return this.values.iterator();
     }
 
+    /**
+     * Calcola la frequenza di un valore {@code v} all'intero della tabella
+     * 
+     * @param data   Tabella
+     * @param idList Indici di colonna
+     * @param v      Valore a cui calcolare la frequenza
+     * @return Frequenza di {@code v}
+     */
     int frequency(Data data, Set<Integer> idList, String v) {
         int frequency = 0;
 

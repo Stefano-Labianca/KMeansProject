@@ -1,9 +1,15 @@
 package com.kmeans.cluster.data;
 
+/**
+ * Classe astratta che rappresenta un attributo generico di una tabella
+ */
 public abstract class Attribute {
 
-    private String name; // Nome simbolico dell'attributo
-    private int index; // Identificativo numerico dell'attributo
+    /** Nome simbolico dell'attributo */
+    private String name;
+
+    /** Identificativo numerico dell'attributo */
+    private int index;
 
     /**
      * <p>

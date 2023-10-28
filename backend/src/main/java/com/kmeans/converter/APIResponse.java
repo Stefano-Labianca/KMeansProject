@@ -46,7 +46,8 @@ public class APIResponse {
      * 
      * @param k Numero di cluster
      * @return Oggetto corrente
-     * @throws OutOfRangeSampleSize
+     * @throws OutOfRangeSampleSize Causata quando il valore di {@code k} è maggiore
+     *                              del numero di righe della tabella
      */
     public APIResponse setK(Integer k) throws OutOfRangeSampleSize {
         this.k = k;

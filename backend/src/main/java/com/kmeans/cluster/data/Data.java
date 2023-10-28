@@ -17,13 +17,27 @@ import com.kmeans.cluster.database.QUERY_TYPE;
 import com.kmeans.cluster.database.TableData;
 import com.kmeans.cluster.database.TableSchema;
 
+/**
+ * Contiene le informazioni di una tabella di un database
+ */
 public class Data {
+	/** Dati della tabella */
 	private List<Example> data;
+
+	/** Contiene le colonne della tabella */
 	private List<Attribute> attributeSet;
+
+	/** Numero di colonne */
 	private int numberOfExamples;
 
 	/**
 	 * Costruttore della classe Data
+	 * 
+	 * @param server       Indirizzo del server
+	 * @param databaseName Nome del database
+	 * @param tableName    Nome della tabella
+	 * @param userId       Identificativo dell'utente
+	 * @param password     Password dell'utente
 	 */
 	public Data(String server, String databaseName, String tableName, String userId, String password)
 			throws DatabaseConnectionException, SQLException, EmptySetException, NoValueException {
@@ -119,10 +133,12 @@ public class Data {
 	}
 
 	/**
+	 * Calcola i centroidi
 	 * 
-	 * @param k
-	 * @return
-	 * @throws OutOfRangeSampleSize
+	 * @param k Numero di cluster da generare
+	 * @return Array di indici di centroidi
+	 * @throws OutOfRangeSampleSize Causata quando il valore di {@code k} è maggiore
+	 *                              del numero di righe della tabella
 	 */
 	public int[] sampling(int k) throws OutOfRangeSampleSize {
 		if (k <= 0 || k > this.data.size()) {
@@ -154,6 +170,14 @@ public class Data {
 		return centroidIndexes;
 	}
 
+	/**
+	 * Confronta due valori di attributi, restituendo false se sono
+	 * diversi, altrimenti true
+	 * 
+	 * @param i Indice del primo attributo
+	 * @param j Indice del secondo attributo
+	 * @return Risultato del confronto
+	 */
 	private boolean compare(int i, int j) {
 		for (int k = 0; k < this.attributeSet.size(); k++) {
 			Object first = this.getAttributeValue(i, k);
@@ -166,6 +190,13 @@ public class Data {
 		return true;
 	}
 
+	/**
+	 * Permette di associare un attributo generico ad un centroide
+	 * 
+	 * @param idList    Indici dei prototipi
+	 * @param attribute Attributo a cui associare un centroide
+	 * @return Prototipo trovato
+	 */
 	public Object computePrototype(Set<Integer> idList, Attribute attribute) {
 		if (attribute instanceof DiscreteAttribute) {
 			return this.computePrototype(idList, (DiscreteAttribute) attribute);
@@ -174,6 +205,14 @@ public class Data {
 		return this.computePrototype(idList, (ContinuousAttribute) attribute);
 	}
 
+	/**
+	 * Permette di associare un attributo che può contenere valori continui ad un
+	 * centroide
+	 * 
+	 * @param idList    Indici dei prototipi
+	 * @param attribute Attributo a cui associare un centroide
+	 * @return Prototipo trovato
+	 */
 	public String computePrototype(Set<Integer> idList, DiscreteAttribute attribute) {
 		String prototype = "";
 		int tMaxFrequency = 0;
@@ -189,6 +228,14 @@ public class Data {
 		return prototype;
 	}
 
+	/**
+	 * Permette di associare un attributo che può contenere valori discreti ad un
+	 * centroide
+	 * 
+	 * @param idList    Indici dei prototipi
+	 * @param attribute Attributo a cui associare un centroide
+	 * @return Prototipo trovato
+	 */
 	public Double computePrototype(Set<Integer> idList, ContinuousAttribute attribute) {
 		double sum = 0.0D;
 		int attributeIndex = attribute.getIndex();
@@ -200,6 +247,12 @@ public class Data {
 		return sum / (double) idList.size();
 	}
 
+	/**
+	 * Restituisce la rappresentazione del contenuto della classe Data sottoforma di
+	 * stringa
+	 * 
+	 * @return Stringa rappresentate la classe
+	 */
 	@Override
 	public String toString() {
 		String out = " ";
