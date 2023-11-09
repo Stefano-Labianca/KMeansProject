@@ -71,7 +71,7 @@ public class Tuple {
      * @param clusteredData Indici delle tuple
      * @return Distanza media
      */
-    public double avgDistance(Data data, Set<Integer> clusteredData) {
+    public double avgDistance(Data data, Set<Integer> clusteredData) {//
         double p = 0.0D;
         double sumD = 0.0D;
 

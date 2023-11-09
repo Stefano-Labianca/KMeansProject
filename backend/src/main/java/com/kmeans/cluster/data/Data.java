@@ -116,6 +116,11 @@ public class Data {
 		return this.attributeSet.get(index);
 	}
 
+	/**
+	 * Restituisce l'insieme degli attributi della tabella del database in esame in un oggetto di tipo {@code Tuple}
+	 * @param index Indice della tupla da restituire
+	 * @return Tupla contenente gli attributi della tabella del database in esame
+	 */
 	public Tuple getItemSet(int index) {
 		Tuple tuple = new Tuple(this.attributeSet.size());
 

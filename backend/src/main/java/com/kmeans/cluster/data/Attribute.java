@@ -48,6 +48,10 @@ public abstract class Attribute {
         return this.index;
     }
 
+    /**
+     * Permette di rappresentare come una stringa la classe Attribute
+     * @return Stringa rappresentate l'attributo
+     */
     @Override
     public String toString() {
         return String.format("{Name: %s}", this.name);

@@ -12,6 +12,9 @@ import lombok.Getter;
  */
 @Getter
 public class MiddleWrapper {
+    /**
+     * Array di oggetti che rappresentano i valori del centroide di un cluster
+     */
     private ArrayList<Object> middleData = new ArrayList<Object>();
 
     /**

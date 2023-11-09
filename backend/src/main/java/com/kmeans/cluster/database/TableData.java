@@ -10,14 +10,30 @@ import java.util.Set;
 
 import com.kmeans.cluster.database.TableSchema.Column;
 
+/**
+ * Classe che gestisce i dati delle tabelle del database e permette di effettuare
+ * query su di esse e di ottenere i dati in esse contenuti sotto forma di lista di esempi
+ */
 public class TableData {
-
+    /** Database a cui accedere */
     DbAccess db;
 
+    /**
+     * Permette di accedere al database fornito come parametro
+     * per effettuare query su di esso e ottenere i dati in esso contenuti sotto forma di lista di esempi
+     * @param db
+     */
     public TableData(DbAccess db) {
         this.db = db;
     }
 
+    /**
+     * Permette di ottenere i dati contenuti nella tabella fornita come parametro sotto forma di lista di esempi
+     * @param table Tabella da cui ottenere i dati
+     * @return Lista di esempi contenenti i dati della tabella
+     * @throws SQLException Eccezione lanciata in caso di errore di connessione al database
+     * @throws EmptySetException Eccezione lanciata in caso di tabella vuota
+     */
     public List<Example> getDistinctTransazioni(String table) throws SQLException, EmptySetException {
         TableSchema tableSchema = new TableSchema(this.db, table);
         Statement s = this.db.getConnection().createStatement();
@@ -47,6 +63,13 @@ public class TableData {
         return list;
     }
 
+    /**
+     * Permette di ottenere i dati contenuti nella colonna della tabella fornita come parametro sotto forma di lista di esempi
+     * @param table Tabella da cui ottenere i dati della colonna
+     * @param column Colonna da cui ottenere i valori dei dati
+     * @return Set di esempi contenenti i dati della colonna
+     * @throws SQLException Eccezione lanciata in caso di errore di connessione al database
+     */
     public Set<Object> getDistinctColumnValues(String table, Column column) throws SQLException {
         Statement s = this.db.getConnection().createStatement();
         ResultSet resultSet = s.executeQuery("SELECT DISTINCT " + column.getColumnName() + " " + "FROM " + table + " "
@@ -69,6 +92,17 @@ public class TableData {
 
         return set;
     }
+
+    /**
+     * Permette di ottenere i dati contenuti nella tabella fornita come parametro sotto forma di lista di esempi
+     * a seguito di una query di aggregazione
+     * @param table Tabella da cui ottenere i dati
+     * @param column Colonna su cui effettuare l'aggregazione
+     * @param aggregate Tipo di aggregazione da effettuare
+     * @return Lista di esempi contenenti i dati della tabella
+     * @throws SQLException Eccezione lanciata in caso di errore di connessione al database
+     * @throws NoValueException Eccezione lanciata in caso di tabella vuota
+     */
 
     public Object getAggregateColumnValue(String table, Column column, QUERY_TYPE aggregate)
             throws SQLException, NoValueException {

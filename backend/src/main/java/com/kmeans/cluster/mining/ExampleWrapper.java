@@ -12,7 +12,14 @@ import lombok.Getter;
  */
 @Getter
 public class ExampleWrapper {
+    /**
+     * Array di oggetti che rappresentano i valori di un record di una tabella di
+     * database
+     */
     private ArrayList<Object> exampleData = new ArrayList<Object>();
+    /**
+     * Rappresenta la distanza di un record dal centroide di un cluster
+     */
     private Double distance;
 
     /**

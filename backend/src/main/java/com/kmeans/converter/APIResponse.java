@@ -16,9 +16,21 @@ import lombok.Getter;
  */
 @Getter
 public class APIResponse {
+    /**
+     * Array di stringhe che rappresentano i nomi delle colonne della tabella
+     */
     private ArrayList<String> columnsName = new ArrayList<>();
+    /**
+     * Array di oggetti che rappresentano i cluster calcolati
+     */
     private ArrayList<ClusterWrapper> clusters = new ArrayList<>();
+    /**
+     * Numero di iterazioni svolte dall'algoritmo
+     */
     private Integer iteration;
+    /**
+     * Numero di cluster
+     */
     private Integer k;
 
     /**

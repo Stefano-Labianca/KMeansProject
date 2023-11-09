@@ -20,7 +20,7 @@ import com.kmeans.converter.APIRequest;
 
 /**
  * <p>
- * Questa classe espose una serie di endopoint, con route principale
+ * Questa classe espone una serie di endopoint, con route principale
  * {@code /history}, che permette al client di attuare operazioni CRUD su un
  * database MongoDB.
  * </p>

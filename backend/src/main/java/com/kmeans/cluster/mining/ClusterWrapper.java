@@ -14,8 +14,17 @@ import lombok.Getter;
  */
 @Getter
 public class ClusterWrapper {
+    /**
+     * Rappresenta una classe wrapper che permette di strutturare un esempio
+     */
     private MiddleWrapper middle = new MiddleWrapper();
+    /**
+     * Array di esempi che appartengono ad un cluster e che sono stati estratti da un dataset di partenza (Data)
+     */
     private ArrayList<ExampleWrapper> examples = new ArrayList<ExampleWrapper>();
+    /**
+     * Rappresenta la distanza media tra il centroide e gli esempi che appartengono ad un cluster
+     */
     private Double avgDistance;
 
     /**
@@ -81,6 +90,12 @@ public class ClusterWrapper {
         return this;
     }
 
+    /**
+     * Restituisce gli indici degli esempi che appartengono ad un cluster e che sono stati estratti da un dataset di partenza (Data)
+     * @param cluster Cluster di appartenenza
+     * @param data Dati di una tabella di un database
+     * @return Indici degli esempi che appartengono ad un cluster e che sono stati estratti da un dataset di partenza (Data)
+     */
     private Set<Integer> getExamplesIndex(Cluster cluster, Data data) {
         Set<Integer> clusteredData = new TreeSet<Integer>();
 

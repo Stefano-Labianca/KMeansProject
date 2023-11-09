@@ -11,6 +11,9 @@ import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.util.StringTokenizer;
 
+/**
+ * Classe che permette di leggere da tastiera,i dati inseriti dall'utente
+ */
 public class Keyboard {
 	// ************* Error Handling Section **************************
 
