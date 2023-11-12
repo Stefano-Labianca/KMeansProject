@@ -1,5 +1,6 @@
 package com.kmeans.cluster.data;
 
+import java.io.Serializable;
 import java.util.Set;
 
 /**
@@ -7,7 +8,7 @@ import java.util.Set;
  * 
  * @see Attribute
  */
-public abstract class Item {
+public abstract class Item implements Serializable {
     /** Tipologia di dato che può contenere */
     private final Attribute attribute;
 

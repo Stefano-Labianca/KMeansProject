@@ -1,9 +1,11 @@
 package com.kmeans.cluster.data;
 
+import java.io.Serializable;
+
 /**
  * Classe astratta che rappresenta un attributo generico di una tabella
  */
-public abstract class Attribute {
+public abstract class Attribute implements Serializable {
 
     /** Nome simbolico dell'attributo */
     private String name;

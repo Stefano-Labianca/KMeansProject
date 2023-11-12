@@ -1,11 +1,12 @@
 package com.kmeans.cluster.data;
 
+import java.io.Serializable;
 import java.util.Set;
 
 /**
  * Classe che rappresenta una riga di una tabella
  */
-public class Tuple {
+public class Tuple implements Serializable {
     /** Contenuto della riga */
     private final Item[] tuple;
 
