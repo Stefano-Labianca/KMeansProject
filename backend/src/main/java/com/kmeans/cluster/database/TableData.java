@@ -64,7 +64,7 @@ public class TableData {
     }
 
     /**
-     * Permette di ottenere i dati contenuti nella colonna della tabella fornita come parametro sotto forma di lista di esempi
+     * Permette di ottenere i dati contenuti nella colonna della tabella fornita come parametro sotto forma di lista di esempi distinti
      * @param table Tabella da cui ottenere i dati della colonna
      * @param column Colonna da cui ottenere i valori dei dati
      * @return Set di esempi contenenti i dati della colonna
