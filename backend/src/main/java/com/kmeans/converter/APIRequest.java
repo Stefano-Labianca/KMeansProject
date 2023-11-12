@@ -16,8 +16,8 @@ import lombok.Data;
  * </p>
  * 
  * <p>
- * Questa stessa struttura viene usata nel client per inviare al server una
- * quella computazione che si vuole salvare nella collezione.
+ * Questa stessa struttura viene usata nel client per inviare al server
+ * la computazione che si vuole salvare nella collezione.
  * </p>
  */
 @Data
