@@ -82,13 +82,13 @@ public class KMeansController {
         String server = calculate.getServer();
         String tableName = calculate.getTable();
         String databaseName = calculate.getDatabase();
-        // Integer port = calculate.getPort(); TODO: Da vedere un attimo
+        Integer port = calculate.getPort();
         String username = calculate.getUsername();
         String password = calculate.getPassword();
         Integer k = calculate.getCluster();
 
         try {
-            databaseData = repository.getData(server, databaseName, tableName, username, password);
+            databaseData = repository.getData(server, databaseName, tableName, username, password, port);
         } catch (DatabaseConnectionException e) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Database not found", e);
 
@@ -105,8 +105,6 @@ public class KMeansController {
         try {
             kmeans = new KMeansMiner(k);
             iteration = kmeans.kmeans(databaseData);
-
-            // TODO: IDK un po' di paginazione ci sta
 
             response = APIResponse.build().setK(k).setIteration(iteration)
                     .setColumnsName(databaseData).setClusterSet(kmeans.getC(), databaseData);

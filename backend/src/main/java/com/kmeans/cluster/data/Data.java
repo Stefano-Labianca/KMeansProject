@@ -38,11 +38,12 @@ public class Data {
 	 * @param tableName    Nome della tabella
 	 * @param userId       Identificativo dell'utente
 	 * @param password     Password dell'utente
+	 * @param port         Numero di porta del database
 	 */
-	public Data(String server, String databaseName, String tableName, String userId, String password)
+	public Data(String server, String databaseName, String tableName, String userId, String password, Integer port)
 			throws DatabaseConnectionException, SQLException, EmptySetException, NoValueException {
 
-		DbAccess database = new DbAccess(server, databaseName, userId, password);
+		DbAccess database = new DbAccess(server, databaseName, userId, password, port);
 		database.initConnection();
 
 		TableData tableData = new TableData(database);
@@ -117,7 +118,9 @@ public class Data {
 	}
 
 	/**
-	 * Restituisce l'insieme degli attributi della tabella del database in esame in un oggetto di tipo {@code Tuple}
+	 * Restituisce l'insieme degli attributi della tabella del database in esame in
+	 * un oggetto di tipo {@code Tuple}
+	 * 
 	 * @param index Indice della tupla da restituire
 	 * @return Tupla contenente gli attributi della tabella del database in esame
 	 */

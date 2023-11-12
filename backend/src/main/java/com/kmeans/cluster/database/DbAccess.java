@@ -36,6 +36,9 @@ public class DbAccess {
     /** Connessione al database */
     Connection conn;
 
+    /** Porta fornita dall'utente */
+    Integer customPort = null;
+
     /**
      * Permette di connettersi al database usando le informazioni di default fornite
      * dalla classe
@@ -51,12 +54,14 @@ public class DbAccess {
      * @param database Nome del database
      * @param userId   Nome utente
      * @param password Password dell'utente
+     * @param port     Numero di porta del database
      */
-    public DbAccess(String server, String database, String userId, String password) {
+    public DbAccess(String server, String database, String userId, String password, Integer port) {
         this.server = server;
         this.database = database;
         this.userId = userId;
         this.password = password;
+        this.customPort = port;
     }
 
     /**
@@ -78,8 +83,16 @@ public class DbAccess {
             throw new RuntimeException(e);
         }
 
-        String connectionString = this.DBMS + "://" + this.server + ":" + this.PORT + "/" + this.database
-                + "?user=" + this.userId + "&password=" + this.password + "&serverTimezone=UTC";
+        String connectionString = "";
+
+        if (this.customPort == null) {
+            connectionString = this.DBMS + "://" + this.server + ":" + this.PORT + "/" + this.database
+                    + "?user=" + this.userId + "&password=" + this.password + "&serverTimezone=UTC";
+        } else {
+            connectionString = this.DBMS + "://" + this.server + ":" + this.customPort + "/" + this.database
+                    + "?user=" + this.userId + "&password=" + this.password + "&serverTimezone=UTC";
+        }
+
         System.out.println("Connection's String: " + connectionString);
 
         try {

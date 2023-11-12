@@ -37,6 +37,7 @@ public class KMeansRepository {
      * @param tableName    Nome della tabella da cui prendere i dati
      * @param userId       Nome dell'utente che ha creato il database
      * @param password     Password dell utente
+     * @param port         Numero di porta del dataabase
      * 
      * @return Contenuto della tabella
      * 
@@ -50,8 +51,9 @@ public class KMeansRepository {
      *                                     KMeans su una tabella contenente delle
      *                                     righe vuote
      */
-    public Data getData(String server, String databaseName, String tableName, String userId, String password)
+    public Data getData(String server, String databaseName, String tableName, String userId, String password,
+            Integer port)
             throws DatabaseConnectionException, SQLException, EmptySetException, NoValueException {
-        return new Data(server, databaseName, tableName, userId, password);
+        return new Data(server, databaseName, tableName, userId, password, port);
     }
 }
