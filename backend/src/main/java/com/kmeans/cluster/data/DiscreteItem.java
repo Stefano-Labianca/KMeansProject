@@ -11,7 +11,7 @@ package com.kmeans.cluster.data;
 public class DiscreteItem extends Item {
 
     /**
-     * Costruttore
+     * Inizializza un DiscreteItem
      * 
      * @param attribute Attributo in cui salvare un valore
      * @param value     Valore da salvare
