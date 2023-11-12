@@ -18,9 +18,9 @@ public class MiddleWrapper {
     private ArrayList<Object> middleData = new ArrayList<Object>();
 
     /**
-     * Inserisce un valore all'intero del centroide tutti i dati associati ad esso,
-     * contenuti in una riga di una tabella del database
-     * 
+     * Questo metodo prende in input un oggetto di tipo Tuple
+     * e scorre tutti i suoi valori per inserirli all'interno
+     * dell'ArrayList middleData che rappresenta il centroide di un cluster
      * @param t Record di una tabella
      */
     public void addMiddleValue(Tuple t) {
