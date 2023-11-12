@@ -35,6 +35,8 @@ public class KMeansMiner {
             this.C = (ClusterSet) reader.readObject();
 
             reader.close();
+        } catch (FileNotFoundException e) {
+            throw new FileNotFoundException("File non trovato");
         } catch (IOException e) {
             throw new IOException("Errore di I/O");
         } catch (ClassNotFoundException e) {
@@ -75,6 +77,8 @@ public class KMeansMiner {
             writer.writeObject(this.C);
 
             writer.close();
+        } catch (FileNotFoundException e) {
+            throw new FileNotFoundException("File non trovato");
         } catch (IOException e) {
             throw new IOException("Errore di I/O");
         }
