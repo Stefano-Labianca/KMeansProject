@@ -8,7 +8,7 @@ import com.kmeans.cluster.data.Data;
 import com.kmeans.cluster.data.Tuple;
 
 /**
- * CLasse che rappresenta un cluster
+ * Classe che rappresenta un cluster
  * 
  * @see Tuple
  */
@@ -39,9 +39,9 @@ public class Cluster implements Serializable {
 	}
 
 	/**
-	 * Calcola un
+	 * Calcola un centroide
 	 * 
-	 * @param data
+	 * @param data Dati della tabella
 	 */
 	void computeCentroid(Data data) {
 		for (int i = 0; i < centroid.getLength(); i++) {
@@ -69,7 +69,11 @@ public class Cluster implements Serializable {
 		return clusteredData.contains(id);
 	}
 
-	// remove the tuple that has changed the cluster
+	/**
+	 * Rimuove quella tupla che ha cambiato cluster
+	 * 
+	 * @param id Indice della tupla
+	 */
 	void removeTuple(int id) {
 		clusteredData.remove(id);
 	}

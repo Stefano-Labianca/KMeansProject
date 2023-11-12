@@ -8,6 +8,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+
 /**
  * Contiene le informazioni sullo schema di una tabella di un database
  */
@@ -16,7 +17,8 @@ public class TableSchema {
 	private DbAccess db;
 
 	/**
-	 * Classe che rappresenta una colonna della tabella del database con il nome e il tipo
+	 * Classe che rappresenta una colonna della tabella del database con il nome e
+	 * il tipo
 	 */
 	public class Column {
 		/** Nome della colonna */
@@ -26,6 +28,7 @@ public class TableSchema {
 
 		/**
 		 * Costruttore della classe Column
+		 * 
 		 * @param name Nome della colonna
 		 * @param type Tipo della colonna
 		 */
@@ -36,6 +39,7 @@ public class TableSchema {
 
 		/**
 		 * Restituisce il nome della colonna
+		 * 
 		 * @return Nome della colonna
 		 */
 		public String getColumnName() {
@@ -44,15 +48,18 @@ public class TableSchema {
 
 		/**
 		 * Verifica se la colonna è di tipo numerico
+		 * 
 		 * @return Vero se la colonna è di tipo stringa altrimenti falso
 		 */
 		public boolean isNumber() {
 			return type.equals("number");
 		}
-/**
- * Restituisce una stringa che rappresenta la colonna
- * @return Stringa che rappresenta la colonna
- */
+
+		/**
+		 * Restituisce una stringa che rappresenta la colonna
+		 * 
+		 * @return Stringa che rappresenta la colonna
+		 */
 		public String toString() {
 			return name + ":" + type;
 		}
@@ -64,10 +71,13 @@ public class TableSchema {
 	List<Column> tableSchema = new ArrayList<>();
 
 	/**
-	 * Costruttore della classe TableSchema che crea lo schema della tabella del database
-	 * @param db Connessione al database
+	 * Costruttore della classe TableSchema che crea lo schema della tabella del
+	 * database
+	 * 
+	 * @param db        Connessione al database
 	 * @param tableName Nome della tabella del database
-	 * @throws SQLException Eccezione lanciata in caso di errore di connessione al database
+	 * @throws SQLException Eccezione lanciata in caso di errore di connessione al
+	 *                      database
 	 */
 	public TableSchema(DbAccess db, String tableName) throws SQLException {
 		this.db = db;
@@ -98,6 +108,7 @@ public class TableSchema {
 
 	/**
 	 * Restituisce il numero di attributi della tabella del database
+	 * 
 	 * @return Numero di attributi della tabella del database
 	 */
 	public int getNumberOfAttributes() {
@@ -106,6 +117,7 @@ public class TableSchema {
 
 	/**
 	 * Restituisce la colonna della tabella del database all'indice specificato
+	 * 
 	 * @param index Indice della colonna della tabella del database
 	 * @return Colonna della tabella del database all'indice specificato
 	 */

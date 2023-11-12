@@ -3,6 +3,7 @@ package com.kmeans.cluster.data;
 /**
  * Permette il salvataggio di un valore continuo da associare ad un attributo in
  * grado di contenerlo
+ * 
  * @see Item
  * @see Attribute
  * @see ContinuousAttribute

@@ -136,6 +136,7 @@ public class ClusterSet implements Serializable {
     /**
      * Rappresenta con una stringa i dati della tabella
      * 
+     * @param Data Informazioni di una tabella
      * @return Stringa rappresentate i dati della tabella
      */
     public String toString(Data data) {

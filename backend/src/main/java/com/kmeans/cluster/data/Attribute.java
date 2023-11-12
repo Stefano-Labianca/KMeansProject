@@ -50,6 +50,7 @@ public abstract class Attribute {
 
     /**
      * Permette di rappresentare come una stringa la classe Attribute
+     * 
      * @return Stringa rappresentate l'attributo
      */
     @Override

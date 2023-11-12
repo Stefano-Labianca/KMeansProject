@@ -55,6 +55,11 @@ public class KMeansMiner {
         this.C = new ClusterSet(k);
     }
 
+    /**
+     * Resituisce l'insieme di cluster generati
+     * 
+     * @return Insieme di cluster
+     */
     public ClusterSet getC() {
         return this.C;
     }
