@@ -92,7 +92,7 @@ public class ClusterSet implements Serializable {
     }
 
     /**
-     * Restituisce il cluster in base al suo {@code id}
+     * Restituisce il cluster che contiene una tupla con un dato indice {@code id}
      * 
      * @param id Indice del cluster da trovare
      * @return Cluster corrente
