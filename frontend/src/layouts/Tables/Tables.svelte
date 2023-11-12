@@ -2,7 +2,7 @@
   import EmptyState from "$components/EmptyState/EmptyState.svelte"
   import Table from "$components/Table/Table.svelte"
   import Text from "$components/Text/Text.svelte"
-  import { DELAY, TRANSITION_Y_IN } from "$lib/consts"
+  import { DELAY, TRANSITION_Y_IN } from "$lib/animation"
   import { dbRecord } from "$stores/dbRecord"
 
   import { goto } from "$app/navigation"

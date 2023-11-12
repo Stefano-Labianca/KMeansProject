@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { ALERT_TIMEOUT } from "$lib/consts"
+  import { ALERT_TIMEOUT } from "$lib/animation"
   import { nanoid } from "nanoid"
   import Icon from "../Icon/Icon.svelte"
   import Text from "../Text/Text.svelte"

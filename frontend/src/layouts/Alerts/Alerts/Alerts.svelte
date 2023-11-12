@@ -1,10 +1,6 @@
 <script lang="ts">
   import Alert from "$components/Alert/Alert.svelte"
-  import {
-    TRANSITION_BASE,
-    TRANSITION_Y_IN,
-    TRANSITION_Y_OUT,
-  } from "$lib/consts"
+  import { TRANSITION_BASE, TRANSITION_Y_IN, TRANSITION_Y_OUT } from "$lib/animation"
 
   import alerts from "$stores/alert"
   import { flip } from "svelte/animate"
@@ -13,11 +9,7 @@
 
 <div class="Alerts">
   {#each $alerts as alert (alert)}
-    <div
-      animate:flip={TRANSITION_BASE}
-      in:fly={TRANSITION_Y_IN}
-      out:fly={TRANSITION_Y_OUT}
-    >
+    <div animate:flip={TRANSITION_BASE} in:fly={TRANSITION_Y_IN} out:fly={TRANSITION_Y_OUT}>
       <Alert {...alert} />
     </div>
   {/each}

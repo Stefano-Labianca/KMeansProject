@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { TRANSITION_BASE } from "$lib/consts"
+  import { TRANSITION_BASE } from "$lib/animation"
   import { slide } from "svelte/transition"
   import Text from "../Text/Text.svelte"
   import type { ErrorComponent } from "./error"

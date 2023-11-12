@@ -1,6 +1,6 @@
 <script lang="ts">
   import Entry from "$components/Entry/Entry.svelte"
-  import { DELAY, TRANSITION_BASE, TRANSITION_X_OUT, TRANSITION_Y_IN } from "$lib/consts"
+  import { DELAY, TRANSITION_BASE, TRANSITION_X_OUT, TRANSITION_Y_IN } from "$lib/animation"
 
   import EmptyState from "$components/EmptyState/EmptyState.svelte"
   import Text from "$components/Text/Text.svelte"
