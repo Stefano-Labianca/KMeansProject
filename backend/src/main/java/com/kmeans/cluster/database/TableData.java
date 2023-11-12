@@ -28,7 +28,7 @@ public class TableData {
     }
 
     /**
-     * Permette di ottenere i dati contenuti nella tabella fornita come parametro sotto forma di lista di esempi
+     * Permette di ottenere i dati contenuti nella tabella fornita come parametro sotto forma di lista di esempi distinti
      * @param table Tabella da cui ottenere i dati
      * @return Lista di esempi contenenti i dati della tabella
      * @throws SQLException Eccezione lanciata in caso di errore di connessione al database
