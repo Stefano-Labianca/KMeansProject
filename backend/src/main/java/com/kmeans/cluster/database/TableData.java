@@ -25,7 +25,7 @@ public class TableData {
      * per effettuare query su di esso e ottenere i dati in esso contenuti sotto
      * forma di lista di esempi
      * 
-     * @param db
+     * @param db Instanza della connessione al database
      */
     public TableData(DbAccess db) {
         this.db = db;
