@@ -1,18 +1,15 @@
 package com.kmeans.cluster.mining;
 
+import com.kmeans.cluster.data.Data;
+import com.kmeans.cluster.data.Tuple;
+
 import java.util.ArrayList;
 import java.util.Set;
 import java.util.TreeSet;
 
-import com.kmeans.cluster.data.Data;
-import com.kmeans.cluster.data.Tuple;
-
-import lombok.Getter;
-
 /**
  * Rappresenta una classe wrapper che permette di strutturare un Cluster
  */
-@Getter
 public class ClusterWrapper {
     /**
      * Rappresenta una classe wrapper che permette di strutturare un esempio
@@ -29,7 +26,7 @@ public class ClusterWrapper {
 
     /**
      * Permette la costruzione di un oggetto tramite methods chaining
-     * 
+     *
      * @return Oggetto classe ClusterWrapper
      */
     static public ClusterWrapper build() {
@@ -38,7 +35,7 @@ public class ClusterWrapper {
 
     /**
      * Salva il centroide di un custer.
-     * 
+     *
      * @param cluster Cluster da cui estrarre il centroide
      * @return Oggetto corrente
      */
@@ -51,7 +48,7 @@ public class ClusterWrapper {
 
     /**
      * Raccoglie tutti i record che appartengono ad un cluster
-     * 
+     *
      * @param cluster Cluster di appartenenza
      * @param data    Contenuto di una tabella del database
      * @return Oggetto corrente Oggetto corrente
@@ -66,7 +63,7 @@ public class ClusterWrapper {
             Double distance = t.getDistance(tuple);
 
             ExampleWrapper example = ExampleWrapper.build()
-                    .addExampleValue(tuple).setDistance(distance);
+                .addExampleValue(tuple).setDistance(distance);
 
             this.examples.add(example);
         }
@@ -76,7 +73,7 @@ public class ClusterWrapper {
 
     /**
      * Calcola la distanza media dei record associati ad un cluster
-     * 
+     *
      * @param cluster Cluster di appartenenza
      * @param data    Dati di una tabella di un database
      * @return Oggetto corrente
@@ -92,8 +89,9 @@ public class ClusterWrapper {
 
     /**
      * Restituisce gli indici degli esempi che appartengono ad un cluster e che sono stati estratti da un dataset di partenza (Data)
+     *
      * @param cluster Cluster di appartenenza
-     * @param data Dati di una tabella di un database
+     * @param data    Dati di una tabella di un database
      * @return Indici degli esempi che appartengono ad un cluster e che sono stati estratti da un dataset di partenza (Data)
      */
     private Set<Integer> getExamplesIndex(Cluster cluster, Data data) {
@@ -108,4 +106,29 @@ public class ClusterWrapper {
         return clusteredData;
     }
 
+    /**
+     * Restitisce il centroide
+     * @return Centroide
+     */
+    public MiddleWrapper getMiddle() {
+        return this.middle;
+    }
+
+    /**
+     * Restituisce una lista di esempi associati al centroide
+     *
+     * @return lista di esempi
+     */
+    public ArrayList<ExampleWrapper> getExamples() {
+        return this.examples;
+    }
+
+    /**
+     * Restituisce la distanza media dal centroide
+     *
+     * @return Distanza media
+     */
+    public Double getAvgDistance() {
+        return this.avgDistance;
+    }
 }

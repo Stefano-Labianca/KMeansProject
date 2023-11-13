@@ -1,16 +1,13 @@
 package com.kmeans.cluster.mining;
 
-import java.util.ArrayList;
-
 import com.kmeans.cluster.data.Tuple;
 
-import lombok.Getter;
+import java.util.ArrayList;
 
 /**
  * Rappresenta una classe wrapper che permette di strutturare un Example, o
  * record di una tabella di database
  */
-@Getter
 public class ExampleWrapper {
     /**
      * Array di oggetti che rappresentano i valori di un record di una tabella di
@@ -24,7 +21,7 @@ public class ExampleWrapper {
 
     /**
      * Permette la costruzione di un oggetto tramite methode chaining
-     * 
+     *
      * @return Oggetto classe ExampleWrapper
      */
     static public ExampleWrapper build() {
@@ -33,7 +30,7 @@ public class ExampleWrapper {
 
     /**
      * Imposta la distanza di un record dal centroide di un cluster
-     * 
+     *
      * @param distance Distanza calcolata
      * @return Oggetto corrente
      */
@@ -44,7 +41,7 @@ public class ExampleWrapper {
 
     /**
      * Imposta il contenuto di un record di una tabella all'intero dell'oggetto
-     * 
+     *
      * @param t Contenuto di un record
      * @return Oggetto corrente
      */
@@ -54,5 +51,21 @@ public class ExampleWrapper {
         }
 
         return this;
+    }
+
+    /**
+     * Restituisce una lista di dati dell'esempio
+     * @return Lista di dati
+     */
+    public ArrayList<Object> getExampleData() {
+        return this.exampleData;
+    }
+
+    /**
+     * Restituisce la distanza dell'esempio corrente dal centroide
+     * @return Distanza dal centroide
+     */
+    public Double getDistance() {
+        return this.distance;
     }
 }

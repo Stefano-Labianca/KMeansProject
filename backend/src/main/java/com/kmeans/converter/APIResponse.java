@@ -1,20 +1,17 @@
 package com.kmeans.converter;
 
-import java.util.ArrayList;
-
 import com.kmeans.cluster.data.Data;
 import com.kmeans.cluster.data.OutOfRangeSampleSize;
 import com.kmeans.cluster.mining.Cluster;
 import com.kmeans.cluster.mining.ClusterSet;
 import com.kmeans.cluster.mining.ClusterWrapper;
 
-import lombok.Getter;
+import java.util.ArrayList;
 
 /**
  * Rappresenta una classe wrapper che permette di strutturare il calcolo del
  * K-Means in un formato più semplice da elaborare per il client
  */
-@Getter
 public class APIResponse {
     /**
      * Array di stringhe che rappresentano i nomi delle colonne della tabella
@@ -35,7 +32,7 @@ public class APIResponse {
 
     /**
      * Permette la costruzione di un oggetto tramite methods chaining
-     * 
+     *
      * @return Oggetto classe APIResponse
      */
     static public APIResponse build() {
@@ -44,7 +41,7 @@ public class APIResponse {
 
     /**
      * Imposta il numero di iterazioni svolte dall'algoritmo
-     * 
+     *
      * @param iteration Iterazioni svolte
      * @return Oggetto corrente
      */
@@ -55,7 +52,7 @@ public class APIResponse {
 
     /**
      * Imposta il numero di cluster
-     * 
+     *
      * @param k Numero di cluster
      * @return Oggetto corrente
      * @throws OutOfRangeSampleSize Causata quando il valore di {@code k} è maggiore
@@ -69,7 +66,7 @@ public class APIResponse {
 
     /**
      * Imposta i nomi delle colonne usate nella tabella
-     * 
+     *
      * @param data Tabella usata nella computazione
      * @return Oggetto corrente
      */
@@ -83,7 +80,7 @@ public class APIResponse {
 
     /**
      * Imposta i cluster calcolati
-     * 
+     *
      * @param set Insieme di cluster
      * @return Oggetto corrente
      */
@@ -91,7 +88,7 @@ public class APIResponse {
         for (int i = 0; i < this.k; i++) {
             Cluster cluster = set.get(i);
             ClusterWrapper wrapper = ClusterWrapper.build().setMiddle(cluster)
-                    .setExamples(cluster, data).setAvgDistance(cluster, data);
+                .setExamples(cluster, data).setAvgDistance(cluster, data);
 
             this.clusters.add(wrapper);
         }
@@ -99,4 +96,36 @@ public class APIResponse {
         return this;
     }
 
+    /**
+     * Restituisce i nomi delle colonne
+     * @return Nomi delle colonne
+     */
+    public ArrayList<String> getColumnsName() {
+        return this.columnsName;
+    }
+
+    /**
+     * Restituisce una lista di cluster
+     *
+     * @return Lista di cluster
+     */
+    public ArrayList<ClusterWrapper> getClusters() {
+        return this.clusters;
+    }
+
+    /**
+     * Restituisce il numero di iterazioni
+     * @return Numero di iterazioni
+     */
+    public Integer getIteration() {
+        return this.iteration;
+    }
+
+    /**
+     * Restituisce il numero di cluster
+     * @return Numero di cluster
+     */
+    public Integer getK() {
+        return this.k;
+    }
 }
