@@ -1,4 +1,4 @@
-import { ALERT_TIMEOUT } from "$lib/consts"
+import { ALERT_TIMEOUT } from "$lib/animation"
 import { nanoid } from "nanoid"
 import { writable, type Writable } from "svelte/store"
 import type { AlertComponent } from "../components/Alert/alert"
