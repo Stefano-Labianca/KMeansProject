@@ -5,6 +5,7 @@ import { quartOut } from "svelte/easing"
  */
 export const ALERT_TIMEOUT = 4000
 
+/** Ritardo dell'animazione */
 export const DELAY = 90
 
 /**
