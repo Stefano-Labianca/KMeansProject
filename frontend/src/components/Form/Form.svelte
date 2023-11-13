@@ -20,6 +20,7 @@
   export let button: FormComponent["button"]
 
   let loading = false
+  let isvalidResponse = true
 
   const { form, errors } = createForm({
     extend: validator({ schema: FORM_SCHEMA }),
@@ -41,13 +42,21 @@
 
       if (response) {
         $dbRecord = response
+      } else {
+        console.log("Eccomi")
+
+        isvalidResponse = false
+        loading = false
       }
     },
 
     async onSuccess() {
-      await save($dbRecord)
+      if (isvalidResponse) {
+        await save($dbRecord)
+        goto("/calculation")
+      }
 
-      goto("/calculation")
+      isvalidResponse = true
     },
   })
 </script>

@@ -39,8 +39,6 @@ export const save = async (record: KMeans) => {
   } as HistoryEntry
 
   try {
-    // TODO: Spezza il cristo di playload in caso di cluster enormi
-
     await CrudEndPoint.create<HistoryEntry>(HISTORY_ENDPOINT.POST, payload)
   } catch (error) {
     return Promise.reject(error)
