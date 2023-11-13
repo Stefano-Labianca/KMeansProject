@@ -42,7 +42,7 @@
     @apply flex;
     @apply flex-col;
     @apply w-full;
-    @apply h-[20rem];
+    @apply h-[40rem];
     @apply overflow-y-auto;
   }
 
